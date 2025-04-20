@@ -1,0 +1,15 @@
+﻿syntax = "proto3";
+
+package sfc_scheme;
+
+import "Messages/Get/get_scheme_request.proto";
+import "Messages/Get/get_scheme_response.proto";
+import "Messages/Find/get_schemes_request.proto";
+import "Messages/Find/get_schemes_response.proto";
+
+option csharp_namespace = "SFC.Scheme.Contracts.Services";
+
+service SchemeService {
+    rpc GetScheme(GetSchemeRequest) returns (GetSchemeResponse);
+    rpc GetSchemes(GetSchemesRequest) returns (GetSchemesResponse);
+}

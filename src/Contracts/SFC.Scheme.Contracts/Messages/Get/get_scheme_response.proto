@@ -1,0 +1,12 @@
+﻿syntax = "proto3";
+
+package sfc_scheme;
+
+import "Models/Scheme/scheme.proto";
+
+option csharp_namespace = "SFC.Scheme.Contracts.Messages.Get";
+
+message GetSchemeResponse
+{
+    Scheme scheme = 1;
+}
