@@ -1,0 +1,14 @@
+﻿syntax = "proto3";
+
+package sfc_scheme;
+
+import "Models/Common/int32_array.proto";
+
+option csharp_namespace = "SFC.Scheme.Contracts.Models.Scheme.Data";
+
+message FormationDataValue
+{
+    int32 id = 1;
+    string title = 2;
+    repeated Int32Array values = 3;
+}

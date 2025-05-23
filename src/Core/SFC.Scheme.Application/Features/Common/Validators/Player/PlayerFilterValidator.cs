@@ -24,7 +24,7 @@ public class PlayerFilterValidator : AbstractValidator<PlayerFilterDto>
             {
                 RuleFor(p => p.Profile.General.Tags)
                     .Must(tags => tags.Distinct().Count() == tags.Count())
-                    .WithMessage(Localization.MustBeUnique)
+                    .WithMessage(Localization.EachValueMustBeUnique)
                     .Must(tags => tags.Count() <= ValidationConstants.TagsMaxLength)
                     .WithName(nameof(PlayerGeneralProfileFilterDto.Tags))
                     .WithMessage(Localization.MustNotExceedSize.BuildValidationMessage(nameof(PlayerGeneralProfileFilterDto.Tags), ValidationConstants.TagsMaxLength));
@@ -32,9 +32,9 @@ public class PlayerFilterValidator : AbstractValidator<PlayerFilterDto>
                 RuleForEach(p => p.Profile.General.Tags)
                     .NotEmpty()
                     .WithName(nameof(PlayerGeneralProfileFilterDto.Tags))
-                    .WithMessage(Localization.MustNotBeEmpty)
+                    .WithMessage(Localization.EachValueMustNotBeEmpty)
                     .MaximumLength(ValidationConstants.TagValueMaxLength)
-                    .WithMessage(Localization.MustNotExceedCharactersSize);
+                    .WithMessage(Localization.EachValueMustNotExceedCharactersSize);
             });
 
             When(p => p.Profile.General.Availability?.Days?.Any() ?? false, () =>
@@ -46,7 +46,7 @@ public class PlayerFilterValidator : AbstractValidator<PlayerFilterDto>
                 RuleForEach(p => p.Profile.General.Availability.Days)
                     .IsInEnum()
                     .WithName(nameof(PlayerAvailabilityLimitFilterDto.Days))
-                    .WithMessage(Localization.InvalidDaysOfWeek);
+                    .WithMessage(Localization.EachValueInvalidDaysOfWeek);
 
             });
 

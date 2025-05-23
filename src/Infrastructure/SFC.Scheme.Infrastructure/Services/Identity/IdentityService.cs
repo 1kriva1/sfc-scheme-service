@@ -2,7 +2,7 @@
 
 using Microsoft.Extensions.Configuration;
 
-using SFC.Identity.Contracts.Messages.Get;
+using SFC.Identity.Contracts.Messages.User.Get;
 using SFC.Scheme.Application.Common.Dto.Identity;
 using SFC.Scheme.Application.Interfaces.Identity;
 using SFC.Scheme.Infrastructure.Extensions.Grpc;

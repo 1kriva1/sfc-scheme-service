@@ -5,25 +5,17 @@ using MassTransit;
 using MediatR;
 
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 
 using SFC.Scheme.Application.Features.Team.Player.Commands.Create;
-using SFC.Scheme.Application.Interfaces.Persistence.Repository.Team.Player;
 using SFC.Scheme.Infrastructure.Extensions;
 using SFC.Scheme.Infrastructure.Settings.RabbitMq;
 using SFC.Team.Messages.Events.Team.Player;
 
 namespace SFC.Scheme.Infrastructure.Consumers.Team.Domain.Player.Events;
-public class TeamPlayerCreatedConsumer(
-    IMapper mapper,
-    ILogger<TeamPlayerCreatedConsumer> logger,
-    ISender mediator) : IConsumer<TeamPlayerCreated>
+public class TeamPlayerCreatedConsumer(IMapper mapper, ISender mediator) : IConsumer<TeamPlayerCreated>
 {
-#pragma warning disable CA1823 // Avoid unused private fields
     private readonly IMapper _mapper = mapper;
-    private readonly ILogger<TeamPlayerCreatedConsumer> _logger = logger;
     private readonly ISender _mediator = mediator;
-#pragma warning restore CA1823 // Avoid unused private fields
 
     public async Task Consume(ConsumeContext<TeamPlayerCreated> context)
     {

@@ -17,16 +17,31 @@
     <None Remove="Enums\sorting_direction.proto" />
     <None Remove="Headers\auditable_header.proto" />
     <None Remove="Headers\pagination_header.proto" />
-    <None Remove="Messages\Find\Filters\get_schemes_filter.proto" />
-    <None Remove="Messages\Find\get_schemes_request.proto" />
-    <None Remove="Messages\Find\get_schemes_response.proto" />
-    <None Remove="Messages\Get\get_scheme_request.proto" />
-    <None Remove="Messages\Get\get_scheme_response.proto" />
+    <None Remove="Messages\Scheme\Data\GetAll\get_all_scheme_data_request.proto" />
+    <None Remove="Messages\Scheme\Data\GetAll\get_all_scheme_data_response.proto" />
+    <None Remove="Messages\Scheme\Team\Find\Filters\get_team_schemes_filter.proto" />
+    <None Remove="Messages\Scheme\Team\Find\Filters\team_schemes_general_profile_filter.proto" />
+    <None Remove="Messages\Scheme\Team\Find\Filters\team_schemes_players_filter.proto" />
+    <None Remove="Messages\Scheme\Team\Find\Filters\team_schemes_players_stats_filter.proto" />
+    <None Remove="Messages\Scheme\Team\Find\Filters\team_schemes_profile_filter.proto" />
+    <None Remove="Messages\Scheme\Team\Find\get_team_schemes_request.proto" />
+    <None Remove="Messages\Scheme\Team\Find\get_team_schemes_response.proto" />
+    <None Remove="Messages\Scheme\Team\Get\get_team_scheme_request.proto" />
+    <None Remove="Messages\Scheme\Team\Get\get_team_scheme_response.proto" />
+    <None Remove="Models\Common\int32_array.proto" />
     <None Remove="Models\Common\pagination.proto" />
     <None Remove="Models\Common\range_limit.proto" />
     <None Remove="Models\Common\sorting.proto" />
+    <None Remove="Models\Scheme\Data\data_value.proto" />
+    <None Remove="Models\Scheme\Data\formation_data_value.proto" />
+    <None Remove="Models\Scheme\Data\formation_position_data_value.proto" />
     <None Remove="Models\Scheme\scheme.proto" />
-    <None Remove="Services\scheme_service.proto" />
+    <None Remove="Models\Scheme\Team\team_scheme_general_profile.proto" />
+    <None Remove="Models\Scheme\Team\team_scheme_player.proto" />
+    <None Remove="Models\Scheme\Team\team_scheme_player_position.proto" />
+    <None Remove="Models\Scheme\Team\team_scheme_profile.proto" />
+    <None Remove="Services\scheme_data_service.proto" />
+    <None Remove="Services\team_scheme_service.proto" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,16 +57,31 @@
     <Protobuf Include="Enums\sorting_direction.proto" />
     <Protobuf Include="Headers\auditable_header.proto" />
     <Protobuf Include="Headers\pagination_header.proto" />
-    <Protobuf Include="Messages\Find\Filters\get_schemes_filter.proto" />
-    <Protobuf Include="Messages\Find\get_schemes_request.proto" />
-    <Protobuf Include="Messages\Find\get_schemes_response.proto" />
-    <Protobuf Include="Messages\Get\get_scheme_request.proto" />
-    <Protobuf Include="Messages\Get\get_scheme_response.proto" />
+    <Protobuf Include="Messages\Scheme\Data\GetAll\get_all_scheme_data_request.proto" />
+    <Protobuf Include="Messages\Scheme\Data\GetAll\get_all_scheme_data_response.proto" />
+    <Protobuf Include="Messages\Scheme\Team\Find\Filters\team_schemes_profile_filter.proto" />
+    <Protobuf Include="Messages\Scheme\Team\Find\Filters\team_schemes_players_filter.proto" />
+    <Protobuf Include="Messages\Scheme\Team\Find\Filters\team_schemes_players_stats_filter.proto" />
+    <Protobuf Include="Messages\Scheme\Team\Find\Filters\team_schemes_general_profile_filter.proto" />
+    <Protobuf Include="Messages\Scheme\Team\Find\Filters\get_team_schemes_filter.proto" />
+    <Protobuf Include="Messages\Scheme\Team\Find\get_team_schemes_request.proto" />
+    <Protobuf Include="Messages\Scheme\Team\Find\get_team_schemes_response.proto" />
+    <Protobuf Include="Messages\Scheme\Team\Get\get_team_scheme_request.proto" />
+    <Protobuf Include="Messages\Scheme\Team\Get\get_team_scheme_response.proto" />
+    <Protobuf Include="Models\Common\int32_array.proto" />
     <Protobuf Include="Models\Common\pagination.proto" />
     <Protobuf Include="Models\Common\range_limit.proto" />
     <Protobuf Include="Models\Common\sorting.proto" />
-    <Protobuf Include="Models\Scheme\scheme.proto" />
-    <Protobuf Include="Services\scheme_service.proto" />
+    <Protobuf Include="Models\Scheme\Data\data_value.proto" />
+    <Protobuf Include="Models\Scheme\Data\formation_data_value.proto" />
+    <Protobuf Include="Models\Scheme\Data\formation_position_data_value.proto" />
+    <Protobuf Include="Models\Scheme\Team\team_scheme_player_position.proto" />
+    <Protobuf Include="Models\Scheme\Team\team_scheme_player.proto" />
+    <Protobuf Include="Models\Scheme\Team\team_scheme_general_profile.proto" />
+    <Protobuf Include="Models\Scheme\Team\team_scheme_profile.proto" />
+    <Protobuf Include="Models\Scheme\Team\team_scheme.proto" />
+    <Protobuf Include="Services\scheme_data_service.proto" />
+    <Protobuf Include="Services\team_scheme_service.proto" />
   </ItemGroup>
 
 </Project>

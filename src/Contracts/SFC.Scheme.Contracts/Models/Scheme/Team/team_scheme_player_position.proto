@@ -1,0 +1,15 @@
+﻿syntax = "proto3";
+
+package sfc_scheme;
+
+import "google/protobuf/wrappers.proto";
+
+option csharp_namespace = "SFC.Scheme.Contracts.Models.Scheme.Team";
+
+message TeamSchemePlayerPosition
+{
+    google.protobuf.Int32Value index = 1;
+    google.protobuf.Int32Value x = 2;
+    google.protobuf.Int32Value y = 3;
+    int32 formation_position = 4;
+}

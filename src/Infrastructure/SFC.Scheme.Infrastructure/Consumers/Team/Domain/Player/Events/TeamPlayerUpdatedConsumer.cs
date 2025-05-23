@@ -5,25 +5,17 @@ using MassTransit;
 using MediatR;
 
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 
 using SFC.Scheme.Application.Features.Team.Player.Commands.Update;
-using SFC.Scheme.Application.Interfaces.Persistence.Repository.Team.Player;
 using SFC.Scheme.Infrastructure.Extensions;
 using SFC.Scheme.Infrastructure.Settings.RabbitMq;
 using SFC.Team.Messages.Events.Team.Player;
 
 namespace SFC.Scheme.Infrastructure.Consumers.Team.Domain.Player.Events;
-public class TeamPlayerUpdatedConsumer(
-    IMapper mapper,
-    ILogger<TeamPlayerUpdatedConsumer> logger,
-    ISender mediator) : IConsumer<TeamPlayerUpdated>
+public class TeamPlayerUpdatedConsumer(IMapper mapper, ISender mediator) : IConsumer<TeamPlayerUpdated>
 {
-#pragma warning disable CA1823 // Avoid unused private fields
     private readonly IMapper _mapper = mapper;
-    private readonly ILogger<TeamPlayerUpdatedConsumer> _logger = logger;
     private readonly ISender _mediator = mediator;
-#pragma warning restore CA1823 // Avoid unused private fields
 
     public async Task Consume(ConsumeContext<TeamPlayerUpdated> context)
     {

@@ -13,15 +13,9 @@ using SFC.Scheme.Infrastructure.Settings.RabbitMq;
 using SFC.Scheme.Messages.Commands.Team.Data;
 
 namespace SFC.Scheme.Infrastructure.Consumers.Scheme.Data.Team;
-public class InitializeDataConsumer(
-    IMapper mapper,
-    ILogger<InitializeDataConsumer> logger,
-    ISender mediator) : IConsumer<InitializeData>
+public class InitializeDataConsumer(IMapper mapper, ISender mediator) : IConsumer<InitializeData>
 {
     private readonly IMapper _mapper = mapper;
-#pragma warning disable CA1823 // Avoid unused private fields
-    private readonly ILogger<InitializeDataConsumer> _logger = logger;
-#pragma warning restore CA1823 // Avoid unused private fields
     private readonly ISender _mediator = mediator;
 
     public async Task Consume(ConsumeContext<InitializeData> context)

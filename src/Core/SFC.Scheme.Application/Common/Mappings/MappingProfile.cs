@@ -3,9 +3,12 @@
 using SFC.Scheme.Application.Common.Mappings.Base;
 using SFC.Scheme.Application.Features.Common.Dto.Pagination;
 using SFC.Scheme.Application.Features.Common.Models.Find.Paging;
+using SFC.Scheme.Application.Features.Scheme.Data.Queries.Common.Dto;
+using SFC.Scheme.Domain.Common;
 using SFC.Scheme.Domain.Entities.Data;
 using SFC.Scheme.Domain.Entities.Identity;
 using SFC.Scheme.Domain.Entities.Player;
+using SFC.Scheme.Domain.Entities.Scheme.Data;
 using SFC.Scheme.Domain.Entities.Team.General;
 
 namespace SFC.Scheme.Application.Common.Mappings;
@@ -50,6 +53,9 @@ public class MappingProfile : BaseMappingProfile
         CreateMap<TeamTag, string>()
             .ConvertUsing(tag => tag.Value);
 
+        CreateMap<ICollection<FormationValue>, IEnumerable<IEnumerable<int>>>()
+            .ConvertUsing(values => values.GroupBy(v => v.Line).Select(g => g.Select(gv => (int)gv.FormationPositionId)));
+
         #endregion Simple types
 
         #region Complex types
@@ -63,6 +69,8 @@ public class MappingProfile : BaseMappingProfile
             .ForMember(nameof(PageDto<object>.Metadata), d => d.Ignore());
 
         CreateMap(typeof(PagedList<>), typeof(PageMetadataDto));
+
+        CreateMap(typeof(EnumDataEntity<>), typeof(DataValueDto));
 
         #endregion Generic types        
     }

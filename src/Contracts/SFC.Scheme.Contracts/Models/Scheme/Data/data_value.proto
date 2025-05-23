@@ -1,0 +1,11 @@
+﻿syntax = "proto3";
+
+package sfc_scheme;
+
+option csharp_namespace = "SFC.Scheme.Contracts.Models.Scheme.Data";
+
+message DataValue
+{
+    int32 id = 1;
+    string title = 2;
+}

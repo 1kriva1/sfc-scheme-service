@@ -2,7 +2,7 @@
 
 using Microsoft.Extensions.Configuration;
 
-using SFC.Player.Contracts.Messages.Get;
+using SFC.Player.Contracts.Messages.Player.General.Get;
 using SFC.Scheme.Application.Common.Dto.Player.General;
 using SFC.Scheme.Application.Interfaces.Player;
 using SFC.Scheme.Infrastructure.Extensions.Grpc;

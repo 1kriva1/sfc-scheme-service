@@ -16,9 +16,16 @@ public class DataCacheRepository<TEntity, TContext, TEnum>(DataRepository<TEntit
     public Task<bool> AnyAsync(TEnum id)
     {
         return Cache.TryGet(CacheKey, out IReadOnlyList<TEntity> list)
-        ? Task.FromResult(list.Any(u => u.Id.Equals(id)))
+            ? Task.FromResult(list.Any(u => u.Id.Equals(id)))
             : _repository.AnyAsync(id);
     }
 
-    public Task<TEntity[]> ResetAsync(IEnumerable<TEntity> entities) => _repository.ResetAsync(entities);
+    public async Task<TEntity[]> ResetAsync(IEnumerable<TEntity> entities)
+    {
+        TEntity[] dataEntities = await _repository.ResetAsync(entities).ConfigureAwait(true);
+
+        await Cache.SetAsync(CacheKey, entities).ConfigureAwait(false);
+
+        return dataEntities;
+    }
 }

@@ -1,0 +1,15 @@
+﻿syntax = "proto3";
+
+package sfc_scheme;
+
+import "Messages/Scheme/Team/Get/get_team_scheme_request.proto";
+import "Messages/Scheme/Team/Get/get_team_scheme_response.proto";
+import "Messages/Scheme/Team/Find/get_team_schemes_request.proto";
+import "Messages/Scheme/Team/Find/get_team_schemes_response.proto";
+
+option csharp_namespace = "SFC.Scheme.Contracts.Services";
+
+service TeamSchemeService {
+    rpc GetTeamScheme(GetTeamSchemeRequest) returns (GetTeamSchemeResponse);
+    rpc GetTeamSchemes(GetTeamSchemesRequest) returns (GetTeamSchemesResponse);
+}

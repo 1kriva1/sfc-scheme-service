@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using Microsoft.EntityFrameworkCore;
 
 using SFC.Scheme.Application.Features.Common.Models.Find;
 using SFC.Scheme.Application.Features.Common.Models.Find.Paging;
@@ -52,5 +53,10 @@ public class TeamPlayerRepository(TeamDbContext context)
         await Context.SaveChangesAsync().ConfigureAwait(true);
 
         return entities;
+    }
+
+    public Task<int> CountAsync(long teamId, IEnumerable<long> playerIds)
+    {
+        return Context.TeamPlayers.CountAsync(teamPlayer => teamPlayer.TeamId == teamId && playerIds.Contains(teamPlayer.PlayerId));
     }
 }

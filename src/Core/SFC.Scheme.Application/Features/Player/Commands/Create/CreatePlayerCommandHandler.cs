@@ -6,9 +6,8 @@ using SFC.Scheme.Application.Interfaces.Persistence.Repository.Player;
 
 namespace SFC.Scheme.Application.Features.Player.Commands.Create;
 
-public class CreatePlayerCommandHandler(
-    IMapper mapper,
-    IPlayerRepository playerRepository) : IRequestHandler<CreatePlayerCommand>
+public class CreatePlayerCommandHandler(IMapper mapper, IPlayerRepository playerRepository)
+    : IRequestHandler<CreatePlayerCommand>
 {
     private readonly IMapper _mapper = mapper;
     private readonly IPlayerRepository _playerRepository = playerRepository;

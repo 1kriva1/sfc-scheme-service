@@ -18,27 +18,19 @@ public class SchemeDataDependentExchange
 
 public class SchemeDomainExchange
 {
-    /// <summary>
-    /// Should be replaces by service(s) that required seed for Schemes
-    /// </summary>
-    public DomainExchange<SchemeSchemeDomainEventsExchange> Scheme { get; set; } = default!;
+    public required DomainExchange<TeamSchemeDomainEventsExchange> Team { get; set; }
 
-    public SchemeTeamDomainExchange Team { get; set; } = default!;
+    public required DomainExchange<GameSchemeDomainEventsExchange> Game { get; set; }
 }
 
-public class SchemeSchemeDomainEventsExchange
+public class TeamSchemeDomainEventsExchange
 {
     public Exchange Created { get; set; } = default!;
 
     public Exchange Updated { get; set; } = default!;
 }
 
-public class SchemeTeamDomainExchange
-{
-    public DomainExchange<SchemeTeamPlayerDomainEventsExchange> Player { get; set; } = default!;
-}
-
-public class SchemeTeamPlayerDomainEventsExchange
+public class GameSchemeDomainEventsExchange
 {
     public Exchange Created { get; set; } = default!;
 

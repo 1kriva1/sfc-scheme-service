@@ -2,14 +2,14 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
-using SFC.Scheme.Application.Interfaces.Persistence.Repository.Scheme;
+using SFC.Scheme.Application.Interfaces.Persistence.Repository.Scheme.Team;
 using SFC.Scheme.Infrastructure.Extensions;
 
 namespace SFC.Scheme.Infrastructure.Authorization.OwnScheme;
-public class OwnSchemeHandler(ISchemeRepository schemeRepository, IHttpContextAccessor httpContextAccessor)
+public class OwnSchemeHandler(ITeamSchemeRepository schemeRepository, IHttpContextAccessor httpContextAccessor)
     : AuthorizationHandler<OwnSchemeRequirement>
 {
-    private readonly ISchemeRepository _schemeRepository = schemeRepository;
+    private readonly ITeamSchemeRepository _schemeRepository = schemeRepository;
     private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
 
     protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context, OwnSchemeRequirement requirement)
