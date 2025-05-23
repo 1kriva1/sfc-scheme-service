@@ -1,0 +1,16 @@
+﻿syntax = "proto3";
+
+package sfc_scheme;
+
+import "Models/Common/pagination.proto";
+import "Models/Common/sorting.proto";
+import "Messages/Scheme/Team/Find/Filters/get_team_schemes_filter.proto";
+
+option csharp_namespace = "SFC.Scheme.Contracts.Messages.Scheme.Team.Find";
+
+message GetTeamSchemesRequest
+{
+    Pagination pagination = 1;
+    repeated Sorting sorting = 2;
+    GetTeamSchemesFilter filter = 3;
+}

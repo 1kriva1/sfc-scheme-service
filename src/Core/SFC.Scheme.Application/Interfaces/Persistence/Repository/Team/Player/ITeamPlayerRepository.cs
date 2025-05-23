@@ -12,4 +12,6 @@ public interface ITeamPlayerRepository : IRepository<TeamPlayer, ITeamDbContext,
     Task<TeamPlayer?> GetByIdAsync(long teamId, long playerId);
 
     Task<TeamPlayer[]> AddRangeIfNotExistsAsync(params TeamPlayer[] entities);
+
+    Task<int> CountAsync(long teamId, IEnumerable<long> playerIds);
 }

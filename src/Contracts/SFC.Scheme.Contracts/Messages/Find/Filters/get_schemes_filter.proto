@@ -1,9 +1,0 @@
-﻿syntax = "proto3";
-
-package sfc_scheme;
-
-option csharp_namespace = "SFC.Scheme.Contracts.Messages.Find.Filters";
-
-message GetSchemesFilter
-{
-}

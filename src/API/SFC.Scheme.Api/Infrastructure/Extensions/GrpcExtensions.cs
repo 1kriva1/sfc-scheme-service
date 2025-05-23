@@ -1,5 +1,4 @@
-﻿using SFC.Scheme.Api.Infrastructure.Extensions;
-using SFC.Scheme.Api.Services;
+﻿using SFC.Scheme.Api.Services;
 using SFC.Scheme.Infrastructure.Constants;
 using SFC.Scheme.Infrastructure.Extensions;
 using SFC.Scheme.Infrastructure.Settings;
@@ -14,12 +13,16 @@ public static class GrpcExtensions
 
         if (settings?.Endpoints?.TryGetValue(SettingConstants.KestrelInternalEndpoint, out KestrelEndpointSettings? endpoint) ?? false)
         {
-            app.MapGrpcService<SchemeService>()
+            app.MapGrpcService<SchemeDataService>()
+               .MapInternalService(endpoint.Url);
+
+            app.MapGrpcService<TeamSchemeService>()
                .MapInternalService(endpoint.Url);
         }
         else
         {
-            app.MapGrpcService<SchemeService>();
+            app.MapGrpcService<SchemeDataService>();
+            app.MapGrpcService<TeamSchemeService>();
         }
 
         return app;

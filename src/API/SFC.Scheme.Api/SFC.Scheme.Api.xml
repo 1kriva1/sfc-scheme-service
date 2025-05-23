@@ -4,45 +4,70 @@
         <name>SFC.Scheme.Api</name>
     </assembly>
     <members>
-        <member name="M:SFC.Scheme.Api.Controllers.SchemesController.CreateSchemeAsync(SFC.Scheme.Api.Infrastructure.Models.Scheme.Create.CreateSchemeRequest)">
+        <member name="M:SFC.Scheme.Api.Controllers.SchemeDataController.GetAllAsync">
             <summary>
-            Create new scheme.
+            Return all available data types.
             </summary>
-            <param name="request">Create scheme request.</param>
-            <returns>An ActionResult of type CreateSchemeResponse</returns>
-            <response code="201">Returns **new** created scheme.</response>
-            <response code="400">Returns **validation** errors.</response>
-            <response code="401">Returns when **failed** authentication.</response>
-        </member>
-        <member name="M:SFC.Scheme.Api.Controllers.SchemesController.UpdateSchemeAsync(System.Int64,SFC.Scheme.Api.Infrastructure.Models.Scheme.Update.UpdateSchemeRequest)">
-            <summary>
-            Update existing scheme.
-            </summary>
-            <param name="id">Scheme unique identifier.</param>
-            <param name="request">Update scheme request.</param>
-            <returns>No content</returns>
-            <response code="204">Returns no content if scheme updated **successfully**.</response>
-            <response code="400">Returns **validation** errors.</response>
+            <returns>An ActionResult of type GetAllResponse</returns>
+            <response code="200">Returns all available **data types**.</response>
             <response code="401">Returns when **failed** authentication.</response>
             <response code="403">Returns when **failed** authorization.</response>
         </member>
-        <member name="M:SFC.Scheme.Api.Controllers.SchemesController.GetSchemeAsync(System.Int64)">
+        <member name="M:SFC.Scheme.Api.Controllers.TeamSchemesController.CreateTeamSchemeAsync(System.Int64,SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create.CreateTeamSchemeRequest)">
             <summary>
-            Return scheme model by unique identifier.
+            Create new team scheme.
             </summary>
-            <param name="id">Scheme unique identifier.</param>
-            <returns>An ActionResult of type GetSchemeResponse</returns>
+            <param name="teamId">Team Id.</param>
+            <param name="request">Create team scheme request.</param>
+            <returns>An ActionResult of type CreateTeamSchemeResponse</returns>
+            <response code="201">Returns **new** created team scheme.</response>
+            <response code="400">Returns **validation** errors.</response>
+            <response code="401">Returns when **failed** authentication.</response>
+        </member>
+        <member name="M:SFC.Scheme.Api.Controllers.TeamSchemesController.UpdateTeamSchemeAsync(System.Int64,System.Int64,SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Update.UpdateTeamSchemeRequest)">
+            <summary>
+            Update existing team scheme.
+            </summary>
+            <param name="id">Team scheme unique identifier.</param>
+            <param name="teamId">Team Id.</param>
+            <param name="request">Update team scheme request.</param>
+            <returns>No content</returns>
+            <response code="204">Returns no content if team scheme updated **successfully**.</response>
+            <response code="400">Returns **validation** errors.</response>
+            <response code="401">Returns when **failed** authentication.</response>
+            <response code="403">Returns when **failed** authorization.</response>
+            <response code="404">Returns when scheme **not found** by unique identifier.</response>
+        </member>
+        <member name="M:SFC.Scheme.Api.Controllers.TeamSchemesController.DeleteTeamSchemeAsync(System.Int64,System.Int64)">
+            <summary>
+            Delete existing team scheme.
+            </summary>
+            <param name="id">Team scheme unique identifier.</param>
+            <param name="teamId">Team Id.</param>
+            <returns>No content</returns>
+            <response code="204">Returns no content if team scheme deleted **successfully**.</response>
+            <response code="401">Returns when **failed** authentication.</response>
+            <response code="403">Returns when **failed** authorization.</response>
+            <response code="404">Returns when scheme **not found** by unique identifier.</response>
+        </member>
+        <member name="M:SFC.Scheme.Api.Controllers.TeamSchemesController.GetTeamSchemeAsync(System.Int64)">
+            <summary>
+            Return team scheme model by unique identifier.
+            </summary>
+            <param name="id">Team scheme unique identifier.</param>
+            <returns>An ActionResult of type GetTeamSchemeResponse</returns>
             <response code="200">Returns scheme model.</response>
             <response code="401">Returns when **failed** authentication.</response>
             <response code="404">Returns when scheme **not found** by unique identifier.</response>
         </member>
-        <member name="M:SFC.Scheme.Api.Controllers.SchemesController.GetSchemesAsync(SFC.Scheme.Api.Infrastructure.Models.Scheme.Find.GetSchemesRequest)">
+        <member name="M:SFC.Scheme.Api.Controllers.TeamSchemesController.GetTeamSchemesAsync(System.Int64,SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.GetTeamSchemesRequest)">
             <summary>
-            Return list of schemes
+            Return list of team schemes
             </summary>
-            <param name="request">Get schemes request.</param>
-            <returns>An ActionResult of type GetSchemesResponse</returns>
-            <response code="200">Returns list of schemes with pagination header.</response>
+            <param name="teamId">Team Id.</param>
+            <param name="request">Get team schemes request.</param>
+            <returns>An ActionResult of type GetTeamSchemesResponse</returns>
+            <response code="200">Returns list of team schemes with pagination header.</response>
             <response code="400">Returns **validation** errors.</response>
             <response code="401">Returns when **failed** authentication.</response>
         </member>
@@ -538,79 +563,333 @@
             Stat value.
             </summary>
         </member>
-        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Common.SchemeModel">
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Data.Common.DataValueModel">
             <summary>
-            Scheme model.
+            Data value.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Common.SchemeModel.Id">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Data.Common.DataValueModel.Id">
+            <summary>
+            Unique identificator of data type.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Data.Common.DataValueModel.Title">
+            <summary>
+            Describe data type.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Data.Common.FormationDataValueModel">
+            <summary>
+            **Formation** data value.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Data.Common.FormationDataValueModel.Values">
+            <summary>
+            Schema  as array of arrays, which represent formation.
+            First array - lines
+            Second array - formation positions
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Data.Common.FormationPositionDataValueModel">
+            <summary>
+            **Formation position** data value.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Data.Common.FormationPositionDataValueModel.FootballPosition">
+            <summary>
+            Football position of **formation position**.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Data.GetAll.GetAllSchemeDataResponse">
+            <summary>
+            Contain all available scheme **data types**.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Data.GetAll.GetAllSchemeDataResponse.Formations">
+            <summary>
+            Formations.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Data.GetAll.GetAllSchemeDataResponse.FormationPositions">
+            <summary>
+            Formation positions.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Data.GetAll.GetAllSchemeDataResponse.SchemeTypes">
+            <summary>
+            Formation positions.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.BaseTeamSchemeModel">
+            <summary>
+            **Base** team scheme model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.BaseTeamSchemeModel.Profile">
+            <summary>
+            Team's scheme profile model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.BaseTeamSchemeModel.Players">
+            <summary>
+            Team's scheme linked players.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemeGeneralProfileModel">
+            <summary>
+            Team's scheme **general** profile model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemeGeneralProfileModel.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemeGeneralProfileModel.Comment">
+            <summary>
+            Comment or some description about scheme.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemeGeneralProfileModel.TypeId">
+            <summary>
+            Type of scheme.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemeGeneralProfileModel.FormationId">
+            <summary>
+            Formation type.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemeModel">
+            <summary>
+            Team scheme model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemeModel.Id">
             <summary>
             Unique identifier.
             </summary>
         </member>
-        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Create.CreateSchemeModel">
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemePlayerModel">
             <summary>
-            **Create** scheme model.
+            Team's scheme **player** model.
             </summary>
         </member>
-        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Create.CreateSchemeRequest">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemePlayerModel.Player">
             <summary>
-            **Create** Scheme request.
+            Player model.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Create.CreateSchemeRequest.Scheme">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemePlayerModel.Position">
             <summary>
-            Scheme model.
+            Player's position in formation.
             </summary>
         </member>
-        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Create.CreateSchemeResponse">
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemePlayerPositionModel">
             <summary>
-            **Create** scheme response model.
+            Team's scheme player **position** model.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Create.CreateSchemeResponse.Scheme">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemePlayerPositionModel.Index">
             <summary>
-            Scheme model.
+            Index in formation line.
             </summary>
         </member>
-        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Find.Filters.GetSchemesFilterModel">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemePlayerPositionModel.X">
             <summary>
-            Get schemes filter model.
+            X coordinate. 
+            Exist in case scheme type is custom.
             </summary>
         </member>
-        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Find.GetSchemesRequest">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemePlayerPositionModel.Y">
             <summary>
-            **Get** schemes request.
+            Y coordinate. 
+            Exist in case scheme type is custom.
             </summary>
         </member>
-        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Find.GetSchemesResponse">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemePlayerPositionModel.FormationPositionId">
             <summary>
-            **Get** schemes response.
+            Formation position unique identifier.
             </summary>
         </member>
-        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Get.GetSchemeResponse">
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemeProfileModel">
             <summary>
-            **Get** scheme response.
+            Team scheme **profile** model.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Get.GetSchemeResponse.Scheme">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemeProfileModel.General">
             <summary>
-            Scheme model.
+            General profile.
             </summary>
         </member>
-        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Update.UpdateSchemeModel">
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create.CreateTeamSchemeModel">
             <summary>
-            **Update** scheme model.
+            **Create** team scheme model.
             </summary>
         </member>
-        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Update.UpdateSchemeRequest">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create.CreateTeamSchemeModel.Profile">
             <summary>
-            **Update** scheme request.
+            Team's scheme profile model.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Update.UpdateSchemeRequest.Scheme">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create.CreateTeamSchemeModel.Players">
             <summary>
-            Scheme model.
+            Team's scheme linked players.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create.CreateTeamSchemePlayerModel">
+            <summary>
+            Team's scheme **player** model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create.CreateTeamSchemePlayerModel.PlayerId">
+            <summary>
+            Player unique identifier.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create.CreateTeamSchemePlayerModel.Position">
+            <summary>
+            Player's position in formation.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create.CreateTeamSchemeRequest">
+            <summary>
+            **Create** Team scheme request.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create.CreateTeamSchemeRequest.Scheme">
+            <summary>
+            Team scheme model.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create.CreateTeamSchemeResponse">
+            <summary>
+            **Create** team scheme response model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create.CreateTeamSchemeResponse.Scheme">
+            <summary>
+            Team scheme model.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesFilterModel">
+            <summary>
+            Get team schemes filter model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesFilterModel.Profile">
+            <summary>
+            Team scheme profile filter.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesFilterModel.Players">
+            <summary>
+            Team scheme players filter.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesGeneralProfileFilterModel">
+            <summary>
+            Get team schemes **general profile filter** model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesGeneralProfileFilterModel.Name">
+            <summary>
+            Name of scheme.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesGeneralProfileFilterModel.Comment">
+            <summary>
+            Comment about scheme.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesPlayersFilterModel">
+            <summary>
+            Get team schemes **players filter** model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesPlayersFilterModel.Stats">
+            <summary>
+            Filter by stats of scheme players.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesPlayersStatsFilterModel">
+            <summary>
+            Get team schemes **players stats filter** model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesPlayersStatsFilterModel.Total">
+            <summary>
+            Filter by total rating of scheme players.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesProfileFilterModel">
+            <summary>
+            Get team schemes **profile filter** model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesProfileFilterModel.General">
+            <summary>
+            General profile.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.GetTeamSchemesRequest">
+            <summary>
+            **Get** team schemes request.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.GetTeamSchemesResponse">
+            <summary>
+            **Get** team schemes response.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Get.GetTeamSchemeResponse">
+            <summary>
+            **Get** team scheme response.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Get.GetTeamSchemeResponse.Scheme">
+            <summary>
+            Team scheme model.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Update.UpdateTeamSchemeModel">
+            <summary>
+            **Update** team scheme model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Update.UpdateTeamSchemeModel.Profile">
+            <summary>
+            Team's scheme profile model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Update.UpdateTeamSchemeModel.Players">
+            <summary>
+            Team's scheme linked players.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Update.UpdateTeamSchemePlayerModel">
+            <summary>
+            Team's scheme **player** model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Update.UpdateTeamSchemePlayerModel.PlayerId">
+            <summary>
+            Player unique identifier.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Update.UpdateTeamSchemePlayerModel.Position">
+            <summary>
+            Player's position in formation.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Update.UpdateTeamSchemeRequest">
+            <summary>
+            **Update** team scheme request.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Update.UpdateTeamSchemeRequest.Scheme">
+            <summary>
+            Team scheme model.
             </summary>
         </member>
     </members>

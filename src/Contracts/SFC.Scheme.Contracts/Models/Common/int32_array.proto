@@ -1,0 +1,10 @@
+﻿syntax = "proto3";
+
+package sfc_scheme;
+
+option csharp_namespace = "SFC.Scheme.Contracts.Models.Common";
+
+message Int32Array
+{
+    repeated int32 value = 1;
+}

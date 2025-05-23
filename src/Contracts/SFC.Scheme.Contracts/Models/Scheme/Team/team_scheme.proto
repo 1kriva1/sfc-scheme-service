@@ -1,0 +1,17 @@
+﻿syntax = "proto3";
+
+package sfc_scheme;
+
+import "Models/Scheme/Team/team_scheme_profile.proto";
+import "Models/Scheme/Team/team_scheme_player.proto";
+
+option csharp_namespace = "SFC.Scheme.Contracts.Models.Scheme.Team";
+
+message TeamScheme
+{
+    int64 id = 1;
+    string user_id = 2;
+    int64 team_id = 3;
+    TeamSchemeProfile profile = 4;
+    repeated TeamSchemePlayer players = 5;
+}

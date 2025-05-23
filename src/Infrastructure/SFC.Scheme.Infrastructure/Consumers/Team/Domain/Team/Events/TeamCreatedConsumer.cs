@@ -5,7 +5,6 @@ using MassTransit;
 using MediatR;
 
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 
 using SFC.Scheme.Application.Features.Team.General.Commands.Create;
 using SFC.Scheme.Application.Interfaces.Persistence.Repository.Team.General;
@@ -16,16 +15,12 @@ using SFC.Team.Messages.Events.Team.General;
 namespace SFC.Scheme.Infrastructure.Consumers.Team.Domain.Team.Events;
 public class TeamCreatedConsumer(
     IMapper mapper,
-    ILogger<TeamCreatedConsumer> logger,
     ISender mediator,
     ITeamRepository teamRepository) : IConsumer<TeamCreated>
 {
-#pragma warning disable CA1823 // Avoid unused private fields
     private readonly IMapper _mapper = mapper;
-    private readonly ILogger<TeamCreatedConsumer> _logger = logger;
     private readonly ISender _mediator = mediator;
     private readonly ITeamRepository _teamRepository = teamRepository;
-#pragma warning restore CA1823 // Avoid unused private fields
 
     public async Task Consume(ConsumeContext<TeamCreated> context)
     {

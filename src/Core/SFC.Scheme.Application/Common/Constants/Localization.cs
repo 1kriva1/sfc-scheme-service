@@ -37,12 +37,16 @@ public class Localization
                     GetValue(s_localizer?.GetString("AuthorizationError"),
                         "Authorization error.")!;
 
+    public static string MustNotBeEmpty =>
+                     GetValue(s_localizer?.GetString("MustNotBeEmpty"),
+                         "Value from '{PropertyName}' must not be empty.")!;
+
     public static string FileExtensionInvalid =>
                       GetValue(s_localizer?.GetString("FileExtensionInvalid"),
                           "Invalid file extension.")!;
 
-    public static string MustBeUnique =>
-                      GetValue(s_localizer?.GetString("MustBeUnique"),
+    public static string EachValueMustBeUnique =>
+                      GetValue(s_localizer?.GetString("EachValueMustBeUnique"),
                           "Each value from '{PropertyName}' must be unique.")!;
 
     public static string MustBeGreaterThan =>
@@ -57,23 +61,23 @@ public class Localization
                      GetValue(s_localizer?.GetString("DataValidator"),
                          "'{PropertyName}' has a range of values which does not include '{PropertyValue}'.")!;
 
-    public static string MustBeInDataRange =>
-                     GetValue(s_localizer?.GetString("MustBeInDataRange"),
+    public static string EachValueMustBeInDataRange =>
+                     GetValue(s_localizer?.GetString("EachValueMustBeInDataRange"),
                          "Each value from '{PropertyName}' must be in available data range.")!;
 
     public static string MustNotExceedSize =>
                       GetValue(s_localizer?.GetString("MustNotExceedSize"),
                           "The length of '{0}' must be less or equal to {1}.")!;
 
-    public static string MustNotBeEmpty =>
-                      GetValue(s_localizer?.GetString("MustNotBeEmpty"),
+    public static string EachValueMustNotBeEmpty =>
+                      GetValue(s_localizer?.GetString("EachValueMustNotBeEmpty"),
                           "Each value from '{PropertyName}' must not be empty.")!;
 
-    public static string MustNotExceedCharactersSize =>
-                      GetValue(s_localizer?.GetString("MustNotExceedCharactersSize"),
+    public static string EachValueMustNotExceedCharactersSize =>
+                      GetValue(s_localizer?.GetString("EachValueMustNotExceedCharactersSize"),
                           "Each value from '{PropertyName}' must be {MaxLength} characters or fewer. You entered {TotalLength} characters.")!;
 
-    public static string InvalidDaysOfWeek =>
+    public static string EachValueInvalidDaysOfWeek =>
                   GetValue(s_localizer?.GetString("InvalidDaysOfWeek"),
                       "Each value from '{PropertyName}' must be in Days of Week range.")!;
 
@@ -100,6 +104,15 @@ public class Localization
     public static string TeamPlayerNotFound =>
                        GetValue(s_localizer?.GetString("TeamPlayerNotFound"),
                            "Team player not found.")!;
+
+    public static string EachPlayerMustBeInTeam =>
+                      GetValue(s_localizer?.GetString("EachPlayerMustBeInTeam"),
+                          "Each player must be in team.")!;
+
+    public static string GetDataValue(string name)
+    {
+        return GetValue(s_localizer?.GetString(name), name)!;
+    }
 
     private static string GetValue(LocalizedString? @string, string defaultValue)
     {

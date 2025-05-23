@@ -10,10 +10,10 @@ using SFC.Scheme.Application.Interfaces.Identity;
 using SFC.Scheme.Application.Interfaces.Metadata;
 using SFC.Scheme.Application.Interfaces.Player;
 using SFC.Scheme.Application.Interfaces.Reference;
-using SFC.Scheme.Application.Interfaces.Scheme;
+using SFC.Scheme.Application.Interfaces.Scheme.Data;
+using SFC.Scheme.Application.Interfaces.Scheme.Team;
 using SFC.Scheme.Application.Interfaces.Team.General;
 using SFC.Scheme.Application.Interfaces.Team.Player;
-using SFC.Scheme.Contracts.Services;
 using SFC.Scheme.Infrastructure.Authorization.OwnPlayer;
 using SFC.Scheme.Infrastructure.Authorization.OwnScheme;
 using SFC.Scheme.Infrastructure.Authorization.OwnTeam;
@@ -25,7 +25,8 @@ using SFC.Scheme.Infrastructure.Services.Identity;
 using SFC.Scheme.Infrastructure.Services.Metadata;
 using SFC.Scheme.Infrastructure.Services.Player;
 using SFC.Scheme.Infrastructure.Services.Reference;
-using SFC.Scheme.Infrastructure.Services.Scheme;
+using SFC.Scheme.Infrastructure.Services.Scheme.Data;
+using SFC.Scheme.Infrastructure.Services.Scheme.Team;
 using SFC.Scheme.Infrastructure.Services.Team.General;
 using SFC.Scheme.Infrastructure.Services.Team.Player;
 
@@ -67,8 +68,10 @@ public static class InfrastructureRegistration
         builder.Services.AddTransient<IPlayerSeedService, PlayerSeedService>();
         builder.Services.AddTransient<ITeamSeedService, TeamSeedService>();
         builder.Services.AddTransient<ITeamPlayerSeedService, TeamPlayerSeedService>();
-        builder.Services.AddTransient<ISchemeService, SFC.Scheme.Infrastructure.Services.Scheme.SchemeService>();
-        builder.Services.AddTransient<ISchemeSeedService, SchemeSeedService>();
+        builder.Services.AddTransient<ISchemeDataSeedService, SchemeDataSeedService>();
+        builder.Services.AddTransient<ISchemeDataService, SchemeDataService>();
+        builder.Services.AddTransient<ITeamSchemeSeedService, TeamSchemeSeedService>();
+        builder.Services.AddTransient<ITeamSchemeService, TeamSchemeService>();
 
         // grpc
         builder.Services.AddTransient<IIdentityService, IdentityService>();

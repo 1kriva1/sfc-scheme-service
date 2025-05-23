@@ -7,9 +7,9 @@ using SFC.Scheme.Domain.Entities.Identity;
 
 namespace SFC.Scheme.Infrastructure.Persistence.Configurations.Base;
 
-public class AuditableReferenceEntityConfiguration<TEntity, TID> : BaseReferenceEntityConfiguration<TEntity, TID>
-    where TEntity : BaseEntity<TID>, IAuditableReferenceEntity
-    where TID : struct
+public class AuditableReferenceEntityConfiguration<TEntity, TId> : BaseReferenceEntityConfiguration<TEntity, TId>
+    where TEntity : BaseEntity<TId>, IAuditableReferenceEntity
+    where TId : struct
 {
     public override void Configure(EntityTypeBuilder<TEntity> builder)
     {

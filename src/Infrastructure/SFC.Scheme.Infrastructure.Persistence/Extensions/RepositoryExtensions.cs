@@ -2,24 +2,27 @@
 using Microsoft.Extensions.DependencyInjection;
 
 using SFC.Scheme.Application.Common.Settings;
-using SFC.Scheme.Application.Interfaces.Persistence.Repository;
 using SFC.Scheme.Application.Interfaces.Persistence.Repository.Common;
 using SFC.Scheme.Application.Interfaces.Persistence.Repository.Data;
 using SFC.Scheme.Application.Interfaces.Persistence.Repository.Identity;
 using SFC.Scheme.Application.Interfaces.Persistence.Repository.Metadata;
 using SFC.Scheme.Application.Interfaces.Persistence.Repository.Player;
-using SFC.Scheme.Application.Interfaces.Persistence.Repository.Scheme;
+using SFC.Scheme.Application.Interfaces.Persistence.Repository.Scheme.Data;
+using SFC.Scheme.Application.Interfaces.Persistence.Repository.Scheme.Game;
+using SFC.Scheme.Application.Interfaces.Persistence.Repository.Scheme.Team;
 using SFC.Scheme.Application.Interfaces.Persistence.Repository.Team.Data;
 using SFC.Scheme.Application.Interfaces.Persistence.Repository.Team.General;
 using SFC.Scheme.Application.Interfaces.Persistence.Repository.Team.Player;
-using SFC.Scheme.Infrastructure.Persistence.Repositories;
 using SFC.Scheme.Infrastructure.Persistence.Repositories.Common;
 using SFC.Scheme.Infrastructure.Persistence.Repositories.Data;
 using SFC.Scheme.Infrastructure.Persistence.Repositories.Data.Cache;
 using SFC.Scheme.Infrastructure.Persistence.Repositories.Identity;
 using SFC.Scheme.Infrastructure.Persistence.Repositories.Metadata;
 using SFC.Scheme.Infrastructure.Persistence.Repositories.Player;
-using SFC.Scheme.Infrastructure.Persistence.Repositories.Scheme;
+using SFC.Scheme.Infrastructure.Persistence.Repositories.Scheme.Data;
+using SFC.Scheme.Infrastructure.Persistence.Repositories.Scheme.Data.Cache;
+using SFC.Scheme.Infrastructure.Persistence.Repositories.Scheme.Game;
+using SFC.Scheme.Infrastructure.Persistence.Repositories.Scheme.Team;
 using SFC.Scheme.Infrastructure.Persistence.Repositories.Team.Data;
 using SFC.Scheme.Infrastructure.Persistence.Repositories.Team.Data.Cache;
 using SFC.Scheme.Infrastructure.Persistence.Repositories.Team.General;
@@ -36,9 +39,10 @@ public static class RepositoryExtensions
         services.AddScoped<IMetadataRepository, MetadataRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IPlayerRepository, PlayerRepository>();
-        services.AddScoped<ISchemeRepository, SchemeRepository>();
         services.AddScoped<ITeamRepository, TeamRepository>();
         services.AddScoped<ITeamPlayerRepository, TeamPlayerRepository>();
+        services.AddScoped<ITeamSchemeRepository, TeamSchemeRepository>();
+        services.AddScoped<IGameSchemeRepository, GameSchemeRepository>();
 
         CacheSettings? cacheSettings = configuration
            .GetSection(CacheSettings.SectionKey)
@@ -61,9 +65,18 @@ public static class RepositoryExtensions
             services.AddScoped<IWorkingFootRepository, WorkingFootCacheRepository>();
             services.AddScoped<ShirtRepository>();
             services.AddScoped<IShirtRepository, ShirtCacheRepository>();
+
             // team
             services.AddScoped<TeamPlayerStatusRepository>();
             services.AddScoped<ITeamPlayerStatusRepository, TeamPlayerStatusCacheRepository>();
+
+            // scheme
+            services.AddScoped<FormationRepository>();
+            services.AddScoped<IFormationRepository, FormationCacheRepository>();
+            services.AddScoped<FormationPositionRepository>();
+            services.AddScoped<IFormationPositionRepository, FormationPositionCacheRepository>();
+            services.AddScoped<SchemeTypeRepository>();
+            services.AddScoped<ISchemeTypeRepository, SchemeTypeCacheRepository>();
         }
         else
         {
@@ -75,8 +88,14 @@ public static class RepositoryExtensions
             services.AddScoped<IStatTypeRepository, StatTypeRepository>();
             services.AddScoped<IWorkingFootRepository, WorkingFootRepository>();
             services.AddScoped<IShirtRepository, ShirtRepository>();
+
             // team
             services.AddScoped<ITeamPlayerStatusRepository, TeamPlayerStatusRepository>();
+
+            // scheme
+            services.AddScoped<IFormationRepository, FormationRepository>();
+            services.AddScoped<IFormationPositionRepository, FormationPositionRepository>();
+            services.AddScoped<ISchemeTypeRepository, SchemeTypeRepository>();
         }
 
         return services;

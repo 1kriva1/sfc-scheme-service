@@ -1,0 +1,15 @@
+﻿syntax = "proto3";
+
+package sfc_scheme;
+
+import "google/protobuf/wrappers.proto";
+
+option csharp_namespace = "SFC.Scheme.Contracts.Models.Scheme.Team";
+
+message TeamSchemeGeneralProfile
+{
+    string name = 1;
+    google.protobuf.StringValue comment = 2;
+    int32 type = 3;
+    int32 formation = 4;
+}

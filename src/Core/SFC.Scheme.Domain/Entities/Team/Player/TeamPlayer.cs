@@ -8,7 +8,7 @@ public class TeamPlayer : BaseAuditableReferenceEntity<long>, IUserEntity, IPlay
 
     public long TeamId { get; set; }
 
-    public TeamEntity Team { get; set; } = null!;
+    public required TeamEntity Team { get; set; }
 
     public long PlayerId { get; set; }
 

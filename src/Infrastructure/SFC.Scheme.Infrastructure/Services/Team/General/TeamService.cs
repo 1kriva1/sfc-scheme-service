@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using SFC.Scheme.Application.Common.Dto.Team.General;
 using SFC.Scheme.Application.Interfaces.Team.General;
 using SFC.Scheme.Infrastructure.Extensions.Grpc;
-using SFC.Team.Contracts.Messages.Get;
+using SFC.Team.Contracts.Messages.Team.General.Get;
 
 using static SFC.Team.Contracts.Services.TeamService;
 

@@ -135,7 +135,7 @@
   <data name="FileExtensionInvalid" xml:space="preserve">
     <value>Invalid file extension.</value>
   </data>
-  <data name="MustBeUnique" xml:space="preserve">
+  <data name="EachValueMustBeUnique" xml:space="preserve">
     <value>Each value from '{PropertyName}' must be unique.</value>
   </data>
   <data name="MustBeGreaterThan" xml:space="preserve">
@@ -147,7 +147,7 @@
   <data name="DataValidator" xml:space="preserve">
     <value>'{PropertyName}' has a range of values which does not include '{PropertyValue}'.</value>
   </data>
-  <data name="MustBeInDataRange" xml:space="preserve">
+  <data name="EachValueMustBeInDataRange" xml:space="preserve">
     <value>Each value from '{PropertyName}' must be in available data range.</value>
   </data>
   <data name="MustNotExceedSize" xml:space="preserve">
@@ -159,13 +159,13 @@
   <data name="SchemeNotFound" xml:space="preserve">
     <value>Scheme not found.</value>
   </data>
-  <data name="MustNotBeEmpty" xml:space="preserve">
+  <data name="EachValueMustNotBeEmpty" xml:space="preserve">
     <value>Each value from '{PropertyName}' must not be empty.</value>
   </data>
-  <data name="MustNotExceedCharactersSize" xml:space="preserve">
+  <data name="EachValueMustNotExceedCharactersSize" xml:space="preserve">
     <value>Each value from '{PropertyName}' must be {MaxLength} characters or fewer. You entered {TotalLength} characters.</value>
   </data>
-  <data name="InvalidDaysOfWeek" xml:space="preserve">
+  <data name="EachValueInvalidDaysOfWeek" xml:space="preserve">
     <value>Each value from '{PropertyName}' must be in Days of Week range.</value>
   </data>
   <data name="PlayerNotFound" xml:space="preserve">
@@ -179,5 +179,104 @@
   </data>
   <data name="TeamPlayerNotFound" xml:space="preserve">
     <value>Team player not found.</value>
+  </data>
+  <data name="MustNotBeEmpty" xml:space="preserve">
+    <value>Value from '{PropertyName}' must not be empty.</value>
+  </data>
+  <data name="MustBeUnique" xml:space="preserve">
+    <value>Each value from '{PropertyName}' must be unique.</value>
+  </data>
+  <data name="MustBeInDataRange" xml:space="preserve">
+    <value>Each value from '{PropertyName}' must be in available data range.</value>
+  </data>
+  <data name="MustNotExceedCharactersSize" xml:space="preserve">
+    <value>Each value from '{PropertyName}' must be {MaxLength} characters or fewer. You entered {TotalLength} characters.</value>
+  </data>
+  <data name="InvalidDaysOfWeek" xml:space="preserve">
+    <value>Each value from '{PropertyName}' must be in Days of Week range.</value>
+  </data>
+  <data name="QueryStringValueNotBeEmpty" xml:space="preserve">
+    <value>Value from '{PropertyName}' must not be empty.</value>
+  </data>
+  <data name="EachPlayerMustBeInTeam" xml:space="preserve">
+    <value>Each player must be a member of this team.</value>
+  </data>
+  <data name="GK" xml:space="preserve">
+    <value>GK</value>
+  </data>
+  <data name="LB" xml:space="preserve">
+    <value>LB</value>
+  </data>
+  <data name="RB" xml:space="preserve">
+    <value>RB</value>
+  </data>
+  <data name="CB" xml:space="preserve">
+    <value>CB</value>
+  </data>
+  <data name="LWB" xml:space="preserve">
+    <value>LWB</value>
+  </data>
+  <data name="RWB" xml:space="preserve">
+    <value>RWB</value>
+  </data>
+  <data name="LM" xml:space="preserve">
+    <value>LM</value>
+  </data>
+  <data name="RM" xml:space="preserve">
+    <value>RM</value>
+  </data>
+  <data name="CM" xml:space="preserve">
+    <value>CM</value>
+  </data>
+  <data name="CDM" xml:space="preserve">
+    <value>CDM</value>
+  </data>
+  <data name="CAM" xml:space="preserve">
+    <value>CAM</value>
+  </data>
+  <data name="LF" xml:space="preserve">
+    <value>LF</value>
+  </data>
+  <data name="RF" xml:space="preserve">
+    <value>RF</value>
+  </data>
+  <data name="CF" xml:space="preserve">
+    <value>CF</value>
+  </data>
+  <data name="ST" xml:space="preserve">
+    <value>ST</value>
+  </data>
+  <data name="LW" xml:space="preserve">
+    <value>LW</value>
+  </data>
+  <data name="RW" xml:space="preserve">
+    <value>RW</value>
+  </data>
+  <data name="Formation" xml:space="preserve">
+    <value>Formation</value>
+  </data>
+  <data name="Custom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="Powerfull attacking formation" xml:space="preserve">
+    <value>Powerfull attacking formation</value>
+  </data>
+  <data name="Control formation" xml:space="preserve">
+    <value>Control formation</value>
+  </data>
+  <data name="Defend formation" xml:space="preserve">
+    <value>Defend formation</value>
+  </data>
+  <data name="Atacking formation" xml:space="preserve">
+    <value>Atacking formation</value>
+  </data>
+  <data name="Balanced formation" xml:space="preserve">
+    <value>Balanced formation</value>
+  </data>
+  <data name="Box to box" xml:space="preserve">
+    <value>Box to box</value>
+  </data>
+  <data name="With fake number nine" xml:space="preserve">
+    <value>With fake number nine</value>
   </data>
 </root>

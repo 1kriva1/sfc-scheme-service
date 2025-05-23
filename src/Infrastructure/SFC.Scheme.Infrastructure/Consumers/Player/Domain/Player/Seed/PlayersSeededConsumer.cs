@@ -7,32 +7,24 @@ using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
-using SFC.Player.Messages.Events;
+using SFC.Player.Messages.Events.Player.General;
 using SFC.Scheme.Application.Features.Player.Commands.CreateRange;
 using SFC.Scheme.Application.Interfaces.Metadata;
-using SFC.Scheme.Application.Interfaces.Persistence.Repository.Player;
 using SFC.Scheme.Infrastructure.Extensions;
 using SFC.Scheme.Infrastructure.Settings.RabbitMq;
 
-namespace SFC.Scheme.Infrastructure.Consumers.Player;
+namespace SFC.Scheme.Infrastructure.Consumers.Player.Domain.Player.Seed;
 public class PlayersSeededConsumer(
     IMapper mapper,
     IWebHostEnvironment environment,
-    ILogger<PlayersSeededConsumer> logger,
     ISender mediator,
-    IMetadataService metadataService,
-    IPlayerRepository playerRepository) : IConsumer<PlayersSeeded>
+    IMetadataService metadataService) : IConsumer<PlayersSeeded>
 {
-#pragma warning disable CA1823 // Avoid unused private fields
     private readonly IMapper _mapper = mapper;
     private readonly IWebHostEnvironment _environment = environment;
-    private readonly ILogger<PlayersSeededConsumer> _logger = logger;
     private readonly ISender _mediator = mediator;
     private readonly IMetadataService _metadataService = metadataService;
-    private readonly IPlayerRepository _playerRepository = playerRepository;
-#pragma warning restore CA1823 // Avoid unused private fields
 
     public async Task Consume(ConsumeContext<PlayersSeeded> context)
     {

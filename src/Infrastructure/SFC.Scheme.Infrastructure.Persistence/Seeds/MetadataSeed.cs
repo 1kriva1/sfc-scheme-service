@@ -19,13 +19,14 @@ public static class MetadataSeed
         MetadataStateEnum seedState = isDevelopment ? MetadataStateEnum.Required : MetadataStateEnum.NotRequired;
 
         List<MetadataEntity> metadata = [
-            new MetadataEntity { Service = MetadataServiceEnum.Data, Type = MetadataTypeEnum.Initialization, Domain = MetadataDomainEnum.Data, State = MetadataStateEnum.Required },
-            new MetadataEntity { Service = MetadataServiceEnum.Identity, Type = MetadataTypeEnum.Seed, Domain = MetadataDomainEnum.User, State = seedState },
+            new MetadataEntity { Service = MetadataServiceEnum.Data, Domain = MetadataDomainEnum.Data, Type = MetadataTypeEnum.Initialization, State = MetadataStateEnum.Required },
+            new MetadataEntity { Service = MetadataServiceEnum.Identity, Domain = MetadataDomainEnum.User, Type = MetadataTypeEnum.Seed, State = seedState },
             new MetadataEntity { Service = MetadataServiceEnum.Player, Domain = MetadataDomainEnum.Player, Type = MetadataTypeEnum.Seed, State = seedState },
             new MetadataEntity { Service = MetadataServiceEnum.Team, Domain = MetadataDomainEnum.Team, Type = MetadataTypeEnum.Seed, State = seedState },
             new MetadataEntity { Service = MetadataServiceEnum.Team, Domain = MetadataDomainEnum.Data, Type = MetadataTypeEnum.Initialization, State = MetadataStateEnum.Required },
             new MetadataEntity { Service = MetadataServiceEnum.Team, Domain = MetadataDomainEnum.TeamPlayer, Type = MetadataTypeEnum.Seed, State = seedState },
-            new MetadataEntity { Service = MetadataServiceEnum.Scheme, Domain = MetadataDomainEnum.Scheme, Type = MetadataTypeEnum.Seed, State = seedState }
+            new MetadataEntity { Service = MetadataServiceEnum.Scheme, Domain = MetadataDomainEnum.Data, Type = MetadataTypeEnum.Initialization, State = MetadataStateEnum.Required },
+            new MetadataEntity { Service = MetadataServiceEnum.Scheme, Domain = MetadataDomainEnum.TeamScheme, Type = MetadataTypeEnum.Seed, State = seedState }
         ];
 
         builder.Entity<MetadataEntity>().HasData(metadata);

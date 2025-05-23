@@ -1,5 +1,4 @@
-﻿using SFC.Scheme.Messages.Models;
-using SFC.Scheme.Messages.Models.Data;
+﻿using SFC.Scheme.Messages.Models.Data;
 
 namespace SFC.Scheme.Messages.Commands.Data;
 public record InitializeData

@@ -3,7 +3,7 @@ global using MetadataEntity = SFC.Scheme.Domain.Entities.Metadata.Metadata;
 // player
 global using PlayerEntity = SFC.Scheme.Domain.Entities.Player.Player;
 // core
-global using SchemeEntity = SFC.Scheme.Domain.Entities.Scheme.General.Scheme;
+global using TeamSchemeEntity = SFC.Scheme.Domain.Entities.Scheme.Team.TeamScheme;
 // team
 global using TeamEntity = SFC.Scheme.Domain.Entities.Team.General.Team;
 // data
@@ -20,3 +20,6 @@ global using MetadataDomainEnum = SFC.Scheme.Domain.Enums.Metadata.MetadataDomai
 global using MetadataServiceEnum = SFC.Scheme.Domain.Enums.Metadata.MetadataService;
 global using MetadataStateEnum = SFC.Scheme.Domain.Enums.Metadata.MetadataState;
 global using MetadataTypeEnum = SFC.Scheme.Domain.Enums.Metadata.MetadataType;
+global using FormationEnum = SFC.Scheme.Domain.Enums.Scheme.Formation;
+global using FormationPositionEnum = SFC.Scheme.Domain.Enums.Scheme.FormationPosition;
+global using SchemeTypeEnum = SFC.Scheme.Domain.Enums.Scheme.SchemeType;

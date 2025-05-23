@@ -7,10 +7,8 @@ using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 using SFC.Scheme.Application.Features.Team.General.Commands.CreateRange;
-using SFC.Scheme.Application.Interfaces.Persistence.Repository.Team.General;
 using SFC.Scheme.Infrastructure.Extensions;
 using SFC.Scheme.Infrastructure.Settings.RabbitMq;
 using SFC.Team.Messages.Commands.Team.General;
@@ -19,17 +17,11 @@ namespace SFC.Scheme.Infrastructure.Consumers.Team.Domain.Team.Seed;
 public class SeedTeamsConsumer(
     IMapper mapper,
     IWebHostEnvironment environment,
-    ILogger<SeedTeamsConsumer> logger,
-    ISender mediator,
-    ITeamRepository teamRepository) : IConsumer<SeedTeams>
+    ISender mediator) : IConsumer<SeedTeams>
 {
-#pragma warning disable CA1823 // Avoid unused private fields
     private readonly IMapper _mapper = mapper;
     private readonly IWebHostEnvironment _environment = environment;
-    private readonly ILogger<SeedTeamsConsumer> _logger = logger;
     private readonly ISender _mediator = mediator;
-    private readonly ITeamRepository _teamRepository = teamRepository;
-#pragma warning restore CA1823 // Avoid unused private fields
 
     public async Task Consume(ConsumeContext<SeedTeams> context)
     {

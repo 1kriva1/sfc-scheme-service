@@ -3,8 +3,9 @@ public enum MetadataDomain
 {
     Data,
     User,
-    Scheme,
     Player,
     Team,
-    TeamPlayer
+    TeamPlayer,
+    TeamScheme,
+    GameScheme
 }

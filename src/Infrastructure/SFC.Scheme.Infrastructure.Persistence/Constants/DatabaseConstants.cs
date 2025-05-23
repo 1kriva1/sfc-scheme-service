@@ -20,4 +20,6 @@ public static class DatabaseConstants
     public const string PlayerAvailabilityForeignKey = "AvailabilityId";
 
     public const string TeamForeignKey = "TeamId";
+
+    public const string TeamSchemeForeignKey = "TeamSchemeId";
 }
