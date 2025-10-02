@@ -11,7 +11,7 @@ public class BaseTeamSchemeModel
     public TeamSchemeProfileModel Profile { get; set; } = null!;
 
     /// <summary>
-    /// Team's scheme linked players.
+    /// Team's scheme formation model.
     /// </summary>
-    public IEnumerable<TeamSchemePlayerModel> Players { get; set; } = null!;
+    public TeamSchemeFormationModel Formation { get; set; } = null!;
 }

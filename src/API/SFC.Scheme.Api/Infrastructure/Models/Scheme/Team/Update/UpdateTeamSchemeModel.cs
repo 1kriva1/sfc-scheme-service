@@ -1,4 +1,5 @@
 ﻿using SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common;
+using SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create;
 using SFC.Scheme.Application.Common.Mappings.Interfaces;
 using SFC.Scheme.Application.Features.Scheme.Team.Commands.Update;
 
@@ -15,7 +16,7 @@ public class UpdateTeamSchemeModel : IMapTo<UpdateTeamSchemeDto>
     public TeamSchemeProfileModel Profile { get; set; } = null!;
 
     /// <summary>
-    /// Team's scheme linked players.
+    /// Team's scheme formation model.
     /// </summary>
-    public IEnumerable<UpdateTeamSchemePlayerModel> Players { get; set; } = null!;
+    public UpdateTeamSchemeFormationModel Formation { get; set; } = null!;
 }

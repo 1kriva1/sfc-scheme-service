@@ -15,7 +15,7 @@ public class CreateTeamSchemeModel : IMapTo<CreateTeamSchemeDto>
     public TeamSchemeProfileModel Profile { get; set; } = null!;
 
     /// <summary>
-    /// Team's scheme linked players.
+    /// Team's scheme formation model.
     /// </summary>
-    public IEnumerable<CreateTeamSchemePlayerModel> Players { get; set; } = null!;
+    public CreateTeamSchemeFormationModel Formation { get; set; } = null!;
 }

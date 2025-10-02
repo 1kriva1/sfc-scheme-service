@@ -1,6 +1,5 @@
 ﻿using SFC.Scheme.Application.Common.Enums;
 using SFC.Scheme.Application.Features.Common.Base;
-using SFC.Scheme.Application.Features.Scheme.Team.Commands.Update;
 using SFC.Scheme.Application.Features.Scheme.Team.Queries.Find.Dto.Filters;
 
 namespace SFC.Scheme.Application.Features.Scheme.Team.Queries.Find;

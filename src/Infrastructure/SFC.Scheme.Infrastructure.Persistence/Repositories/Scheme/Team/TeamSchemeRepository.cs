@@ -29,8 +29,8 @@ public class TeamSchemeRepository(SchemeDbContext context)
     {
         return await Context.TeamSchemes
                             .Include(p => p.GeneralProfile)
-                            .Include(p => p.Players).ThenInclude(p => p.Player)
-                            .Include(p => p.Players).ThenInclude(p => p.Position)
+                            .Include(p => p.Formation).ThenInclude(p => p.Players).ThenInclude(p => p.Player)
+                            .Include(p => p.Formation).ThenInclude(p => p.Players).ThenInclude(p => p.Position)
                             .Where(team => userIds.Contains(team.UserId))
                             .ToListAsync()
                             .ConfigureAwait(true);
@@ -40,15 +40,10 @@ public class TeamSchemeRepository(SchemeDbContext context)
     public Task<TeamScheme?> GetByIdAsync(long id, long teamId)
     {
         return Context.TeamSchemes
+                      .ThanIncludePlayer()
+                      .ThanIncludeTeam()
                       .Include(p => p.GeneralProfile)
-                      .Include(p => p.Players).ThenInclude(p => p.Player).ThenInclude(p => p.GeneralProfile)
-                      .Include(p => p.Players).ThenInclude(p => p.Player).ThenInclude(p => p.FootballProfile)
-                      .Include(p => p.Players).ThenInclude(p => p.Player).ThenInclude(p => p.Availability)
-                      .Include(p => p.Players).ThenInclude(p => p.Player).ThenInclude(p => p.Availability.Days)
-                      .Include(p => p.Players).ThenInclude(p => p.Player).ThenInclude(p => p.Tags)
-                      .Include(p => p.Players).ThenInclude(p => p.Player).ThenInclude(p => p.Stats).ThenInclude(x => x.Type)
-                      .Include(p => p.Players).ThenInclude(p => p.Player).ThenInclude(p => p.Photo)
-                      .Include(p => p.Players).ThenInclude(p => p.Position)
+                      .Include(p => p.Formation).ThenInclude(p => p.Players).ThenInclude(p => p.Position)
                       .FirstOrDefaultAsync(p => p.Id == id && p.TeamId == teamId);
     }
 
@@ -68,15 +63,10 @@ public class TeamSchemeRepository(SchemeDbContext context)
     public override Task<TeamScheme?> GetByIdAsync(long id)
     {
         return Context.TeamSchemes
+                      .ThanIncludePlayer()
+                      .ThanIncludeTeam()
                       .Include(p => p.GeneralProfile)
-                      .Include(p => p.Players).ThenInclude(p => p.Player).ThenInclude(p => p.GeneralProfile)
-                      .Include(p => p.Players).ThenInclude(p => p.Player).ThenInclude(p => p.FootballProfile)
-                      .Include(p => p.Players).ThenInclude(p => p.Player).ThenInclude(p => p.Availability)
-                      .Include(p => p.Players).ThenInclude(p => p.Player).ThenInclude(p => p.Availability.Days)
-                      .Include(p => p.Players).ThenInclude(p => p.Player).ThenInclude(p => p.Tags)
-                      .Include(p => p.Players).ThenInclude(p => p.Player).ThenInclude(p => p.Stats).ThenInclude(x => x.Type)
-                      .Include(p => p.Players).ThenInclude(p => p.Player).ThenInclude(p => p.Photo)
-                      .Include(p => p.Players).ThenInclude(p => p.Position)
+                      .Include(p => p.Formation).ThenInclude(p => p.Players).ThenInclude(p => p.Position)
                       .FirstOrDefaultAsync(p => p.Id == id);
 
     }
@@ -84,15 +74,10 @@ public class TeamSchemeRepository(SchemeDbContext context)
     public override Task<PagedList<TeamScheme>> FindAsync(FindParameters<TeamScheme> parameters)
     {
         return Context.TeamSchemes
+                      .ThanIncludePlayer()
+                      .ThanIncludeTeam()
                       .Include(p => p.GeneralProfile)
-                      .Include(p => p.Players).ThenInclude(p => p.Player).ThenInclude(p => p.GeneralProfile)
-                      .Include(p => p.Players).ThenInclude(p => p.Player).ThenInclude(p => p.FootballProfile)
-                      .Include(p => p.Players).ThenInclude(p => p.Player).ThenInclude(p => p.Availability)
-                      .Include(p => p.Players).ThenInclude(p => p.Player).ThenInclude(p => p.Availability.Days)
-                      .Include(p => p.Players).ThenInclude(p => p.Player).ThenInclude(p => p.Tags)
-                      .Include(p => p.Players).ThenInclude(p => p.Player).ThenInclude(p => p.Stats).ThenInclude(x => x.Type)
-                      .Include(p => p.Players).ThenInclude(p => p.Player).ThenInclude(p => p.Photo)
-                      .Include(p => p.Players).ThenInclude(p => p.Position)
+                      .Include(p => p.Formation).ThenInclude(p => p.Players).ThenInclude(p => p.Position)
                       .AsQueryable()
                       .PaginateAsync(parameters);
     }

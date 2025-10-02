@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageId>SFC.Scheme.Contracts</PackageId>
-    <Version>0.0.1</Version>
+    <Version>0.0.2</Version>
     <Authors>Andrii Kryvoruk</Authors>
     <Company>SFC</Company>
     <Product>SFC</Product>
@@ -36,9 +36,10 @@
     <None Remove="Models\Scheme\Data\formation_data_value.proto" />
     <None Remove="Models\Scheme\Data\formation_position_data_value.proto" />
     <None Remove="Models\Scheme\scheme.proto" />
+    <None Remove="Models\Scheme\Team\team_scheme_formation.proto" />
+    <None Remove="Models\Scheme\Team\team_scheme_formation_player.proto" />
+    <None Remove="Models\Scheme\Team\team_scheme_formation_player_position.proto" />
     <None Remove="Models\Scheme\Team\team_scheme_general_profile.proto" />
-    <None Remove="Models\Scheme\Team\team_scheme_player.proto" />
-    <None Remove="Models\Scheme\Team\team_scheme_player_position.proto" />
     <None Remove="Models\Scheme\Team\team_scheme_profile.proto" />
     <None Remove="Services\scheme_data_service.proto" />
     <None Remove="Services\team_scheme_service.proto" />
@@ -75,8 +76,9 @@
     <Protobuf Include="Models\Scheme\Data\data_value.proto" />
     <Protobuf Include="Models\Scheme\Data\formation_data_value.proto" />
     <Protobuf Include="Models\Scheme\Data\formation_position_data_value.proto" />
-    <Protobuf Include="Models\Scheme\Team\team_scheme_player_position.proto" />
-    <Protobuf Include="Models\Scheme\Team\team_scheme_player.proto" />
+    <Protobuf Include="Models\Scheme\Team\team_scheme_formation.proto" />
+    <Protobuf Include="Models\Scheme\Team\team_scheme_formation_player_position.proto" />
+    <Protobuf Include="Models\Scheme\Team\team_scheme_formation_player.proto" />
     <Protobuf Include="Models\Scheme\Team\team_scheme_general_profile.proto" />
     <Protobuf Include="Models\Scheme\Team\team_scheme_profile.proto" />
     <Protobuf Include="Models\Scheme\Team\team_scheme.proto" />

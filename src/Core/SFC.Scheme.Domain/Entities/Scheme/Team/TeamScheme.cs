@@ -9,5 +9,5 @@ public class TeamScheme : SchemeEntity, ITeamEntity
 
     public TeamSchemeGeneralProfile GeneralProfile { get; set; } = default!;
 
-    public ICollection<TeamSchemePlayer> Players { get; } = [];
+    public TeamSchemeFormation Formation { get; set; } = default!;
 }

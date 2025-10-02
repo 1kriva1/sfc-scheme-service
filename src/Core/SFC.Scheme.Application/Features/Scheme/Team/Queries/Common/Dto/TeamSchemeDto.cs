@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 
 using SFC.Scheme.Application.Common.Dto.Common;
+using SFC.Scheme.Application.Common.Dto.Team.General;
 using SFC.Scheme.Application.Common.Mappings.Interfaces;
 using SFC.Scheme.Application.Features.Scheme.Team.Common.Dto;
 using SFC.Scheme.Domain.Entities.Scheme.Team;
@@ -12,11 +13,11 @@ public class TeamSchemeDto : AuditableDto, IMapFromReverse<TeamScheme>
 
     public Guid UserId { get; set; }
 
-    public long TeamId { get; set; }
+    public required TeamDto Team { get; set; } = default!;
 
     public required TeamSchemeProfileDto Profile { get; set; }
 
-    public IEnumerable<TeamSchemePlayerDto> Players { get; set; } = default!;
+    public required TeamSchemeFormationDto Formation { get; set; }
 
     public void Mapping(Profile profile)
     {

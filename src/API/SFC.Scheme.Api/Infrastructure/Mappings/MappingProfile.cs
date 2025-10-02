@@ -10,12 +10,17 @@ using SFC.Scheme.Application.Features.Common.Dto.Common;
 using SFC.Scheme.Application.Features.Common.Dto.Pagination;
 using SFC.Scheme.Application.Features.Scheme.Data.Queries.Common.Dto;
 using SFC.Scheme.Application.Features.Scheme.Data.Queries.GetAll;
+using SFC.Scheme.Application.Features.Scheme.Team.Commands.Common.Dto;
 using SFC.Scheme.Application.Features.Scheme.Team.Common.Dto;
 using SFC.Scheme.Application.Features.Scheme.Team.Queries.Common.Dto;
 using SFC.Scheme.Application.Features.Scheme.Team.Queries.Find;
 using SFC.Scheme.Application.Features.Scheme.Team.Queries.Find.Dto.Filters;
 using SFC.Scheme.Application.Features.Scheme.Team.Queries.Get;
 using SFC.Scheme.Contracts.Models.Common;
+
+using TeamSchemeDto = SFC.Scheme.Application.Features.Scheme.Team.Queries.Common.Dto.TeamSchemeDto;
+using TeamSchemeFormationDto = SFC.Scheme.Application.Features.Scheme.Team.Queries.Common.Dto.TeamSchemeFormationDto;
+using TeamSchemeFormationPlayerDto = SFC.Scheme.Application.Features.Scheme.Team.Queries.Common.Dto.TeamSchemeFormationPlayerDto;
 
 namespace SFC.Scheme.Api.Infrastructure.Mappings;
 
@@ -75,11 +80,12 @@ public class MappingProfile : BaseMappingProfile
     {
         // team scheme
         CreateMap<TeamSchemeDto, SFC.Scheme.Contracts.Models.Scheme.Team.TeamScheme>();
-        CreateMap<TeamSchemeGeneralProfileDto, SFC.Scheme.Contracts.Models.Scheme.Team.TeamSchemeGeneralProfile>()
+        CreateMap<TeamSchemeGeneralProfileDto, SFC.Scheme.Contracts.Models.Scheme.Team.TeamSchemeGeneralProfile>();
+        CreateMap<TeamSchemeFormationDto, SFC.Scheme.Contracts.Models.Scheme.Team.TeamSchemeFormation>()
             .ForMember(p => p.Formation, d => d.MapFrom(z => z.FormationId))
             .ForMember(p => p.Type, d => d.MapFrom(z => z.TypeId));
-        CreateMap<TeamSchemePlayerDto, SFC.Scheme.Contracts.Models.Scheme.Team.TeamSchemePlayer>();
-        CreateMap<TeamSchemePlayerPositionDto, SFC.Scheme.Contracts.Models.Scheme.Team.TeamSchemePlayerPosition>()
+        CreateMap<TeamSchemeFormationPlayerDto, SFC.Scheme.Contracts.Models.Scheme.Team.TeamSchemeFormationPlayer>();
+        CreateMap<TeamSchemeFormationPlayerPositionDto, SFC.Scheme.Contracts.Models.Scheme.Team.TeamSchemeFormationPlayerPosition>()
             .ForMember(p => p.FormationPosition, d => d.MapFrom(z => z.FormationPositionId));
         CreateMap<TeamSchemeProfileDto, SFC.Scheme.Contracts.Models.Scheme.Team.TeamSchemeProfile>();
 

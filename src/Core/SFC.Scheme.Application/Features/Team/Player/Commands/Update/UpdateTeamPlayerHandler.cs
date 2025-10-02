@@ -6,6 +6,7 @@ using SFC.Scheme.Application.Common.Constants;
 using SFC.Scheme.Application.Common.Exceptions;
 using SFC.Scheme.Application.Interfaces.Persistence.Repository.Team.Player;
 using SFC.Scheme.Domain.Entities.Team.Player;
+using SFC.Scheme.Domain.Events.Team.Player;
 
 namespace SFC.Scheme.Application.Features.Team.Player.Commands.Update;
 public class UpdateTeamPlayerHandler(IMapper mapper, ITeamPlayerRepository teamPlayerRepository)
@@ -21,6 +22,8 @@ public class UpdateTeamPlayerHandler(IMapper mapper, ITeamPlayerRepository teamP
                 ?? throw new NotFoundException(Localization.TeamPlayerNotFound);
 
         TeamPlayer updatedTeamPlayer = _mapper.Map(request.TeamPlayer, teamPlayer);
+
+        updatedTeamPlayer.AddDomainEvent(new TeamPlayerUpdatedEvent(updatedTeamPlayer));
 
         await _teamPlayerRepository.UpdateAsync(updatedTeamPlayer)
                                    .ConfigureAwait(false);

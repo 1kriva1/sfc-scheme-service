@@ -42,6 +42,7 @@ public static class RepositoryExtensions
         services.AddScoped<ITeamRepository, TeamRepository>();
         services.AddScoped<ITeamPlayerRepository, TeamPlayerRepository>();
         services.AddScoped<ITeamSchemeRepository, TeamSchemeRepository>();
+        services.AddScoped<ITeamSchemePlayerRepository, TeamSchemePlayerRepository>();
         services.AddScoped<IGameSchemeRepository, GameSchemeRepository>();
 
         CacheSettings? cacheSettings = configuration

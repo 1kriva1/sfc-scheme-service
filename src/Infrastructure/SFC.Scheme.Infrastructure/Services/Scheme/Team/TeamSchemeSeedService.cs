@@ -173,24 +173,27 @@ public class TeamSchemeSeedService(
             GeneralProfile = new TeamSchemeGeneralProfile
             {
                 Name = formation.ToString(),
-                Comment = "This team scheme is perfect.",
+                Comment = "This team scheme is perfect."
+            },
+            Formation = new TeamSchemeFormation
+            {
                 FormationId = formation,
                 TypeId = SchemeTypeEnum.Formation
             },
             TeamId = RandomArrayValue(TEAM_IDS)
         };
 
-        BuildTeamSchemePlayers(formationEntity!).ForEach(scheme.Players.Add);
+        BuildTeamSchemePlayers(formationEntity!).ForEach(scheme.Formation.Players.Add);
 
         return scheme;
     }
 
-    private static List<TeamSchemePlayer> BuildTeamSchemePlayers(Formation formationEntity)
+    private static List<TeamSchemeFormationPlayer> BuildTeamSchemePlayers(Formation formationEntity)
     {
-        IEnumerable<TeamSchemePlayer> result = formationEntity.Values.Select(value => new TeamSchemePlayer
+        IEnumerable<TeamSchemeFormationPlayer> result = formationEntity.Values.Select(value => new TeamSchemeFormationPlayer
         {
             PlayerId = RandomArrayValue(PLAYER_IDS),
-            Position = new TeamSchemePlayerPosition
+            Position = new TeamSchemeFormationPlayerPosition
             {
                 FormationPositionId = value.FormationPositionId,
                 Index = value.Index

@@ -408,157 +408,157 @@
             Filter by rating.
             </summary>
         </member>
-        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerAvailabilityModel">
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerAvailabilityModel">
             <summary>
             Player's **availability** model (when player is available to play).
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerAvailabilityModel.Days">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerAvailabilityModel.Days">
             <summary>
             Days of week.
             </summary>
         </member>
-        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerFootballProfileModel">
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerFootballProfileModel">
             <summary>
             Player's **football** profile model.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerFootballProfileModel.Height">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerFootballProfileModel.Height">
             <summary>
             Height.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerFootballProfileModel.Weight">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerFootballProfileModel.Weight">
             <summary>
             Weight.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerFootballProfileModel.Position">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerFootballProfileModel.Position">
             <summary>
             Position on field.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerFootballProfileModel.WorkingFoot">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerFootballProfileModel.WorkingFoot">
             <summary>
             Describe what **foot** player prefer to use.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerFootballProfileModel.GameStyle">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerFootballProfileModel.GameStyle">
             <summary>
             **Style** of play.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerFootballProfileModel.Skill">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerFootballProfileModel.Skill">
             <summary>
             **Dribbling** skill value.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerFootballProfileModel.PhysicalCondition">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerFootballProfileModel.PhysicalCondition">
             <summary>
             Physical condition value.
             </summary>
         </member>
-        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerGeneralProfileModel">
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerGeneralProfileModel">
             <summary>
             Player's **general** profile model.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerGeneralProfileModel.FirstName">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerGeneralProfileModel.FirstName">
             <summary>
             First name.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerGeneralProfileModel.LastName">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerGeneralProfileModel.LastName">
             <summary>
             Last name.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerGeneralProfileModel.Photo">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerGeneralProfileModel.Photo">
             <summary>
             Photo/avatar.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerGeneralProfileModel.Birthday">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerGeneralProfileModel.Birthday">
             <summary>
             Date of birth.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerGeneralProfileModel.City">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerGeneralProfileModel.City">
             <summary>
             **City** where player will play football.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerGeneralProfileModel.FreePlay">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerGeneralProfileModel.FreePlay">
             <summary>
              Describe if player can **pay** for football matches.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerGeneralProfileModel.Tags">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerGeneralProfileModel.Tags">
             <summary>
             Player's **tags**.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerGeneralProfileModel.Availability">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerGeneralProfileModel.Availability">
             <summary>
             Player's **availability** model.
             </summary>
         </member>
-        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerModel">
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerModel">
             <summary>
             Player model.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerModel.Id">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerModel.Id">
             <summary>
             Unique identifier.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerModel.Profile">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerModel.Profile">
             <summary>
             Player's profile model.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerModel.Stats">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerModel.Stats">
             <summary>
             Player's stats model.
             </summary>
         </member>
-        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerProfileModel">
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerProfileModel">
             <summary>
             Player **profile** model for get players request.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerProfileModel.General">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerProfileModel.General">
             <summary>
             General profile.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerProfileModel.Football">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerProfileModel.Football">
             <summary>
             Football profile.
             </summary>
         </member>
-        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerStatsModel">
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerStatsModel">
             <summary>
             Player stats model.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerStatsModel.Values">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerStatsModel.Values">
             <summary>
             Stats.
             </summary>
         </member>
-        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerStatValueModel">
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerStatValueModel">
             <summary>
             Player stat value model.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerStatValueModel.Type">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerStatValueModel.Type">
             <summary>
             Type of stat
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.Result.PlayerStatValueModel.Value">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Player.PlayerStatValueModel.Value">
             <summary>
             Stat value.
             </summary>
@@ -630,9 +630,71 @@
             Team's scheme profile model.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.BaseTeamSchemeModel.Players">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.BaseTeamSchemeModel.Formation">
             <summary>
-            Team's scheme linked players.
+            Team's scheme formation model.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemeFormationModel">
+            <summary>
+            Team's scheme formation model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemeFormationModel.TypeId">
+            <summary>
+            Type of scheme.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemeFormationModel.FormationId">
+            <summary>
+            Formation type.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemeFormationModel.Players">
+            <summary>
+            Team's scheme formation players.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemeFormationPlayerModel">
+            <summary>
+            Team's scheme formation **player** model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemeFormationPlayerModel.Player">
+            <summary>
+            Player model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemeFormationPlayerModel.Position">
+            <summary>
+            Player's position in formation.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemeFormationPlayerPositionModel">
+            <summary>
+            Team's scheme player **position** model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemeFormationPlayerPositionModel.Index">
+            <summary>
+            Index in formation line.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemeFormationPlayerPositionModel.X">
+            <summary>
+            X coordinate. 
+            Exist in case scheme type is custom.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemeFormationPlayerPositionModel.Y">
+            <summary>
+            Y coordinate. 
+            Exist in case scheme type is custom.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemeFormationPlayerPositionModel.FormationPositionId">
+            <summary>
+            Formation position unique identifier.
             </summary>
         </member>
         <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemeGeneralProfileModel">
@@ -650,16 +712,6 @@
             Comment or some description about scheme.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemeGeneralProfileModel.TypeId">
-            <summary>
-            Type of scheme.
-            </summary>
-        </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemeGeneralProfileModel.FormationId">
-            <summary>
-            Formation type.
-            </summary>
-        </member>
         <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemeModel">
             <summary>
             Team scheme model.
@@ -670,46 +722,9 @@
             Unique identifier.
             </summary>
         </member>
-        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemePlayerModel">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemeModel.Team">
             <summary>
-            Team's scheme **player** model.
-            </summary>
-        </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemePlayerModel.Player">
-            <summary>
-            Player model.
-            </summary>
-        </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemePlayerModel.Position">
-            <summary>
-            Player's position in formation.
-            </summary>
-        </member>
-        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemePlayerPositionModel">
-            <summary>
-            Team's scheme player **position** model.
-            </summary>
-        </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemePlayerPositionModel.Index">
-            <summary>
-            Index in formation line.
-            </summary>
-        </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemePlayerPositionModel.X">
-            <summary>
-            X coordinate. 
-            Exist in case scheme type is custom.
-            </summary>
-        </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemePlayerPositionModel.Y">
-            <summary>
-            Y coordinate. 
-            Exist in case scheme type is custom.
-            </summary>
-        </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemePlayerPositionModel.FormationPositionId">
-            <summary>
-            Formation position unique identifier.
+            Team scheme related to this team.
             </summary>
         </member>
         <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Common.TeamSchemeProfileModel">
@@ -722,6 +737,41 @@
             General profile.
             </summary>
         </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create.CreateTeamSchemeFormationModel">
+            <summary>
+            Team's scheme create **player** model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create.CreateTeamSchemeFormationModel.TypeId">
+            <summary>
+            Type of scheme.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create.CreateTeamSchemeFormationModel.FormationId">
+            <summary>
+            Formation type.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create.CreateTeamSchemeFormationModel.Players">
+            <summary>
+            Team's scheme formation players.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create.CreateTeamSchemeFormationPlayerModel">
+            <summary>
+            Team's scheme **player** model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create.CreateTeamSchemeFormationPlayerModel.PlayerId">
+            <summary>
+            Player unique identifier.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create.CreateTeamSchemeFormationPlayerModel.Position">
+            <summary>
+            Player's position in formation.
+            </summary>
+        </member>
         <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create.CreateTeamSchemeModel">
             <summary>
             **Create** team scheme model.
@@ -732,24 +782,9 @@
             Team's scheme profile model.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create.CreateTeamSchemeModel.Players">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create.CreateTeamSchemeModel.Formation">
             <summary>
-            Team's scheme linked players.
-            </summary>
-        </member>
-        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create.CreateTeamSchemePlayerModel">
-            <summary>
-            Team's scheme **player** model.
-            </summary>
-        </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create.CreateTeamSchemePlayerModel.PlayerId">
-            <summary>
-            Player unique identifier.
-            </summary>
-        </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create.CreateTeamSchemePlayerModel.Position">
-            <summary>
-            Player's position in formation.
+            Team's scheme formation model.
             </summary>
         </member>
         <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create.CreateTeamSchemeRequest">
@@ -772,6 +807,26 @@
             Team scheme model.
             </summary>
         </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create.UpdateTeamSchemeFormationModel">
+            <summary>
+            Team's scheme update **player** model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create.UpdateTeamSchemeFormationModel.TypeId">
+            <summary>
+            Type of scheme.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create.UpdateTeamSchemeFormationModel.FormationId">
+            <summary>
+            Formation type.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Create.UpdateTeamSchemeFormationModel.Players">
+            <summary>
+            Team's scheme formation players.
+            </summary>
+        </member>
         <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesFilterModel">
             <summary>
             Get team schemes filter model.
@@ -782,9 +837,39 @@
             Team scheme profile filter.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesFilterModel.Players">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesFilterModel.Formation">
             <summary>
-            Team scheme players filter.
+            Team scheme formation filter.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesFormationFilterModel">
+            <summary>
+            Get team schemes **formation filter** model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesFormationFilterModel.Players">
+            <summary>
+            Scheme formation players.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesFormationPlayersFilterModel">
+            <summary>
+            Get team schemes **players filter** model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesFormationPlayersFilterModel.Stats">
+            <summary>
+            Filter by stats of scheme players.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesPlayersStatsFilterModel">
+            <summary>
+            Get team schemes **players stats filter** model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesPlayersStatsFilterModel.Total">
+            <summary>
+            Filter by total rating of scheme players.
             </summary>
         </member>
         <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesGeneralProfileFilterModel">
@@ -800,26 +885,6 @@
         <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesGeneralProfileFilterModel.Comment">
             <summary>
             Comment about scheme.
-            </summary>
-        </member>
-        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesPlayersFilterModel">
-            <summary>
-            Get team schemes **players filter** model.
-            </summary>
-        </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesPlayersFilterModel.Stats">
-            <summary>
-            Filter by stats of scheme players.
-            </summary>
-        </member>
-        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesPlayersStatsFilterModel">
-            <summary>
-            Get team schemes **players stats filter** model.
-            </summary>
-        </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesPlayersStatsFilterModel.Total">
-            <summary>
-            Filter by total rating of scheme players.
             </summary>
         </member>
         <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesProfileFilterModel">
@@ -852,6 +917,21 @@
             Team scheme model.
             </summary>
         </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Update.UpdateTeamSchemeFormationPlayerModel">
+            <summary>
+            Team's scheme **player** model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Update.UpdateTeamSchemeFormationPlayerModel.PlayerId">
+            <summary>
+            Player unique identifier.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Update.UpdateTeamSchemeFormationPlayerModel.Position">
+            <summary>
+            Player's position in formation.
+            </summary>
+        </member>
         <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Update.UpdateTeamSchemeModel">
             <summary>
             **Update** team scheme model.
@@ -862,24 +942,9 @@
             Team's scheme profile model.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Update.UpdateTeamSchemeModel.Players">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Update.UpdateTeamSchemeModel.Formation">
             <summary>
-            Team's scheme linked players.
-            </summary>
-        </member>
-        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Update.UpdateTeamSchemePlayerModel">
-            <summary>
-            Team's scheme **player** model.
-            </summary>
-        </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Update.UpdateTeamSchemePlayerModel.PlayerId">
-            <summary>
-            Player unique identifier.
-            </summary>
-        </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Update.UpdateTeamSchemePlayerModel.Position">
-            <summary>
-            Player's position in formation.
+            Team's scheme formation model.
             </summary>
         </member>
         <member name="T:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Update.UpdateTeamSchemeRequest">
@@ -890,6 +955,146 @@
         <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Update.UpdateTeamSchemeRequest.Scheme">
             <summary>
             Team scheme model.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Team.General.TeamAvailabilityModel">
+            <summary>
+            Team's **availability** model (when team is available to play).
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Team.General.TeamAvailabilityModel.Day">
+            <summary>
+            Day of week.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Team.General.TeamFinancialProfileModel">
+            <summary>
+            Team's **financial** profile model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Team.General.TeamFinancialProfileModel.FreePlay">
+            <summary>
+            Team play only on free field and without any extra expansions.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Team.General.TeamGeneralProfileModel">
+            <summary>
+            Team's **general** profile model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Team.General.TeamGeneralProfileModel.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Team.General.TeamGeneralProfileModel.City">
+            <summary>
+            **City** where team will play football.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Team.General.TeamGeneralProfileModel.Location">
+            <summary>
+            Location of main team field.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Team.General.TeamGeneralProfileModel.Description">
+            <summary>
+            A few words about team.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Team.General.TeamGeneralProfileModel.Logo">
+            <summary>
+            Logo/Photo/Avatar.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Team.General.TeamGeneralProfileModel.Tags">
+            <summary>
+            Team's **tags**.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Team.General.TeamGeneralProfileModel.Availability">
+            <summary>
+            Team's **availabilities** to play (at what day and time can play).
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Team.General.TeamInventaryProfileModel">
+            <summary>
+            Team's **inventary** profile model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Team.General.TeamInventaryProfileModel.Shirts">
+            <summary>
+            In what shirts team can play (multiple value).
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Team.General.TeamInventaryProfileModel.HasManiches">
+            <summary>
+            Define if team has maniches.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Team.General.TeamModel">
+            <summary>
+            Team model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Team.General.TeamModel.Id">
+            <summary>
+            Unique identifier.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Team.General.TeamModel.Status">
+            <summary>
+            Team status.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Team.General.TeamModel.Profile">
+            <summary>
+            Team's profile model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Team.General.TeamModel.Players">
+            <summary>
+            Team's players.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Team.General.TeamProfileModel">
+            <summary>
+            Team **profile** model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Team.General.TeamProfileModel.General">
+            <summary>
+            General profile.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Team.General.TeamProfileModel.Financial">
+            <summary>
+            Financial profile.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Team.General.TeamProfileModel.Inventary">
+            <summary>
+            Inventary profile.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Team.Player.TeamPlayerModel">
+            <summary>
+            Team player model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Team.Player.TeamPlayerModel.Id">
+            <summary>
+            Unique identifier.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Team.Player.TeamPlayerModel.Status">
+            <summary>
+            Team player status.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Team.Player.TeamPlayerModel.Player">
+            <summary>
+            Team player related to this player.
             </summary>
         </member>
     </members>

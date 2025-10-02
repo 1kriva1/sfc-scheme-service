@@ -10,6 +10,4 @@ message TeamSchemeGeneralProfile
 {
     string name = 1;
     google.protobuf.StringValue comment = 2;
-    int32 type = 3;
-    int32 formation = 4;
 }
