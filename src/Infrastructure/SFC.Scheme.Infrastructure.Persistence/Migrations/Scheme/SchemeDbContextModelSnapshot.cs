@@ -786,13 +786,13 @@ namespace SFC.Scheme.Infrastructure.Persistence.Migrations.Scheme
                         new
                         {
                             Id = 0,
-                            CreatedDate = new DateTime(2025, 5, 21, 12, 41, 14, 348, DateTimeKind.Utc).AddTicks(5281),
+                            CreatedDate = new DateTime(2025, 10, 2, 9, 25, 12, 666, DateTimeKind.Utc).AddTicks(2310),
                             Title = "Formation"
                         },
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2025, 5, 21, 12, 41, 14, 348, DateTimeKind.Utc).AddTicks(5293),
+                            CreatedDate = new DateTime(2025, 10, 2, 9, 25, 12, 666, DateTimeKind.Utc).AddTicks(2326),
                             Title = "Custom"
                         });
                 });
@@ -896,22 +896,13 @@ namespace SFC.Scheme.Infrastructure.Persistence.Migrations.Scheme
                     b.ToTable("TeamSchemes", "Scheme");
                 });
 
-            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Team.TeamSchemeGeneralProfile", b =>
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Team.TeamSchemeFormation", b =>
                 {
                     b.Property<long>("Id")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("Comment")
-                        .HasMaxLength(1050)
-                        .HasColumnType("nvarchar(1050)");
-
                     b.Property<int>("FormationId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
 
                     b.Property<int>("TypeId")
                         .HasColumnType("int");
@@ -922,10 +913,10 @@ namespace SFC.Scheme.Infrastructure.Persistence.Migrations.Scheme
 
                     b.HasIndex("TypeId");
 
-                    b.ToTable("TeamSchemeGeneralProfiles", "Scheme");
+                    b.ToTable("TeamSchemeFormations", "Scheme");
                 });
 
-            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Team.TeamSchemePlayer", b =>
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Team.TeamSchemeFormationPlayer", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -936,19 +927,19 @@ namespace SFC.Scheme.Infrastructure.Persistence.Migrations.Scheme
                     b.Property<long>("PlayerId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("TeamSchemeId")
+                    b.Property<long>("TeamSchemeFormationId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
                     b.HasIndex("PlayerId");
 
-                    b.HasIndex("TeamSchemeId");
+                    b.HasIndex("TeamSchemeFormationId");
 
-                    b.ToTable("TeamSchemePlayers", "Scheme");
+                    b.ToTable("TeamSchemeFormationPlayers", "Scheme");
                 });
 
-            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Team.TeamSchemePlayerPosition", b =>
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Team.TeamSchemeFormationPlayerPosition", b =>
                 {
                     b.Property<long>("Id")
                         .HasColumnType("bigint");
@@ -969,7 +960,26 @@ namespace SFC.Scheme.Infrastructure.Persistence.Migrations.Scheme
 
                     b.HasIndex("FormationPositionId");
 
-                    b.ToTable("TeamSchemePlayerPositions", "Scheme");
+                    b.ToTable("TeamSchemeFormationPlayerPositions", "Scheme");
+                });
+
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Team.TeamSchemeGeneralProfile", b =>
+                {
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Comment")
+                        .HasMaxLength(1050)
+                        .HasColumnType("nvarchar(1050)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TeamSchemeGeneralProfiles", "Scheme");
                 });
 
             modelBuilder.Entity("SFC.Scheme.Domain.Entities.Team.Data.TeamPlayerStatus", b =>
@@ -1091,6 +1101,21 @@ namespace SFC.Scheme.Infrastructure.Persistence.Migrations.Scheme
                     b.HasKey("Id");
 
                     b.ToTable("GeneralProfiles", "Team");
+                });
+
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Team.General.TeamInventaryProfile", b =>
+                {
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("HasManiches")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("InventaryProfiles", "Team");
                 });
 
             modelBuilder.Entity("SFC.Scheme.Domain.Entities.Team.General.TeamLogo", b =>
@@ -1487,7 +1512,7 @@ namespace SFC.Scheme.Infrastructure.Persistence.Migrations.Scheme
                     b.Navigation("Team");
                 });
 
-            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Team.TeamSchemeGeneralProfile", b =>
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Team.TeamSchemeFormation", b =>
                 {
                     b.HasOne("SFC.Scheme.Domain.Entities.Scheme.Data.Formation", null)
                         .WithMany()
@@ -1496,8 +1521,8 @@ namespace SFC.Scheme.Infrastructure.Persistence.Migrations.Scheme
                         .IsRequired();
 
                     b.HasOne("SFC.Scheme.Domain.Entities.Scheme.Team.TeamScheme", "Scheme")
-                        .WithOne("GeneralProfile")
-                        .HasForeignKey("SFC.Scheme.Domain.Entities.Scheme.Team.TeamSchemeGeneralProfile", "Id")
+                        .WithOne("Formation")
+                        .HasForeignKey("SFC.Scheme.Domain.Entities.Scheme.Team.TeamSchemeFormation", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1510,24 +1535,26 @@ namespace SFC.Scheme.Infrastructure.Persistence.Migrations.Scheme
                     b.Navigation("Scheme");
                 });
 
-            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Team.TeamSchemePlayer", b =>
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Team.TeamSchemeFormationPlayer", b =>
                 {
                     b.HasOne("SFC.Scheme.Domain.Entities.Player.Player", "Player")
                         .WithMany()
                         .HasForeignKey("PlayerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
-                    b.HasOne("SFC.Scheme.Domain.Entities.Scheme.Team.TeamScheme", null)
+                    b.HasOne("SFC.Scheme.Domain.Entities.Scheme.Team.TeamSchemeFormation", "TeamSchemeFormation")
                         .WithMany("Players")
-                        .HasForeignKey("TeamSchemeId")
+                        .HasForeignKey("TeamSchemeFormationId")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.Navigation("Player");
+
+                    b.Navigation("TeamSchemeFormation");
                 });
 
-            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Team.TeamSchemePlayerPosition", b =>
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Team.TeamSchemeFormationPlayerPosition", b =>
                 {
                     b.HasOne("SFC.Scheme.Domain.Entities.Scheme.Data.FormationPosition", null)
                         .WithMany()
@@ -1535,13 +1562,24 @@ namespace SFC.Scheme.Infrastructure.Persistence.Migrations.Scheme
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SFC.Scheme.Domain.Entities.Scheme.Team.TeamSchemePlayer", "Player")
+                    b.HasOne("SFC.Scheme.Domain.Entities.Scheme.Team.TeamSchemeFormationPlayer", "Player")
                         .WithOne("Position")
-                        .HasForeignKey("SFC.Scheme.Domain.Entities.Scheme.Team.TeamSchemePlayerPosition", "Id")
+                        .HasForeignKey("SFC.Scheme.Domain.Entities.Scheme.Team.TeamSchemeFormationPlayerPosition", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Player");
+                });
+
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Team.TeamSchemeGeneralProfile", b =>
+                {
+                    b.HasOne("SFC.Scheme.Domain.Entities.Scheme.Team.TeamScheme", "Scheme")
+                        .WithOne("GeneralProfile")
+                        .HasForeignKey("SFC.Scheme.Domain.Entities.Scheme.Team.TeamSchemeGeneralProfile", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Scheme");
                 });
 
             modelBuilder.Entity("SFC.Scheme.Domain.Entities.Team.General.Team", b =>
@@ -1592,6 +1630,17 @@ namespace SFC.Scheme.Infrastructure.Persistence.Migrations.Scheme
                     b.HasOne("SFC.Scheme.Domain.Entities.Team.General.Team", "Team")
                         .WithOne("GeneralProfile")
                         .HasForeignKey("SFC.Scheme.Domain.Entities.Team.General.TeamGeneralProfile", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Team");
+                });
+
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Team.General.TeamInventaryProfile", b =>
+                {
+                    b.HasOne("SFC.Scheme.Domain.Entities.Team.General.Team", "Team")
+                        .WithOne("InventaryProfile")
+                        .HasForeignKey("SFC.Scheme.Domain.Entities.Team.General.TeamInventaryProfile", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1726,13 +1775,19 @@ namespace SFC.Scheme.Infrastructure.Persistence.Migrations.Scheme
 
             modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Team.TeamScheme", b =>
                 {
-                    b.Navigation("GeneralProfile")
+                    b.Navigation("Formation")
                         .IsRequired();
 
+                    b.Navigation("GeneralProfile")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Team.TeamSchemeFormation", b =>
+                {
                     b.Navigation("Players");
                 });
 
-            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Team.TeamSchemePlayer", b =>
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Team.TeamSchemeFormationPlayer", b =>
                 {
                     b.Navigation("Position")
                         .IsRequired();
@@ -1746,6 +1801,9 @@ namespace SFC.Scheme.Infrastructure.Persistence.Migrations.Scheme
                         .IsRequired();
 
                     b.Navigation("GeneralProfile")
+                        .IsRequired();
+
+                    b.Navigation("InventaryProfile")
                         .IsRequired();
 
                     b.Navigation("Logo");

@@ -2,7 +2,6 @@
 
 using SFC.Scheme.Application.Common.Dto.Common;
 using SFC.Scheme.Application.Common.Mappings.Interfaces;
-using SFC.Scheme.Application.Features.Scheme.Team.Commands.Common.Dto;
 using SFC.Scheme.Application.Features.Scheme.Team.Common.Dto;
 using SFC.Scheme.Domain.Entities.Scheme.Team;
 
@@ -13,7 +12,7 @@ public class TeamSchemeDto : AuditableDto, IMapToReverse<TeamScheme>
 
     public required TeamSchemeProfileDto Profile { get; set; }
 
-    public IEnumerable<TeamSchemePlayerDto> Players { get; set; } = default!;
+    public required TeamSchemeFormationDto Formation { get; set; }
 
     public void Mapping(Profile profile)
     {

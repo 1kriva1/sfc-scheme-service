@@ -39,17 +39,17 @@ public class GetTeamSchemesQueryValidator : AbstractValidator<GetTeamSchemesQuer
         });
 
         // players
-        When(p => p.Filter?.Players != null, () =>
+        When(p => p.Filter?.Formation?.Players != null, () =>
         {
-            When(p => (p.Filter.Players!.Stats!.Total?.From.HasValue ?? false) && (p.Filter.Players!.Stats!.Total?.To.HasValue ?? false), () =>
+            When(p => (p.Filter.Formation?.Players!.Stats!.Total?.From.HasValue ?? false) && (p.Filter.Formation?.Players!.Stats!.Total?.To.HasValue ?? false), () =>
             {
 #pragma warning disable CS8629 // Nullable value type may be null.
-                RuleFor(p => p.Filter!.Players!.Stats!.Total!.To)
-                            .GreaterThanOrEqualTo(p => p.Filter!.Players!.Stats!.Total!.From.Value)
+                RuleFor(p => p.Filter!.Formation!.Players!.Stats!.Total!.To)
+                            .GreaterThanOrEqualTo(p => p.Filter!.Formation!.Players!.Stats!.Total!.From.Value)
                             .WithMessage(Localization.MustBeGreaterThan.BuildValidationMessage(nameof(RangeLimitDto<short?>.To), nameof(RangeLimitDto<short?>.From)));
 
-                RuleFor(p => p.Filter!.Players!.Stats!.Total!.From)
-                            .LessThanOrEqualTo(p => p.Filter!.Players!.Stats!.Total!.To.Value)
+                RuleFor(p => p.Filter!.Formation!.Players!.Stats!.Total!.From)
+                            .LessThanOrEqualTo(p => p.Filter!.Formation!.Players!.Stats!.Total!.To.Value)
                             .WithMessage(Localization.MustBeLessThan.BuildValidationMessage(nameof(RangeLimitDto<short?>.From), nameof(RangeLimitDto<short?>.To)));
 #pragma warning restore CS8629 // Nullable value type may be null.
             });

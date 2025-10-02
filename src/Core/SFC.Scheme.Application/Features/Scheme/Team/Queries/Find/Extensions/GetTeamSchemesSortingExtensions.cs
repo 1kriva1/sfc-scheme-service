@@ -17,7 +17,7 @@ public static class GetTeamSchemesSortingExtensions
         return name switch
         {
             nameof(GetTeamSchemesGeneralProfileFilterDto.Name) => p => p.GeneralProfile.Name,
-            nameof(GetTeamSchemesPlayersStatsFilterDto.Total) => p => p.Players.SelectMany(s => s.Player.Stats).Sum(m => m.Value),
+            nameof(GetTeamSchemesPlayersStatsFilterDto.Total) => p => p.Formation.Players.SelectMany(s => s.Player.Stats).Sum(m => m.Value),
             _ => null
         };
     }

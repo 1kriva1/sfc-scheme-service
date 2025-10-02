@@ -30,13 +30,13 @@ public static class GetTeamSchemesFiltersExtensions
             },
             new()
             {
-                Condition = BuildLimitFromCondition(filter?.Players?.Stats?.Total, ValidationConstants.RangeLimit),
-                Expression = FilterByPlayersStats(filter?.Players?.Stats?.Total?.From, null)
+                Condition = BuildLimitFromCondition(filter?.Formation?.Players?.Stats?.Total, ValidationConstants.RangeLimit),
+                Expression = FilterByPlayersStats(filter?.Formation?.Players?.Stats?.Total?.From, null)
             },
             new()
             {
-                Condition = BuildLimitToCondition(filter?.Players?.Stats?.Total, ValidationConstants.RangeLimit),
-                Expression = FilterByPlayersStats(null, filter?.Players?.Stats?.Total?.To)
+                Condition = BuildLimitToCondition(filter?.Formation?.Players?.Stats?.Total, ValidationConstants.RangeLimit),
+                Expression = FilterByPlayersStats(null, filter?.Formation?.Players?.Stats?.Total?.To)
             }
         ];
     }
@@ -57,15 +57,15 @@ public static class GetTeamSchemesFiltersExtensions
     {
         if (from.HasValue)
         {
-            return scheme => ((int)Math.Ceiling((double)scheme.Players.SelectMany(p => p.Player.Stats).Sum(m => m.Value)
-                / (scheme.Players.SelectMany(p => p.Player.Stats).Count() * PlayerConstants.StatMaxValue)
+            return scheme => ((int)Math.Ceiling((double)scheme.Formation.Players.SelectMany(p => p.Player.Stats).Sum(m => m.Value)
+                / (scheme.Formation.Players.SelectMany(p => p.Player.Stats).Count() * PlayerConstants.StatMaxValue)
                 * ValidationConstants.PercentageMaxValue)) >= from;
         }
 
         if (to.HasValue)
         {
-            return scheme => ((int)Math.Ceiling((double)scheme.Players.SelectMany(p => p.Player.Stats).Sum(m => m.Value)
-                / (scheme.Players.SelectMany(p => p.Player.Stats).Count() * PlayerConstants.StatMaxValue)
+            return scheme => ((int)Math.Ceiling((double)scheme.Formation.Players.SelectMany(p => p.Player.Stats).Sum(m => m.Value)
+                / (scheme.Formation.Players.SelectMany(p => p.Player.Stats).Count() * PlayerConstants.StatMaxValue)
                 * ValidationConstants.PercentageMaxValue)) <= to;
         }
 

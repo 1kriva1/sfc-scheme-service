@@ -1,0 +1,14 @@
+﻿syntax = "proto3";
+
+package sfc_scheme;
+
+import "Models/Scheme/Team/team_scheme_formation_player.proto";
+
+option csharp_namespace = "SFC.Scheme.Contracts.Models.Scheme.Team";
+
+message TeamSchemeFormation
+{
+    int32 formation = 1;
+    int32 type = 2;
+    repeated TeamSchemeFormationPlayer players = 3;
+}

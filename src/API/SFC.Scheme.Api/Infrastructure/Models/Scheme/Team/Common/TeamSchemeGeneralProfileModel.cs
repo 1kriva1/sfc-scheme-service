@@ -17,14 +17,4 @@ public class TeamSchemeGeneralProfileModel : IMapFromReverse<TeamSchemeGeneralPr
     /// Comment or some description about scheme.
     /// </summary>
     public string? Comment { get; set; }
-
-    /// <summary>
-    /// Type of scheme.
-    /// </summary>
-    public int TypeId { get; set; }
-
-    /// <summary>
-    /// Formation type.
-    /// </summary>
-    public int FormationId { get; set; }
 }

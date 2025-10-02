@@ -1,4 +1,4 @@
-﻿using SFC.Scheme.Application.Common.Dto.Team.General;
+﻿using SFC.Scheme.Api.Infrastructure.Models.Team.General;
 using SFC.Scheme.Application.Common.Mappings.Interfaces;
 using SFC.Scheme.Application.Features.Scheme.Team.Queries.Common.Dto;
 
@@ -13,4 +13,9 @@ public class TeamSchemeModel : BaseTeamSchemeModel, IMapFrom<TeamSchemeDto>
     /// Unique identifier.
     /// </summary>
     public long Id { get; set; }
+
+    /// <summary>
+    /// Team scheme related to this team.
+    /// </summary>
+    public required TeamModel Team { get; set; }
 }

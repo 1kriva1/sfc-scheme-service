@@ -77,7 +77,11 @@ public class MappingProfile : BaseMappingProfile
 
         #region Team
 
+        // messages
         CreateMapTeamMessages();
+
+        // contracts
+        CreateMapTeamContracts();
 
         #endregion Team
 
@@ -211,12 +215,14 @@ public class MappingProfile : BaseMappingProfile
         CreateMap<SFC.Team.Messages.Models.Team.General.Team, TeamDto>()
            .ForPath(p => p.Profile.General, d => d.MapFrom(z => z.GeneralProfile))
            .ForPath(p => p.Profile.Financial, d => d.MapFrom(z => z.FinancialProfile))
+           .ForPath(p => p.Profile.Inventary, d => d.MapFrom(z => z.InventaryProfile))
            .ForPath(p => p.Profile.Inventary.Shirts, d => d.MapFrom(z => z.Shirts))
            .ForPath(p => p.Profile.General.Logo, d => d.MapFrom(z => z.Logo))
            .ForPath(p => p.Profile.General.Availability, d => d.MapFrom(z => z.Availability))
            .ForPath(p => p.Profile.General.Tags, d => d.MapFrom(z => z.Tags));
         CreateMap<SFC.Team.Messages.Models.Team.General.TeamGeneralProfile, TeamGeneralProfileDto>();
         CreateMap<SFC.Team.Messages.Models.Team.General.TeamFinancialProfile, TeamFinancialProfileDto>();
+        CreateMap<SFC.Team.Messages.Models.Team.General.TeamInventaryProfile, TeamInventaryProfileDto>();
         CreateMap<SFC.Team.Messages.Models.Team.General.TeamLogo, TeamLogoDto>();
         CreateMap<SFC.Team.Messages.Models.Team.General.TeamAvailability, TeamAvailabilityDto>();
         CreateMap<SFC.Team.Messages.Models.Team.General.TeamTag, string>().ConvertUsing(tag => tag.Value);
@@ -229,6 +235,19 @@ public class MappingProfile : BaseMappingProfile
         CreateMap<IEnumerable<SFC.Team.Messages.Models.Team.Player.TeamPlayer>, CreateTeamPlayersCommand>()
            .ForMember(p => p.TeamPlayers, d => d.MapFrom(z => z));
         CreateMap<SFC.Team.Messages.Models.Team.Player.TeamPlayer, TeamPlayerDto>();
+    }
+
+    private void CreateMapTeamContracts()
+    {
+        CreateMap<long, SFC.Team.Contracts.Messages.Team.General.Get.GetTeamRequest>()
+            .ConvertUsing(id => new SFC.Team.Contracts.Messages.Team.General.Get.GetTeamRequest { Id = id });
+
+        CreateMap<SFC.Team.Contracts.Models.Team.General.Team, TeamDto>();
+        CreateMap<SFC.Team.Contracts.Models.Team.General.TeamProfile, TeamProfileDto>();
+        CreateMap<SFC.Team.Contracts.Models.Team.General.TeamAvailability, TeamAvailabilityDto>();
+        CreateMap<SFC.Team.Contracts.Models.Team.General.TeamFinancialProfile, TeamFinancialProfileDto>();
+        CreateMap<SFC.Team.Contracts.Models.Team.General.TeamGeneralProfile, TeamGeneralProfileDto>();
+        CreateMap<SFC.Team.Contracts.Models.Team.General.TeamInventaryProfile, TeamInventaryProfileDto>();
     }
 
     #endregion Team
@@ -277,9 +296,10 @@ public class MappingProfile : BaseMappingProfile
             .ForMember(p => p.Profile, d => d.MapFrom(z => z));
         CreateMap<TeamScheme, SFC.Scheme.Messages.Models.Scheme.Team.TeamSchemeProfile>()
             .ForMember(p => p.General, d => d.MapFrom(z => z.GeneralProfile));
+        CreateMap<TeamSchemeFormation, SFC.Scheme.Messages.Models.Scheme.Team.TeamSchemeFormation>();
         CreateMap<TeamSchemeGeneralProfile, SFC.Scheme.Messages.Models.Scheme.Team.TeamSchemeGeneralProfile>();
-        CreateMap<TeamSchemePlayer, SFC.Scheme.Messages.Models.Scheme.Team.TeamSchemePlayer>();
-        CreateMap<TeamSchemePlayerPosition, SFC.Scheme.Messages.Models.Scheme.Team.TeamSchemePlayerPosition>();
+        CreateMap<TeamSchemeFormationPlayer, SFC.Scheme.Messages.Models.Scheme.Team.TeamSchemeFormationPlayer>();
+        CreateMap<TeamSchemeFormationPlayerPosition, SFC.Scheme.Messages.Models.Scheme.Team.TeamSchemeFormationPlayerPosition>();
     }
 
     #endregion Scheme

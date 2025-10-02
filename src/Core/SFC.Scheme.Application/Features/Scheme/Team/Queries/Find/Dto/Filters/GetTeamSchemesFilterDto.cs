@@ -5,5 +5,5 @@ public class GetTeamSchemesFilterDto
 
     public GetTeamSchemesProfileFilterDto? Profile { get; set; }
 
-    public GetTeamSchemesPlayersFilterDto? Players { get; set; }
+    public GetTeamSchemesFormationFilterDto? Formation { get; set; }
 }

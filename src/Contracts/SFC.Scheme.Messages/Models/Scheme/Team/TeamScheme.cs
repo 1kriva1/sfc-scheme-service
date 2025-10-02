@@ -11,5 +11,5 @@ public class TeamScheme : Auditable
 
     public required TeamSchemeProfile Profile { get; set; }
 
-    public IEnumerable<TeamSchemePlayer> Players { get; init; } = [];
+    public required TeamSchemeFormation Formation { get; set; }
 }

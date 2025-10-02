@@ -14,7 +14,7 @@ public class GetTeamSchemesFilterModel : IMapTo<GetTeamSchemesFilterDto>
     public GetTeamSchemesProfileFilterModel? Profile { get; set; }
 
     /// <summary>
-    /// Team scheme players filter.
+    /// Team scheme formation filter.
     /// </summary>
-    public GetTeamSchemesPlayersFilterModel? Players { get; set; }
+    public GetTeamSchemesFormationFilterModel? Formation { get; set; }
 }

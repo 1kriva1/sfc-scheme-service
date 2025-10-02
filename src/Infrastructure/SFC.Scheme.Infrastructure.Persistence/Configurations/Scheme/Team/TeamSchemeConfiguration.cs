@@ -18,10 +18,9 @@ public class TeamSchemeConfiguration : AuditableEntityConfiguration<TeamScheme, 
                .HasForeignKey<TeamSchemeGeneralProfile>()
                .IsRequired(true);
 
-        builder.HasMany(e => e.Players)
-               .WithOne()
-               .HasForeignKey(e => e.TeamSchemeId)
-               .OnDelete(DeleteBehavior.ClientCascade)
+        builder.HasOne(e => e.Formation)
+               .WithOne(e => e.Scheme)
+               .HasForeignKey<TeamSchemeFormation>()
                .IsRequired(true);
 
         builder.HasOne<User>()
