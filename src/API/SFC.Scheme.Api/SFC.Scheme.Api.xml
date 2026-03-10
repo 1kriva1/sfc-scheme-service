@@ -838,6 +838,11 @@
             Get team schemes **formation filter** model.
             </summary>
         </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesFormationFilterModel.Formation">
+            <summary>
+            What **formation** scheme use.
+            </summary>
+        </member>
         <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters.GetTeamSchemesFormationFilterModel.Players">
             <summary>
             Scheme formation players.

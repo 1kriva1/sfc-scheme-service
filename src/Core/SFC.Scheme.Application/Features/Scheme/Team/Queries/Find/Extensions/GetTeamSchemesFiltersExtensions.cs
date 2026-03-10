@@ -28,6 +28,10 @@ public static class GetTeamSchemesFiltersExtensions
                 Condition = !string.IsNullOrEmpty(filter?.Profile?.General?.Comment),
                 Expression = scheme => string.IsNullOrEmpty(scheme.GeneralProfile.Comment) || scheme.GeneralProfile.Comment.Contains(filter!.Profile!.General!.Comment!)
             },
+            new() {
+                Condition = filter?.Formation?.Formation.HasValue ?? false,
+                Expression = scheme => (int?)scheme.Formation.FormationId == filter!.Formation!.Formation
+            },
             new()
             {
                 Condition = BuildLimitFromCondition(filter?.Formation?.Players?.Stats?.Total, ValidationConstants.RangeLimit),

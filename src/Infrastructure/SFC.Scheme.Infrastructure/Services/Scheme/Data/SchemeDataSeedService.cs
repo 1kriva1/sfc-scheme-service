@@ -118,9 +118,9 @@ public class SchemeDataSeedService(
                                           .ConfigureAwait(false);
 
         IEnumerable<Formation> formations = SeedExtensions.GetSeedDataEnumValues<Formation, FormationEnum>(@enum =>
-            new Formation(@enum, _formationValues.Where(value => value.FormationId == @enum).ToList()).SetCreatedDate(dateTimeService));
+            new Formation(@enum, [.. _formationValues.Where(value => value.FormationId == @enum)]).SetCreatedDate(dateTimeService));
 
-        await _formationRepository.ResetAsync(formations.ToArray())
+        await _formationRepository.ResetAsync([.. formations])
                                   .ConfigureAwait(false);
 
         await _metadataService.CompleteAsync(MetadataServiceEnum.Scheme, MetadataDomainEnum.Data, MetadataTypeEnum.Initialization).ConfigureAwait(false);
