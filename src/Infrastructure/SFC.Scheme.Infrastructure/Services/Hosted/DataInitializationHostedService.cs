@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 using SFC.Scheme.Application.Common.Enums;
-using SFC.Scheme.Messages.Commands.Data;
 
 namespace SFC.Scheme.Infrastructure.Services.Hosted;
 public class DataInitializationHostedService(

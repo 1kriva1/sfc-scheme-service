@@ -9,6 +9,11 @@ namespace SFC.Scheme.Api.Infrastructure.Models.Scheme.Team.Find.Filters;
 public class GetTeamSchemesFormationFilterModel : IMapTo<GetTeamSchemesFormationFilterDto>
 {
     /// <summary>
+    /// What **formation** scheme use.
+    /// </summary>
+    public int? Formation { get; set; }
+
+    /// <summary>
     /// Scheme formation players.
     /// </summary>
     public GetTeamSchemesFormationPlayersFilterModel? Players { get; set; }
