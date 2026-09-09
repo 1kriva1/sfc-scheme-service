@@ -2,6 +2,10 @@
 
 using Google.Protobuf.WellKnownTypes;
 
+using MassTransit.Components;
+
+using SFC.Scheme.Application.Common.Dto.Game.General;
+using SFC.Scheme.Application.Common.Dto.Game.Team;
 using SFC.Scheme.Application.Common.Dto.Identity;
 using SFC.Scheme.Application.Common.Dto.Player.General;
 using SFC.Scheme.Application.Common.Dto.Team.General;
@@ -10,6 +14,14 @@ using SFC.Scheme.Application.Common.Extensions;
 using SFC.Scheme.Application.Common.Mappings.Base;
 using SFC.Scheme.Application.Features.Data.Commands.Reset;
 using SFC.Scheme.Application.Features.Data.Common.Dto;
+using SFC.Scheme.Application.Features.Game.Data.Commands.Reset;
+using SFC.Scheme.Application.Features.Game.Data.Common.Dto;
+using SFC.Scheme.Application.Features.Game.General.Commands.Create;
+using SFC.Scheme.Application.Features.Game.General.Commands.Creates;
+using SFC.Scheme.Application.Features.Game.General.Commands.Update;
+using SFC.Scheme.Application.Features.Game.Team.Commands.Create;
+using SFC.Scheme.Application.Features.Game.Team.Commands.Creates;
+using SFC.Scheme.Application.Features.Game.Team.Commands.Update;
 using SFC.Scheme.Application.Features.Identity.Commands.Create;
 using SFC.Scheme.Application.Features.Identity.Commands.CreateRange;
 using SFC.Scheme.Application.Features.Player.Commands.Create;
@@ -24,6 +36,7 @@ using SFC.Scheme.Application.Features.Team.Player.Commands.Create;
 using SFC.Scheme.Application.Features.Team.Player.Commands.CreateRange;
 using SFC.Scheme.Application.Features.Team.Player.Commands.Update;
 using SFC.Scheme.Domain.Entities.Scheme.Data;
+using SFC.Scheme.Domain.Entities.Scheme.Game.Team;
 using SFC.Scheme.Domain.Entities.Scheme.Team;
 
 namespace SFC.Scheme.Infrastructure.Mapping;
@@ -84,6 +97,16 @@ public class MappingProfile : BaseMappingProfile
         CreateMapTeamContracts();
 
         #endregion Team
+
+        #region Game
+
+        // messages
+        CreateMapGameMessages();
+
+        // contracrs
+        CreateMapGameContracts();
+
+        #endregion Game
 
         #region Scheme
 
@@ -252,6 +275,66 @@ public class MappingProfile : BaseMappingProfile
 
     #endregion Team
 
+    #region Game
+
+    private void CreateMapGameMessages()
+    {
+        // data
+        // events
+        CreateMap<SFC.Game.Messages.Events.Game.Data.DataInitialized, ResetGameDataCommand>().IgnoreAllNonExisting();
+        // models
+        CreateMap<SFC.Game.Messages.Models.Data.DataValue, GameStatusDto>();
+        CreateMap<SFC.Game.Messages.Models.Data.DataValue, GameTeamStatusDto>();
+        CreateMap<SFC.Game.Messages.Models.Data.DataValue, GameTeamIndexDto>();
+
+        // domain
+        // game
+        // events
+        CreateMap<SFC.Game.Messages.Events.Game.General.GameCreated, CreateGameCommand>().IgnoreAllNonExisting();
+        CreateMap<SFC.Game.Messages.Events.Game.General.GameUpdated, UpdateGameCommand>().IgnoreAllNonExisting();
+        CreateMap<SFC.Game.Messages.Events.Game.General.GameUpdated, CreateGameCommand>().IgnoreAllNonExisting();
+        // commands
+        CreateMap<SFC.Game.Messages.Commands.Game.General.SeedGames, CreatesGameCommand>();
+        // models
+        CreateMap<IEnumerable<SFC.Game.Messages.Models.Game.General.Game>, CreatesGameCommand>()
+           .ForMember(p => p.Games, d => d.MapFrom(z => z));
+        CreateMap<SFC.Game.Messages.Models.Game.General.Game, GameDto>()
+           .ForPath(p => p.Profile.General, d => d.MapFrom(z => z.GeneralProfile))
+           .ForPath(p => p.Profile.Financial, d => d.MapFrom(z => z.FinancialProfile))
+           .ForPath(p => p.Profile.Inventary, d => d.MapFrom(z => z.InventaryProfile))
+           .ForPath(p => p.Profile.General.Availability, d => d.MapFrom(z => z.Availability))
+           .ForPath(p => p.Profile.General.Tags, d => d.MapFrom(z => z.Tags));
+        CreateMap<SFC.Game.Messages.Models.Game.General.GameGeneralProfile, GameGeneralProfileDto>();
+        CreateMap<SFC.Game.Messages.Models.Game.General.GameFinancialProfile, GameFinancialProfileDto>();
+        CreateMap<SFC.Game.Messages.Models.Game.General.GameInventaryProfile, GameInventaryProfileDto>();
+        CreateMap<SFC.Game.Messages.Models.Game.General.GameAvailability, GameAvailabilityDto>();
+        CreateMap<SFC.Game.Messages.Models.Game.General.GameTag, string>().ConvertUsing(tag => tag.Value);
+
+        // game team
+        // events
+        CreateMap<SFC.Game.Messages.Events.Game.Team.General.GameTeamCreated, CreateGameTeamCommand>().IgnoreAllNonExisting();
+        CreateMap<SFC.Game.Messages.Events.Game.Team.General.GameTeamUpdated, UpdateGameTeamCommand>().IgnoreAllNonExisting();
+        // models
+        CreateMap<IEnumerable<SFC.Game.Messages.Models.Game.Team.General.GameTeam>, CreatesGameTeamCommand>()
+           .ForMember(p => p.GameTeams, d => d.MapFrom(z => z));
+        CreateMap<SFC.Game.Messages.Models.Game.Team.General.GameTeam, GameTeamDto>();
+    }
+
+    private void CreateMapGameContracts()
+    {
+        CreateMap<long, SFC.Game.Contracts.Messages.Game.General.Get.GetGameRequest>()
+            .ConvertUsing(id => new SFC.Game.Contracts.Messages.Game.General.Get.GetGameRequest { Id = id });
+
+        CreateMap<SFC.Game.Contracts.Models.Game.General.Game, GameDto>();
+        CreateMap<SFC.Game.Contracts.Models.Game.General.GameProfile, GameProfileDto>();
+        CreateMap<SFC.Game.Contracts.Models.Game.General.GameAvailability, GameAvailabilityDto>();
+        CreateMap<SFC.Game.Contracts.Models.Game.General.GameFinancialProfile, GameFinancialProfileDto>();
+        CreateMap<SFC.Game.Contracts.Models.Game.General.GameGeneralProfile, GameGeneralProfileDto>();
+        CreateMap<SFC.Game.Contracts.Models.Game.General.GameInventaryProfile, GameInventaryProfileDto>();
+    }
+
+    #endregion Game
+
     #region Scheme
 
     private void CreateMapTeamSchemeMessages()
@@ -273,6 +356,14 @@ public class MappingProfile : BaseMappingProfile
         // models
         CreateMap<SFC.Scheme.Messages.Models.Data.DataValue, TeamPlayerStatusDto>();
 
+        // game
+        // commands
+        CreateMap<SFC.Scheme.Messages.Commands.Game.Data.InitializeData, ResetGameDataCommand>().IgnoreAllNonExisting();
+        //models
+        CreateMap<SFC.Scheme.Messages.Models.Data.DataValue, GameStatusDto>();
+        CreateMap<SFC.Scheme.Messages.Models.Data.DataValue, GameTeamStatusDto>();
+        CreateMap<SFC.Scheme.Messages.Models.Data.DataValue, GameTeamIndexDto>();
+
         // scheme
         // data
         CreateMap<SchemeType, SFC.Scheme.Messages.Models.Data.DataValue>();
@@ -280,6 +371,7 @@ public class MappingProfile : BaseMappingProfile
         CreateMap<FormationPosition, SFC.Scheme.Messages.Models.Data.FormationPositionDataValue>();
         CreateMap<FormationValue, SFC.Scheme.Messages.Models.Data.FormationValueDataValue>();
 
+        // team scheme
         // events
         CreateMap<TeamScheme, SFC.Scheme.Messages.Events.Scheme.Team.TeamSchemeCreated>()
             .ForMember(p => p.Scheme, d => d.MapFrom(z => z));
@@ -300,6 +392,28 @@ public class MappingProfile : BaseMappingProfile
         CreateMap<TeamSchemeGeneralProfile, SFC.Scheme.Messages.Models.Scheme.Team.TeamSchemeGeneralProfile>();
         CreateMap<TeamSchemeFormationPlayer, SFC.Scheme.Messages.Models.Scheme.Team.TeamSchemeFormationPlayer>();
         CreateMap<TeamSchemeFormationPlayerPosition, SFC.Scheme.Messages.Models.Scheme.Team.TeamSchemeFormationPlayerPosition>();
+
+        // game team scheme
+        // events
+        CreateMap<GameTeamScheme, SFC.Scheme.Messages.Events.Scheme.Game.Team.GameTeamSchemeCreated>()
+            .ForMember(p => p.Scheme, d => d.MapFrom(z => z));
+        CreateMap<GameTeamScheme, SFC.Scheme.Messages.Events.Scheme.Game.Team.GameTeamSchemeUpdated>()
+            .ForMember(p => p.Scheme, d => d.MapFrom(z => z));
+        CreateMap<IEnumerable<GameTeamScheme>, SFC.Scheme.Messages.Events.Scheme.Game.Team.GameTeamSchemesSeeded>()
+           .ForMember(p => p.Schemes, d => d.MapFrom(z => z));
+        //commands
+        CreateMap<IEnumerable<GameTeamScheme>, SFC.Scheme.Messages.Commands.Scheme.Game.Team.SeedGameTeamSchemes>()
+            .ForMember(p => p.Schemes, d => d.MapFrom(z => z));
+
+        // models
+        CreateMap<GameTeamScheme, SFC.Scheme.Messages.Models.Scheme.Game.Team.GameTeamScheme>()
+            .ForMember(p => p.Profile, d => d.MapFrom(z => z));
+        CreateMap<GameTeamScheme, SFC.Scheme.Messages.Models.Scheme.Game.Team.GameTeamSchemeProfile>()
+            .ForMember(p => p.General, d => d.MapFrom(z => z.GeneralProfile));
+        CreateMap<GameTeamSchemeFormation, SFC.Scheme.Messages.Models.Scheme.Game.Team.GameTeamSchemeFormation>();
+        CreateMap<GameTeamSchemeGeneralProfile, SFC.Scheme.Messages.Models.Scheme.Game.Team.GameTeamSchemeGeneralProfile>();
+        CreateMap<GameTeamSchemeFormationPlayer, SFC.Scheme.Messages.Models.Scheme.Game.Team.GameTeamSchemeFormationPlayer>();
+        CreateMap<GameTeamSchemeFormationPlayerPosition, SFC.Scheme.Messages.Models.Scheme.Game.Team.GameTeamSchemeFormationPlayerPosition>();
     }
 
     #endregion Scheme

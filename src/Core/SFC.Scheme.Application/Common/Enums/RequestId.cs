@@ -22,11 +22,31 @@ public enum RequestId
     CreateTeamPlayer,
     UpdateTeamPlayer,
     CreateTeamPlayers,
-    // core
+    // game
+    ResetGameData,
+    CreateGame,
+    UpdateGame,
+    CreateGames,
+    // game player
+    CreateGamePlayer,
+    UpdateGamePlayer,
+    CreateGamePlayers,
+    // game team
+    CreateGameTeam,
+    UpdateGameTeam,
+    CreateGameTeams,
+    // scheme
     GetAllSchemeData,
+    // team scheme
     CreateTeamScheme,
     UpdateTeamScheme,
     DeleteTeamScheme,
     GetTeamScheme,
     GetTeamSchemes,
+    // game team scheme
+    CreateGameTeamScheme,
+    UpdateGameTeamScheme,
+    DeleteGameTeamScheme,
+    GetGameTeamScheme,
+    GetGameTeamSchemes
 }

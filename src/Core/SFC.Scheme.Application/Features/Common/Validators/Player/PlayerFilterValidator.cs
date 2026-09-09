@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 
 using SFC.Scheme.Application.Common.Constants;
-using SFC.Scheme.Application.Common.Dto.Player.Filters;
+using SFC.Scheme.Application.Common.Dto.Player.General.Filters;
 using SFC.Scheme.Application.Common.Extensions;
 using SFC.Scheme.Application.Features.Common.Dto.Common;
 

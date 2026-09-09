@@ -14,13 +14,20 @@ public class SchemeDataDependentExchange
     public DataDependentExchange Data { get; set; } = default!;
 
     public DataDependentExchange Team { get; set; } = default!;
+
+    public DataDependentExchange Game { get; set; } = default!;
 }
 
 public class SchemeDomainExchange
 {
     public required DomainExchange<TeamSchemeDomainEventsExchange> Team { get; set; }
 
-    public required DomainExchange<GameSchemeDomainEventsExchange> Game { get; set; }
+    public required SchemeGameDomainExchange Game { get; set; }
+}
+
+public class SchemeGameDomainExchange
+{
+    public DomainExchange<GameSchemeDomainEventsExchange> Team { get; set; } = default!;
 }
 
 public class TeamSchemeDomainEventsExchange

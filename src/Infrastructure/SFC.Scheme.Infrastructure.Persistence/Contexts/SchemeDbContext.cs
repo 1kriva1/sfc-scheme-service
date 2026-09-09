@@ -6,14 +6,18 @@ using Microsoft.Extensions.Hosting;
 using SFC.Scheme.Application.Interfaces.Common;
 using SFC.Scheme.Application.Interfaces.Persistence.Context;
 using SFC.Scheme.Domain.Entities.Scheme.Data;
-using SFC.Scheme.Domain.Entities.Scheme.Game;
+using SFC.Scheme.Domain.Entities.Scheme.Game.Team;
 using SFC.Scheme.Domain.Entities.Scheme.Team;
+using SFC.Scheme.Infrastructure.Persistence.Configurations.Scheme.Game.Team;
+using SFC.Scheme.Infrastructure.Persistence.Configurations.Scheme.Team;
+using SFC.Scheme.Infrastructure.Persistence.Configurations.Team.Data;
 using SFC.Scheme.Infrastructure.Persistence.Constants;
 
 using SFC.Scheme.Infrastructure.Persistence.Interceptors;
 using SFC.Scheme.Infrastructure.Persistence.Seeds;
 
 namespace SFC.Scheme.Infrastructure.Persistence.Contexts;
+
 public class SchemeDbContext(
     IDateTimeService dateTimeService,
     IHostEnvironment hostEnvironment,
@@ -22,6 +26,7 @@ public class SchemeDbContext(
     UserEntitySaveChangesInterceptor userEntityInterceptor,
     PlayerEntitySaveChangesInterceptor playerEntityInterceptor,
     TeamEntitySaveChangesInterceptor teamEntityInterceptor,
+    GameEntitySaveChangesInterceptor gameEntityInterceptor,
     DispatchDomainEventsSaveChangesInterceptor eventsInterceptor)
     : BaseDbContext<SchemeDbContext>(options, eventsInterceptor), ISchemeDbContext
 {
@@ -31,12 +36,13 @@ public class SchemeDbContext(
     private readonly UserEntitySaveChangesInterceptor _userEntityInterceptor = userEntityInterceptor;
     private readonly PlayerEntitySaveChangesInterceptor _playerEntityInterceptor = playerEntityInterceptor;
     private readonly TeamEntitySaveChangesInterceptor _teamEntityInterceptor = teamEntityInterceptor;
+    private readonly GameEntitySaveChangesInterceptor _gameEntityInterceptor = gameEntityInterceptor;
 
     #region General
 
     public IQueryable<TeamScheme> TeamSchemes => Set<TeamScheme>();
 
-    public IQueryable<GameScheme> GameSchemes => Set<GameScheme>();
+    public IQueryable<GameTeamScheme> GameTeamSchemes => Set<GameTeamScheme>();
 
     #endregion General
 
@@ -78,6 +84,22 @@ public class SchemeDbContext(
         optionsBuilder.AddInterceptors(_userEntityInterceptor);
         optionsBuilder.AddInterceptors(_playerEntityInterceptor);
         optionsBuilder.AddInterceptors(_teamEntityInterceptor);
+        optionsBuilder.AddInterceptors(_gameEntityInterceptor);
         base.OnConfiguring(optionsBuilder);
+    }
+
+    public static void ApplySchemeConfigurations(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfiguration(new TeamSchemeConfiguration());
+        modelBuilder.ApplyConfiguration(new TeamSchemeFormationConfiguration());
+        modelBuilder.ApplyConfiguration(new TeamSchemeFormationPlayerConfiguration());
+        modelBuilder.ApplyConfiguration(new TeamSchemeFormationPlayerPositionConfiguration());
+        modelBuilder.ApplyConfiguration(new TeamSchemeGeneralProfileConfiguration());
+
+        modelBuilder.ApplyConfiguration(new GameTeamSchemeConfiguration());
+        modelBuilder.ApplyConfiguration(new GameTeamSchemeFormationConfiguration());
+        modelBuilder.ApplyConfiguration(new GameTeamSchemeFormationPlayerConfiguration());
+        modelBuilder.ApplyConfiguration(new GameTeamSchemeFormationPlayerPositionConfiguration());
+        modelBuilder.ApplyConfiguration(new GameTeamSchemeGeneralProfileConfiguration());
     }
 }

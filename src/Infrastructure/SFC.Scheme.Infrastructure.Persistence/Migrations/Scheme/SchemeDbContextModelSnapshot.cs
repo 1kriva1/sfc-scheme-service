@@ -173,6 +173,257 @@ namespace SFC.Scheme.Infrastructure.Persistence.Migrations.Scheme
                     b.ToTable("WorkingFoots", "Data");
                 });
 
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Game.Data.GameStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int")
+                        .HasColumnOrder(0);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnOrder(1);
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("GameStatuses", "Game");
+                });
+
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Game.Data.GameTeamIndex", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int")
+                        .HasColumnOrder(0);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnOrder(1);
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TeamIndexes", "Game");
+                });
+
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Game.Data.GameTeamStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int")
+                        .HasColumnOrder(0);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnOrder(1);
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TeamStatuses", "Game");
+                });
+
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Game.General.Game", b =>
+                {
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint")
+                        .HasColumnOrder(0);
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("LastModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("LastModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedBy");
+
+                    b.HasIndex("LastModifiedBy");
+
+                    b.HasIndex("StatusId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Games", "Game");
+                });
+
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Game.General.GameAvailability", b =>
+                {
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
+
+                    b.Property<TimeSpan>("From")
+                        .HasColumnType("time");
+
+                    b.Property<TimeSpan>("To")
+                        .HasColumnType("time");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Availabilities", "Game");
+                });
+
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Game.General.GameFinancialProfile", b =>
+                {
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("FreeGame")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<decimal?>("PayAmount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FinancialProfiles", "Game");
+                });
+
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Game.General.GameGeneralProfile", b =>
+                {
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1050)
+                        .HasColumnType("nvarchar(1050)");
+
+                    b.Property<long?>("LocationId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("GeneralProfiles", "Game");
+                });
+
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Game.General.GameInventaryProfile", b =>
+                {
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
+
+                    b.Property<int?>("ShirtsCount")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("ShirtsRequired")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("InventaryProfiles", "Game");
+                });
+
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Game.General.GameTag", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("GameId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GameId");
+
+                    b.ToTable("Tags", "Game");
+                });
+
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Game.Team.GameTeam", b =>
+                {
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint")
+                        .HasColumnOrder(0);
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("GameId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("Index")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("LastModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("LastModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
+                    b.Property<long>("TeamId")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedBy");
+
+                    b.HasIndex("Index");
+
+                    b.HasIndex("LastModifiedBy");
+
+                    b.HasIndex("StatusId");
+
+                    b.HasIndex("TeamId");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("GameId", "TeamId")
+                        .IsUnique();
+
+                    b.ToTable("Teams", "Game");
+                });
+
             modelBuilder.Entity("SFC.Scheme.Domain.Entities.Identity.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -280,6 +531,34 @@ namespace SFC.Scheme.Infrastructure.Persistence.Migrations.Scheme
                             Type = 1,
                             Domain = 5,
                             State = 1
+                        },
+                        new
+                        {
+                            Service = 4,
+                            Type = 1,
+                            Domain = 6,
+                            State = 1
+                        },
+                        new
+                        {
+                            Service = 5,
+                            Type = 0,
+                            Domain = 0,
+                            State = 1
+                        },
+                        new
+                        {
+                            Service = 5,
+                            Type = 1,
+                            Domain = 7,
+                            State = 1
+                        },
+                        new
+                        {
+                            Service = 5,
+                            Type = 1,
+                            Domain = 8,
+                            State = 1
                         });
                 });
 
@@ -326,12 +605,22 @@ namespace SFC.Scheme.Infrastructure.Persistence.Migrations.Scheme
                         new
                         {
                             Id = 5,
-                            Title = "TeamScheme"
+                            Title = "Game"
                         },
                         new
                         {
                             Id = 6,
-                            Title = "GameScheme"
+                            Title = "GameTeam"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Title = "TeamScheme"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Title = "GameTeamScheme"
                         });
                 });
 
@@ -373,6 +662,11 @@ namespace SFC.Scheme.Infrastructure.Persistence.Migrations.Scheme
                         new
                         {
                             Id = 4,
+                            Title = "Game"
+                        },
+                        new
+                        {
+                            Id = 5,
                             Title = "Scheme"
                         });
                 });
@@ -786,23 +1080,22 @@ namespace SFC.Scheme.Infrastructure.Persistence.Migrations.Scheme
                         new
                         {
                             Id = 0,
-                            CreatedDate = new DateTime(2025, 10, 2, 9, 25, 12, 666, DateTimeKind.Utc).AddTicks(2310),
+                            CreatedDate = new DateTime(2026, 8, 31, 8, 45, 57, 922, DateTimeKind.Utc).AddTicks(158),
                             Title = "Formation"
                         },
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2025, 10, 2, 9, 25, 12, 666, DateTimeKind.Utc).AddTicks(2326),
+                            CreatedDate = new DateTime(2026, 8, 31, 8, 45, 57, 922, DateTimeKind.Utc).AddTicks(181),
                             Title = "Custom"
                         });
                 });
 
-            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Game.GameScheme", b =>
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Game.Team.GameTeamScheme", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnOrder(0);
+                        .HasColumnType("bigint");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
@@ -821,21 +1114,44 @@ namespace SFC.Scheme.Infrastructure.Persistence.Migrations.Scheme
                     b.Property<DateTime>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<long>("TeamId")
+                        .HasColumnType("bigint");
+
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CreatedBy");
+                    b.HasIndex("GameId");
 
-                    b.HasIndex("LastModifiedBy");
+                    b.HasIndex("TeamId");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("GameSchemes", "Scheme");
+                    b.ToTable("GameTeamSchemes", "Scheme");
                 });
 
-            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Game.GameTeamScheme", b =>
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Game.Team.GameTeamSchemeFormation", b =>
+                {
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("FormationId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FormationId");
+
+                    b.HasIndex("TypeId");
+
+                    b.ToTable("GameTeamSchemeFormations", "Scheme");
+                });
+
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Game.Team.GameTeamSchemeFormationPlayer", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -843,17 +1159,62 @@ namespace SFC.Scheme.Infrastructure.Persistence.Migrations.Scheme
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<long>("GameId")
+                    b.Property<long>("GameTeamSchemeFormationId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("TeamId")
+                    b.Property<long>("PlayerId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TeamId");
+                    b.HasIndex("GameTeamSchemeFormationId");
 
-                    b.ToTable("GameTeamSchemes", "Scheme");
+                    b.HasIndex("PlayerId");
+
+                    b.ToTable("GameTeamSchemeFormationPlayers", "Scheme");
+                });
+
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Game.Team.GameTeamSchemeFormationPlayerPosition", b =>
+                {
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("FormationPositionId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Index")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("X")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Y")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FormationPositionId");
+
+                    b.ToTable("GameTeamSchemeFormationPlayerPositions", "Scheme");
+                });
+
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Game.Team.GameTeamSchemeGeneralProfile", b =>
+                {
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Comment")
+                        .HasMaxLength(1050)
+                        .HasColumnType("nvarchar(1050)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("GameTeamSchemeGeneralProfiles", "Scheme");
                 });
 
             modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Team.TeamScheme", b =>
@@ -1254,6 +1615,137 @@ namespace SFC.Scheme.Infrastructure.Persistence.Migrations.Scheme
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Game.General.Game", b =>
+                {
+                    b.HasOne("SFC.Scheme.Domain.Entities.Identity.User", null)
+                        .WithMany()
+                        .HasForeignKey("CreatedBy")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
+
+                    b.HasOne("SFC.Scheme.Domain.Entities.Identity.User", null)
+                        .WithMany()
+                        .HasForeignKey("LastModifiedBy")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
+
+                    b.HasOne("SFC.Scheme.Domain.Entities.Game.Data.GameStatus", null)
+                        .WithMany()
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SFC.Scheme.Domain.Entities.Identity.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Game.General.GameAvailability", b =>
+                {
+                    b.HasOne("SFC.Scheme.Domain.Entities.Game.General.Game", "Game")
+                        .WithOne("Availability")
+                        .HasForeignKey("SFC.Scheme.Domain.Entities.Game.General.GameAvailability", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Game");
+                });
+
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Game.General.GameFinancialProfile", b =>
+                {
+                    b.HasOne("SFC.Scheme.Domain.Entities.Game.General.Game", "Game")
+                        .WithOne("FinancialProfile")
+                        .HasForeignKey("SFC.Scheme.Domain.Entities.Game.General.GameFinancialProfile", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Game");
+                });
+
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Game.General.GameGeneralProfile", b =>
+                {
+                    b.HasOne("SFC.Scheme.Domain.Entities.Game.General.Game", "Game")
+                        .WithOne("GeneralProfile")
+                        .HasForeignKey("SFC.Scheme.Domain.Entities.Game.General.GameGeneralProfile", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Game");
+                });
+
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Game.General.GameInventaryProfile", b =>
+                {
+                    b.HasOne("SFC.Scheme.Domain.Entities.Game.General.Game", "Game")
+                        .WithOne("InventaryProfile")
+                        .HasForeignKey("SFC.Scheme.Domain.Entities.Game.General.GameInventaryProfile", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Game");
+                });
+
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Game.General.GameTag", b =>
+                {
+                    b.HasOne("SFC.Scheme.Domain.Entities.Game.General.Game", "Game")
+                        .WithMany("Tags")
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Game");
+                });
+
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Game.Team.GameTeam", b =>
+                {
+                    b.HasOne("SFC.Scheme.Domain.Entities.Identity.User", null)
+                        .WithMany()
+                        .HasForeignKey("CreatedBy")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
+
+                    b.HasOne("SFC.Scheme.Domain.Entities.Game.General.Game", "Game")
+                        .WithMany()
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SFC.Scheme.Domain.Entities.Game.Data.GameTeamIndex", null)
+                        .WithMany()
+                        .HasForeignKey("Index")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SFC.Scheme.Domain.Entities.Identity.User", null)
+                        .WithMany()
+                        .HasForeignKey("LastModifiedBy")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
+
+                    b.HasOne("SFC.Scheme.Domain.Entities.Game.Data.GameTeamStatus", null)
+                        .WithMany()
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SFC.Scheme.Domain.Entities.Team.General.Team", "Team")
+                        .WithMany()
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
+
+                    b.HasOne("SFC.Scheme.Domain.Entities.Identity.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
+
+                    b.Navigation("Game");
+
+                    b.Navigation("Team");
+                });
+
             modelBuilder.Entity("SFC.Scheme.Domain.Entities.Identity.User", b =>
                 {
                     b.HasOne("SFC.Scheme.Domain.Entities.Identity.User", null)
@@ -1453,17 +1945,17 @@ namespace SFC.Scheme.Infrastructure.Persistence.Migrations.Scheme
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Game.GameScheme", b =>
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Game.Team.GameTeamScheme", b =>
                 {
-                    b.HasOne("SFC.Scheme.Domain.Entities.Identity.User", null)
-                        .WithMany()
-                        .HasForeignKey("CreatedBy")
+                    b.HasOne("SFC.Scheme.Domain.Entities.Game.General.Game", "Game")
+                        .WithMany("TeamSchemes")
+                        .HasForeignKey("GameId")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
-                    b.HasOne("SFC.Scheme.Domain.Entities.Identity.User", null)
-                        .WithMany()
-                        .HasForeignKey("LastModifiedBy")
+                    b.HasOne("SFC.Scheme.Domain.Entities.Team.General.Team", "Team")
+                        .WithMany("GameSchemes")
+                        .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
@@ -1472,15 +1964,80 @@ namespace SFC.Scheme.Infrastructure.Persistence.Migrations.Scheme
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
+
+                    b.Navigation("Game");
+
+                    b.Navigation("Team");
                 });
 
-            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Game.GameTeamScheme", b =>
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Game.Team.GameTeamSchemeFormation", b =>
                 {
-                    b.HasOne("SFC.Scheme.Domain.Entities.Team.General.Team", null)
+                    b.HasOne("SFC.Scheme.Domain.Entities.Scheme.Data.Formation", null)
                         .WithMany()
-                        .HasForeignKey("TeamId")
+                        .HasForeignKey("FormationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SFC.Scheme.Domain.Entities.Scheme.Game.Team.GameTeamScheme", "Scheme")
+                        .WithOne("Formation")
+                        .HasForeignKey("SFC.Scheme.Domain.Entities.Scheme.Game.Team.GameTeamSchemeFormation", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SFC.Scheme.Domain.Entities.Scheme.Data.SchemeType", null)
+                        .WithMany()
+                        .HasForeignKey("TypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Scheme");
+                });
+
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Game.Team.GameTeamSchemeFormationPlayer", b =>
+                {
+                    b.HasOne("SFC.Scheme.Domain.Entities.Scheme.Game.Team.GameTeamSchemeFormation", "Formation")
+                        .WithMany("Players")
+                        .HasForeignKey("GameTeamSchemeFormationId")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
+
+                    b.HasOne("SFC.Scheme.Domain.Entities.Player.Player", "Player")
+                        .WithMany()
+                        .HasForeignKey("PlayerId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
+
+                    b.Navigation("Formation");
+
+                    b.Navigation("Player");
+                });
+
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Game.Team.GameTeamSchemeFormationPlayerPosition", b =>
+                {
+                    b.HasOne("SFC.Scheme.Domain.Entities.Scheme.Data.FormationPosition", null)
+                        .WithMany()
+                        .HasForeignKey("FormationPositionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SFC.Scheme.Domain.Entities.Scheme.Game.Team.GameTeamSchemeFormationPlayer", "Player")
+                        .WithOne("Position")
+                        .HasForeignKey("SFC.Scheme.Domain.Entities.Scheme.Game.Team.GameTeamSchemeFormationPlayerPosition", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Player");
+                });
+
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Game.Team.GameTeamSchemeGeneralProfile", b =>
+                {
+                    b.HasOne("SFC.Scheme.Domain.Entities.Scheme.Game.Team.GameTeamScheme", "Scheme")
+                        .WithOne("GeneralProfile")
+                        .HasForeignKey("SFC.Scheme.Domain.Entities.Scheme.Game.Team.GameTeamSchemeGeneralProfile", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Scheme");
                 });
 
             modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Team.TeamScheme", b =>
@@ -1739,6 +2296,25 @@ namespace SFC.Scheme.Infrastructure.Persistence.Migrations.Scheme
                     b.Navigation("Types");
                 });
 
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Game.General.Game", b =>
+                {
+                    b.Navigation("Availability")
+                        .IsRequired();
+
+                    b.Navigation("FinancialProfile")
+                        .IsRequired();
+
+                    b.Navigation("GeneralProfile")
+                        .IsRequired();
+
+                    b.Navigation("InventaryProfile")
+                        .IsRequired();
+
+                    b.Navigation("Tags");
+
+                    b.Navigation("TeamSchemes");
+                });
+
             modelBuilder.Entity("SFC.Scheme.Domain.Entities.Player.Player", b =>
                 {
                     b.Navigation("Availability")
@@ -1773,6 +2349,26 @@ namespace SFC.Scheme.Infrastructure.Persistence.Migrations.Scheme
                     b.Navigation("Values");
                 });
 
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Game.Team.GameTeamScheme", b =>
+                {
+                    b.Navigation("Formation")
+                        .IsRequired();
+
+                    b.Navigation("GeneralProfile")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Game.Team.GameTeamSchemeFormation", b =>
+                {
+                    b.Navigation("Players");
+                });
+
+            modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Game.Team.GameTeamSchemeFormationPlayer", b =>
+                {
+                    b.Navigation("Position")
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("SFC.Scheme.Domain.Entities.Scheme.Team.TeamScheme", b =>
                 {
                     b.Navigation("Formation")
@@ -1799,6 +2395,8 @@ namespace SFC.Scheme.Infrastructure.Persistence.Migrations.Scheme
 
                     b.Navigation("FinancialProfile")
                         .IsRequired();
+
+                    b.Navigation("GameSchemes");
 
                     b.Navigation("GeneralProfile")
                         .IsRequired();

@@ -25,8 +25,12 @@ public static class MetadataSeed
             new MetadataEntity { Service = MetadataServiceEnum.Team, Domain = MetadataDomainEnum.Team, Type = MetadataTypeEnum.Seed, State = seedState },
             new MetadataEntity { Service = MetadataServiceEnum.Team, Domain = MetadataDomainEnum.Data, Type = MetadataTypeEnum.Initialization, State = MetadataStateEnum.Required },
             new MetadataEntity { Service = MetadataServiceEnum.Team, Domain = MetadataDomainEnum.TeamPlayer, Type = MetadataTypeEnum.Seed, State = seedState },
+            new MetadataEntity { Service = MetadataServiceEnum.Game, Domain = MetadataDomainEnum.Data, Type = MetadataTypeEnum.Initialization, State = MetadataStateEnum.Required },
+            new MetadataEntity { Service = MetadataServiceEnum.Game, Domain = MetadataDomainEnum.Game, Type = MetadataTypeEnum.Seed, State = seedState },
+            new MetadataEntity { Service = MetadataServiceEnum.Game, Domain = MetadataDomainEnum.GameTeam, Type = MetadataTypeEnum.Seed, State = seedState },
             new MetadataEntity { Service = MetadataServiceEnum.Scheme, Domain = MetadataDomainEnum.Data, Type = MetadataTypeEnum.Initialization, State = MetadataStateEnum.Required },
-            new MetadataEntity { Service = MetadataServiceEnum.Scheme, Domain = MetadataDomainEnum.TeamScheme, Type = MetadataTypeEnum.Seed, State = seedState }
+            new MetadataEntity { Service = MetadataServiceEnum.Scheme, Domain = MetadataDomainEnum.TeamScheme, Type = MetadataTypeEnum.Seed, State = seedState },
+            new MetadataEntity { Service = MetadataServiceEnum.Scheme, Domain = MetadataDomainEnum.GameTeamScheme, Type = MetadataTypeEnum.Seed, State = seedState }
         ];
 
         builder.Entity<MetadataEntity>().HasData(metadata);

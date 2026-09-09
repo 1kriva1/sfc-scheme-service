@@ -57,6 +57,26 @@ public class Localization
                      GetValue(s_localizer?.GetString("MustBeLessThan"),
                          "'{0}' value must be less than {1} value.")!;
 
+    public static string MustBeUnique =>
+                      GetValue(s_localizer?.GetString("MustBeUnique"),
+                          "Each value from '{PropertyName}' must be unique.")!;
+
+    public static string TagsSizeInvalid =>
+                      GetValue(s_localizer?.GetString("TagsSizeInvalid"),
+                          "The length of '{0}' must be less or equal to {1}.")!;
+
+    public static string TagEmpty =>
+                      GetValue(s_localizer?.GetString("TagEmpty"),
+                          "Each value from '{PropertyName}' must not be empty.")!;
+
+    public static string TagMaxLength =>
+                      GetValue(s_localizer?.GetString("TagMaxLength"),
+                          "Each value from '{PropertyName}' must be {MaxLength} characters or fewer. You entered {TotalLength} characters.")!;
+
+    public static string AvailabilityDayInvalid =>
+                      GetValue(s_localizer?.GetString("AvailabilityDayInvalid"),
+                          "Each value from '{PropertyName}' must be in Days of Week range.")!;
+
     public static string DataValidator =>
                      GetValue(s_localizer?.GetString("DataValidator"),
                          "'{PropertyName}' has a range of values which does not include '{PropertyValue}'.")!;
@@ -108,6 +128,18 @@ public class Localization
     public static string EachPlayerMustBeInTeam =>
                       GetValue(s_localizer?.GetString("EachPlayerMustBeInTeam"),
                           "Each player must be in team.")!;
+
+    public static string GameNotFound =>
+                     GetValue(s_localizer?.GetString("GameNotFound"),
+                         "Game not found.")!;
+
+    public static string GamePlayerNotFound =>
+                       GetValue(s_localizer?.GetString("GamePlayerNotFound"),
+                           "Game player not found.")!;
+
+    public static string GameTeamNotFound =>
+                       GetValue(s_localizer?.GetString("GameTeamNotFound"),
+                           "Game team not found.")!;
 
     public static string GetDataValue(string name)
     {
