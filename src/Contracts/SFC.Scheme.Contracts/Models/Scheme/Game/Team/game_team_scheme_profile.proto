@@ -1,0 +1,12 @@
+﻿syntax = "proto3";
+
+package sfc_scheme;
+
+import "Models/Scheme/Game/Team/game_team_scheme_general_profile.proto";
+
+option csharp_namespace = "SFC.Scheme.Contracts.Models.Scheme.Game.Team";
+
+message GameTeamSchemeProfile
+{
+    GameTeamSchemeGeneralProfile general = 1;
+}

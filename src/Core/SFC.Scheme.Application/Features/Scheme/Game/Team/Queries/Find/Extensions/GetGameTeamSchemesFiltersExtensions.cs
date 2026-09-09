@@ -1,0 +1,83 @@
+﻿using System.Linq.Expressions;
+
+using SFC.Scheme.Application.Common.Constants;
+using SFC.Scheme.Application.Features.Common.Constants;
+using SFC.Scheme.Application.Features.Common.Dto.Common;
+using SFC.Scheme.Application.Features.Common.Models.Find.Filters;
+using SFC.Scheme.Application.Features.Scheme.Game.Team.Queries.Find.Dto.Filters;
+using SFC.Scheme.Domain.Entities.Scheme.Game.Team;
+
+namespace SFC.Scheme.Application.Features.Scheme.Game.Team.Queries.Find.Extensions;
+public static class GetGameTeamSchemesFiltersExtensions
+{
+    public static IEnumerable<Filter<GameTeamScheme>> BuildSearchFilters(this GetGameTeamSchemesFilterDto filter)
+    {
+        return [
+            new()
+            {
+                Condition = true,
+                Expression = scheme => scheme.GameId == filter!.GameId
+            },
+            new()
+            {
+                Condition = true,
+                Expression = scheme => scheme.TeamId == filter!.TeamId
+            },
+            new()
+            {
+                Condition = !string.IsNullOrEmpty(filter?.Profile?.General?.Name),
+                Expression = scheme => scheme.GeneralProfile.Name.Contains(filter!.Profile!.General!.Name!)
+            },
+            new()
+            {
+                Condition = !string.IsNullOrEmpty(filter?.Profile?.General?.Comment),
+                Expression = scheme => string.IsNullOrEmpty(scheme.GeneralProfile.Comment) || scheme.GeneralProfile.Comment.Contains(filter!.Profile!.General!.Comment!)
+            },
+            new() {
+                Condition = filter?.Formation?.Formation.HasValue ?? false,
+                Expression = scheme => (int?)scheme.Formation.FormationId == filter!.Formation!.Formation
+            },
+            new()
+            {
+                Condition = BuildLimitFromCondition(filter?.Formation?.Players?.Stats?.Total, ValidationConstants.RangeLimit),
+                Expression = FilterByPlayersStats(filter?.Formation?.Players?.Stats?.Total?.From, null)
+            },
+            new()
+            {
+                Condition = BuildLimitToCondition(filter?.Formation?.Players?.Stats?.Total, ValidationConstants.RangeLimit),
+                Expression = FilterByPlayersStats(null, filter?.Formation?.Players?.Stats?.Total?.To)
+            }
+        ];
+    }
+
+    private static bool BuildLimitFromCondition(RangeLimitDto<short?>? limit, Tuple<int, int> rangeLimit)
+    {
+        return (limit?.From.HasValue ?? false)
+            && !(limit.From == rangeLimit.Item1 && limit.To == rangeLimit.Item2);
+    }
+
+    private static bool BuildLimitToCondition(RangeLimitDto<short?>? limit, Tuple<int, int> rangeLimit)
+    {
+        return (limit?.To.HasValue ?? false)
+            && !(limit.From == rangeLimit.Item1 && limit.To == rangeLimit.Item2);
+    }
+
+    public static Expression<Func<GameTeamScheme, bool>> FilterByPlayersStats(short? from, short? to)
+    {
+        if (from.HasValue)
+        {
+            return scheme => ((int)Math.Ceiling((double)scheme.Formation.Players.SelectMany(p => p.Player.Stats).Sum(m => m.Value)
+                / (scheme.Formation.Players.SelectMany(p => p.Player.Stats).Count() * PlayerConstants.StatMaxValue)
+                * ValidationConstants.PercentageMaxValue)) >= from;
+        }
+
+        if (to.HasValue)
+        {
+            return scheme => ((int)Math.Ceiling((double)scheme.Formation.Players.SelectMany(p => p.Player.Stats).Sum(m => m.Value)
+                / (scheme.Formation.Players.SelectMany(p => p.Player.Stats).Count() * PlayerConstants.StatMaxValue)
+                * ValidationConstants.PercentageMaxValue)) <= to;
+        }
+
+        return player => true;
+    }
+}

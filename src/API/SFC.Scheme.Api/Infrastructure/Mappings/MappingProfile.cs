@@ -10,9 +10,12 @@ using SFC.Scheme.Application.Features.Common.Dto.Common;
 using SFC.Scheme.Application.Features.Common.Dto.Pagination;
 using SFC.Scheme.Application.Features.Scheme.Data.Queries.Common.Dto;
 using SFC.Scheme.Application.Features.Scheme.Data.Queries.GetAll;
-using SFC.Scheme.Application.Features.Scheme.Team.Commands.Common.Dto;
+using SFC.Scheme.Application.Features.Scheme.Game.Team.Common.Dto;
+using SFC.Scheme.Application.Features.Scheme.Game.Team.Queries.Common.Dto;
+using SFC.Scheme.Application.Features.Scheme.Game.Team.Queries.Find;
+using SFC.Scheme.Application.Features.Scheme.Game.Team.Queries.Find.Dto.Filters;
+using SFC.Scheme.Application.Features.Scheme.Game.Team.Queries.Get;
 using SFC.Scheme.Application.Features.Scheme.Team.Common.Dto;
-using SFC.Scheme.Application.Features.Scheme.Team.Queries.Common.Dto;
 using SFC.Scheme.Application.Features.Scheme.Team.Queries.Find;
 using SFC.Scheme.Application.Features.Scheme.Team.Queries.Find.Dto.Filters;
 using SFC.Scheme.Application.Features.Scheme.Team.Queries.Get;
@@ -45,6 +48,12 @@ public class MappingProfile : BaseMappingProfile
 
         CreateMap<Duration, TimeSpan>()
             .ConvertUsing(value => value.ToTimeSpan());
+
+        CreateMap<DateOnly, Timestamp>()
+            .ConvertUsing(value => DateTime.SpecifyKind(value.ToDateTime(TimeOnly.MinValue), DateTimeKind.Utc).ToTimestamp());
+
+        CreateMap<Timestamp, DateOnly>()
+            .ConvertUsing(value => DateOnly.FromDateTime(value.ToDateTime()));
 
         CreateMap<IEnumerable<int>, Int32Array>().ConvertUsing<Int32ArrayConverter>();
 
@@ -111,5 +120,33 @@ public class MappingProfile : BaseMappingProfile
         // (headers)
         CreateMap<PageMetadataDto, SFC.Scheme.Contracts.Headers.PaginationHeader>()
             .IgnoreAllNonExisting();
+
+        // game team scheme
+        CreateMap<GameTeamSchemeDto, SFC.Scheme.Contracts.Models.Scheme.Game.Team.GameTeamScheme>();
+        CreateMap<GameTeamSchemeGeneralProfileDto, SFC.Scheme.Contracts.Models.Scheme.Game.Team.GameTeamSchemeGeneralProfile>();
+        CreateMap<GameTeamSchemeFormationDto, SFC.Scheme.Contracts.Models.Scheme.Game.Team.GameTeamSchemeFormation>()
+            .ForMember(p => p.Formation, d => d.MapFrom(z => z.FormationId))
+            .ForMember(p => p.Type, d => d.MapFrom(z => z.TypeId));
+        CreateMap<GameTeamSchemeFormationPlayerDto, SFC.Scheme.Contracts.Models.Scheme.Game.Team.GameTeamSchemeFormationPlayer>();
+        CreateMap<GameTeamSchemeFormationPlayerPositionDto, SFC.Scheme.Contracts.Models.Scheme.Game.Team.GameTeamSchemeFormationPlayerPosition>()
+            .ForMember(p => p.FormationPosition, d => d.MapFrom(z => z.FormationPositionId));
+        CreateMap<GameTeamSchemeProfileDto, SFC.Scheme.Contracts.Models.Scheme.Game.Team.GameTeamSchemeProfile>();
+
+        // get team scheme        
+        CreateMap<GetGameTeamSchemeViewModel, SFC.Scheme.Contracts.Messages.Scheme.Game.Team.Get.GetGameTeamSchemeResponse>();
+        CreateMap<SFC.Scheme.Contracts.Messages.Scheme.Game.Team.Get.GetGameTeamSchemeRequest, GetGameTeamSchemeQuery>();
+        CreateMap<GameTeamSchemeDto, SFC.Scheme.Contracts.Headers.AuditableHeader>()
+            .IgnoreAllNonExisting();
+
+        // get schemes
+        // (filters)
+        CreateMap<SFC.Scheme.Contracts.Messages.Scheme.Game.Team.Find.GetGameTeamSchemesRequest, GetGameTeamSchemesQuery>();
+        CreateMap<SFC.Scheme.Contracts.Messages.Scheme.Game.Team.Find.Filters.GetGameTeamSchemesFilter, GetGameTeamSchemesFilterDto>();
+        CreateMap<SFC.Scheme.Contracts.Messages.Scheme.Game.Team.Find.Filters.GameTeamSchemesGeneralProfileFilter, GetGameTeamSchemesGeneralProfileFilterDto>();
+        CreateMap<SFC.Scheme.Contracts.Messages.Scheme.Game.Team.Find.Filters.GameTeamSchemesPlayersFilter, GetGameTeamSchemesPlayersFilterDto>();
+        CreateMap<SFC.Scheme.Contracts.Messages.Scheme.Game.Team.Find.Filters.GameTeamSchemesPlayersStatsFilter, GetGameTeamSchemesPlayersStatsFilterDto>();
+        CreateMap<SFC.Scheme.Contracts.Messages.Scheme.Game.Team.Find.Filters.GameTeamSchemesProfileFilter, GetGameTeamSchemesProfileFilterDto>();
+        // (result)
+        CreateMap<GetGameTeamSchemesViewModel, SFC.Scheme.Contracts.Messages.Scheme.Game.Team.Find.GetGameTeamSchemesResponse>();
     }
 }

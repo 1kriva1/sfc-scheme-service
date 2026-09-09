@@ -64,6 +64,12 @@ public class TeamDbContext(
         // player
         PlayerDbContext.ApplyPlayerConfigurations(modelBuilder);
 
+        // game
+        GameDbContext.ApplyGameConfigurations(modelBuilder);
+
+        // scheme
+        SchemeDbContext.ApplySchemeConfigurations(modelBuilder);
+
         // team
         ApplyTeamConfigurations(modelBuilder);
 

@@ -53,6 +53,12 @@ public class PlayerDbContext(
         // team
         TeamDbContext.ApplyTeamConfigurations(modelBuilder);
 
+        // game
+        GameDbContext.ApplyGameConfigurations(modelBuilder);
+
+        // scheme
+        SchemeDbContext.ApplySchemeConfigurations(modelBuilder);
+
         base.OnModelCreating(modelBuilder);
     }
 

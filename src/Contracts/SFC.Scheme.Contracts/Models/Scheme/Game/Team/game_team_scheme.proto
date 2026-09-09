@@ -1,0 +1,18 @@
+﻿syntax = "proto3";
+
+package sfc_scheme;
+
+import "Models/Scheme/Game/Team/game_team_scheme_profile.proto";
+import "Models/Scheme/Game/Team/game_team_scheme_formation.proto";
+
+option csharp_namespace = "SFC.Scheme.Contracts.Models.Scheme.Game.Team";
+
+message GameTeamScheme
+{
+    int64 id = 1;
+    string user_id = 2;
+    int64 team_id = 3;
+    int64 game_id = 4;
+    GameTeamSchemeProfile profile = 5;
+    GameTeamSchemeFormation formation = 6;
+}

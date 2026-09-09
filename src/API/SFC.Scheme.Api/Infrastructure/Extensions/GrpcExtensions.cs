@@ -8,6 +8,7 @@ public static class GrpcExtensions
     {
         app.MapGrpcService<SchemeDataService>();
         app.MapGrpcService<TeamSchemeService>();
+        app.MapGrpcService<GameTeamSchemeService>();
 
         return app;
     }

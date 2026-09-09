@@ -9,11 +9,16 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 using SFC.Data.Messages.Events;
+using SFC.Game.Messages.Commands.Game.General;
+using SFC.Game.Messages.Commands.Game.Player;
+using SFC.Game.Messages.Commands.Game.Team.General;
 using SFC.Scheme.Infrastructure.Extensions;
 using SFC.Scheme.Infrastructure.Settings.RabbitMq;
 using SFC.Scheme.Messages.Commands.Common;
+using SFC.Scheme.Messages.Commands.Scheme.Game.Team;
 using SFC.Scheme.Messages.Commands.Scheme.Team;
 using SFC.Scheme.Messages.Events.Scheme.Data;
+using SFC.Scheme.Messages.Events.Scheme.Game.Team;
 using SFC.Scheme.Messages.Events.Scheme.Team;
 
 namespace SFC.Scheme.Infrastructure.Extensions;
@@ -68,16 +73,19 @@ public static class MassTransitExtensions
         // "sfc.scheme.data.initialized"
         configure.AddExchange<DataInitialized>(exchangesSettings.Scheme.Value.Data.Source.Initialized);
 
-        // "sfc.scheme.scheme.created"
         configure.AddExchange<TeamSchemeCreated>(exchangesSettings.Scheme.Value.Domain.Team.Events.Created);
 
-        // "sfc.scheme.scheme.updated"
         configure.AddExchange<TeamSchemeUpdated>(exchangesSettings.Scheme.Value.Domain.Team.Events.Updated);
+
+        configure.AddExchange<GameTeamSchemeCreated>(exchangesSettings.Scheme.Value.Domain.Game.Team.Events.Created);
+
+        configure.AddExchange<GameTeamSchemeUpdated>(exchangesSettings.Scheme.Value.Domain.Game.Team.Events.Updated);
 
         if (environment.IsDevelopment())
         {
-            // "sfc.scheme.team.seed"
             configure.AddExchange<SeedTeamSchemes>(exchangesSettings.Scheme.Value.Domain.Team.Seed.Seed, exchangesSettings.Scheme.Key);
+
+            configure.AddExchange<SeedGameTeamSchemes>(exchangesSettings.Scheme.Value.Domain.Game.Team.Seed.Seed, exchangesSettings.Scheme.Key);
         }
     }
 
@@ -86,6 +94,8 @@ public static class MassTransitExtensions
         EndpointConvention.Map<SFC.Scheme.Messages.Commands.Data.RequireData>(exchangesSettings.Scheme.Value.Data.Dependent.Data.RequireInitialize.GetExchangeEndpointUri());
 
         EndpointConvention.Map<SFC.Scheme.Messages.Commands.Team.Data.RequireData>(exchangesSettings.Scheme.Value.Data.Dependent.Team.RequireInitialize.GetExchangeEndpointUri());
+
+        EndpointConvention.Map<SFC.Scheme.Messages.Commands.Game.Data.RequireData>(exchangesSettings.Scheme.Value.Data.Dependent.Game.RequireInitialize.GetExchangeEndpointUri());
 
         if (environment.IsDevelopment())
         {
@@ -100,6 +110,12 @@ public static class MassTransitExtensions
 
             // "sfc.team.player.seed.require"
             EndpointConvention.Map<SFC.Team.Messages.Commands.Team.Player.RequireTeamPlayersSeed>(exchangesSettings.Team.Value.Domain.Player.Seed.RequireSeed.GetExchangeEndpointUri());
+
+            // "sfc.game.games.seed.require"
+            EndpointConvention.Map<RequireGamesSeed>(exchangesSettings.Game.Value.Domain.Game.Seed.RequireSeed.GetExchangeEndpointUri());
+
+            // "sfc.game.team.seed.require"
+            EndpointConvention.Map<RequireGameTeamsSeed>(exchangesSettings.Game.Value.Domain.Team.Team.Seed.RequireSeed.GetExchangeEndpointUri());
         }
     }
 

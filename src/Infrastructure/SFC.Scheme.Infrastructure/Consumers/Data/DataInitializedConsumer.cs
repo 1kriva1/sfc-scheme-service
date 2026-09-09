@@ -5,7 +5,6 @@ using MassTransit;
 using MediatR;
 
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 
 using SFC.Data.Messages.Events.Data;
 using SFC.Scheme.Application.Features.Data.Commands.Reset;

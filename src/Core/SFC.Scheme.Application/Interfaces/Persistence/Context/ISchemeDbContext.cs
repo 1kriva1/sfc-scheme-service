@@ -1,5 +1,5 @@
 ﻿using SFC.Scheme.Domain.Entities.Scheme.Data;
-using SFC.Scheme.Domain.Entities.Scheme.Game;
+using SFC.Scheme.Domain.Entities.Scheme.Game.Team;
 using SFC.Scheme.Domain.Entities.Scheme.Team;
 
 namespace SFC.Scheme.Application.Interfaces.Persistence.Context;
@@ -13,7 +13,7 @@ public interface ISchemeDbContext : IDbContext
 
     IQueryable<TeamScheme> TeamSchemes { get; }
 
-    IQueryable<GameScheme> GameSchemes { get; }
+    IQueryable<GameTeamScheme> GameTeamSchemes { get; }
 
     #endregion
 

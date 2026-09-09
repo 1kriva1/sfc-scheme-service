@@ -1,0 +1,10 @@
+﻿syntax = "proto3";
+
+package sfc_scheme;
+
+option csharp_namespace = "SFC.Scheme.Contracts.Messages.Scheme.Game.Team.Get";
+
+message GetGameTeamSchemeRequest
+{
+    int64 id = 1;
+}

@@ -1,0 +1,15 @@
+﻿syntax = "proto3";
+
+package sfc_scheme;
+
+import "Messages/Scheme/Game/Team/Get/get_game_team_scheme_request.proto";
+import "Messages/Scheme/Game/Team/Get/get_game_team_scheme_response.proto";
+import "Messages/Scheme/Game/Team/Find/get_game_team_schemes_request.proto";
+import "Messages/Scheme/Game/Team/Find/get_game_team_schemes_response.proto";
+
+option csharp_namespace = "SFC.Scheme.Contracts.Services";
+
+service GameTeamSchemeService {
+    rpc GetGameTeamScheme(GetGameTeamSchemeRequest) returns (GetGameTeamSchemeResponse);
+    rpc GetGameTeamSchemes(GetGameTeamSchemesRequest) returns (GetGameTeamSchemesResponse);
+}

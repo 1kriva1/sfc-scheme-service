@@ -6,6 +6,7 @@ using SFC.Scheme.Application.Features.Common.Models.Find.Paging;
 using SFC.Scheme.Application.Features.Scheme.Data.Queries.Common.Dto;
 using SFC.Scheme.Domain.Common;
 using SFC.Scheme.Domain.Entities.Data;
+using SFC.Scheme.Domain.Entities.Game.General;
 using SFC.Scheme.Domain.Entities.Identity;
 using SFC.Scheme.Domain.Entities.Player;
 using SFC.Scheme.Domain.Entities.Scheme.Data;
@@ -51,6 +52,11 @@ public class MappingProfile : BaseMappingProfile
         CreateMap<string, TeamTag>()
             .ConvertUsing(tag => new TeamTag { Value = tag });
         CreateMap<TeamTag, string>()
+            .ConvertUsing(tag => tag.Value);
+
+        CreateMap<string, GameTag>()
+            .ConvertUsing(tag => new GameTag { Value = tag });
+        CreateMap<GameTag, string>()
             .ConvertUsing(tag => tag.Value);
 
         CreateMap<ICollection<FormationValue>, IEnumerable<IEnumerable<int>>>()

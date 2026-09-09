@@ -1,5 +1,6 @@
 ﻿using SFC.Scheme.Domain.Common;
 using SFC.Scheme.Domain.Common.Interfaces;
+using SFC.Scheme.Domain.Entities.Scheme.Game.Team;
 using SFC.Scheme.Domain.Entities.Team.Player;
 
 namespace SFC.Scheme.Domain.Entities.Team.General;
@@ -22,4 +23,6 @@ public class Team : BaseAuditableReferenceEntity<long>, IUserEntity
     public ICollection<TeamShirt> Shirts { get; } = [];
 
     public ICollection<TeamPlayer> Players { get; } = [];
+
+    public ICollection<GameTeamScheme> GameSchemes { get; } = [];
 }
