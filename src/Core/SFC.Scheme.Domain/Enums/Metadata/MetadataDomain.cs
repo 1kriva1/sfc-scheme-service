@@ -8,6 +8,8 @@ public enum MetadataDomain
     TeamPlayer,
     Game,
     GameTeam,
+    GamePlayer,
+    GameTeamPlayer,
     TeamScheme,
     GameTeamScheme
 }

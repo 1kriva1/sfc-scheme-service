@@ -2,6 +2,8 @@
 
 using MediatR;
 
+using SFC.Scheme.Application.Common.Constants;
+using SFC.Scheme.Application.Common.Exceptions;
 using SFC.Scheme.Application.Interfaces.Persistence.Repository.Scheme.Game.Team;
 using SFC.Scheme.Domain.Entities.Scheme.Game.Team;
 using SFC.Scheme.Domain.Events.Scheme.Game.Team;
@@ -23,6 +25,9 @@ public class CreateGameTeamSchemeCommandHandler(
 
         await _gameTeamSchemeRepository.AddAsync(scheme).ConfigureAwait(false);
 
-        return _mapper.Map<CreateGameTeamSchemeViewModel>(scheme);
+        GameTeamScheme result = await _gameTeamSchemeRepository.GetByIdAsync(scheme.Id).ConfigureAwait(true)
+            ?? throw new NotFoundException(Localization.SchemeNotFound);
+
+        return _mapper.Map<CreateGameTeamSchemeViewModel>(result);
     }
 }

@@ -8,6 +8,6 @@ option csharp_namespace = "SFC.Scheme.Contracts.Models.Scheme.Game.Team";
 
 message GameTeamSchemeFormationPlayer
 {
-    int64 player_id = 1;
+    int64 game_team_player_id = 1;
     GameTeamSchemeFormationPlayerPosition position = 2;
 }

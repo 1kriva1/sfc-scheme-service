@@ -35,6 +35,11 @@ public enum RequestId
     CreateGameTeam,
     UpdateGameTeam,
     CreateGameTeams,
+    // game team player
+    CreateGameTeamPlayer,
+    UpdateGameTeamPlayer,
+    CreateGameTeamPlayers,
+    DeleteGameTeamPlayer,
     // scheme
     GetAllSchemeData,
     // team scheme

@@ -6,6 +6,7 @@ global using FormationEnum = SFC.Scheme.Domain.Enums.Scheme.Formation;
 global using FormationPositionEnum = SFC.Scheme.Domain.Enums.Scheme.FormationPosition;
 // game
 global using GameEntity = SFC.Scheme.Domain.Entities.Game.General.Game;
+global using GamePlayerStatusEnum = SFC.Scheme.Domain.Enums.Game.GamePlayerStatus;
 global using GameStatusEnum = SFC.Scheme.Domain.Enums.Game.GameStatus;
 global using GameStyleEnum = SFC.Scheme.Domain.Enums.Data.GameStyle;
 global using GameTeamIndexEnum = SFC.Scheme.Domain.Enums.Game.GameTeamIndex;

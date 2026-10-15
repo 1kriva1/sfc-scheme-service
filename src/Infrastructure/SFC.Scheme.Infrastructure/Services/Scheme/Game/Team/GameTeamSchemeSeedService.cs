@@ -4,9 +4,11 @@ using MassTransit;
 
 using SFC.Scheme.Application.Interfaces.Common;
 using SFC.Scheme.Application.Interfaces.Metadata;
+using SFC.Scheme.Application.Interfaces.Persistence.Repository.Game.Team.Player;
 using SFC.Scheme.Application.Interfaces.Persistence.Repository.Scheme.Data;
 using SFC.Scheme.Application.Interfaces.Persistence.Repository.Scheme.Game.Team;
 using SFC.Scheme.Application.Interfaces.Scheme.Game.Team;
+using SFC.Scheme.Domain.Entities.Game.Team.Player;
 using SFC.Scheme.Domain.Entities.Scheme.Data;
 using SFC.Scheme.Domain.Entities.Scheme.Game.Team;
 using SFC.Scheme.Messages.Events.Scheme.Game.Team;
@@ -18,7 +20,8 @@ public class GameTeamSchemeSeedService(
     IDateTimeService dateTimeService,
     IMetadataService metadataService,
     IGameTeamSchemeRepository gameTeamSchemeRepository,
-    IFormationRepository formationRepository) : IGameTeamSchemeSeedService
+    IFormationRepository formationRepository,
+    IGameTeamPlayerRepository gameTeamPlayerRepository) : IGameTeamSchemeSeedService
 {
     private readonly IMapper _mapper = mapper;
     private readonly IPublishEndpoint _publisher = publisher;
@@ -26,6 +29,7 @@ public class GameTeamSchemeSeedService(
     private readonly IMetadataService _metadataService = metadataService;
     private readonly IGameTeamSchemeRepository _gameTeamSchemeRepository = gameTeamSchemeRepository;
     private readonly IFormationRepository _formationRepository = formationRepository;
+    private readonly IGameTeamPlayerRepository _gameTeamPlayerRepository = gameTeamPlayerRepository;
 
 #pragma warning disable CA5394 // Do not use insecure randomness
     private static readonly Random Random = new();
@@ -112,8 +116,6 @@ public class GameTeamSchemeSeedService(
         Guid.Parse("{EA968F41-303D-4287-8FB0-5C7500D3DEC5}")
     ];
 
-    private static readonly List<long> PLAYER_IDS = [32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42];
-
     private static readonly List<long> GAME_IDS = [8, 9, 10, 11, 12, 13, 14];
 
     private static readonly List<long> TEAM_IDS = [1, 2, 3, 4, 5, 6, 7];
@@ -159,9 +161,15 @@ public class GameTeamSchemeSeedService(
     {
         DateTime createdDate = _dateTimeService.Now;
 
+        long gameId = RandomArrayValue(GAME_IDS);
+
+        long teamId = RandomArrayValue(TEAM_IDS);
+
         FormationEnum formation = RandomEnumValue<FormationEnum>();
 
         Formation? formationEntity = await _formationRepository.GetByIdAsync(formation).ConfigureAwait(true);
+
+        IReadOnlyList<GameTeamPlayer> gameTeamPlayers = await _gameTeamPlayerRepository.ListAllAsync().ConfigureAwait(true);
 
         GameTeamScheme scheme = new()
         {
@@ -180,20 +188,27 @@ public class GameTeamSchemeSeedService(
                 FormationId = formation,
                 TypeId = SchemeTypeEnum.Formation
             },
-            TeamId = RandomArrayValue(TEAM_IDS),
-            GameId = RandomArrayValue(GAME_IDS)
+            TeamId = gameId,
+            GameId = teamId
         };
 
-        BuildGameTeamSchemePlayers(formationEntity!).ForEach(scheme.Formation.Players.Add);
+        if (formationEntity != null && gameTeamPlayers.Any())
+        {
+            BuildGameTeamSchemePlayers(gameTeamPlayers, formationEntity).ForEach(scheme.Formation.Players.Add);
+        }
 
         return scheme;
     }
 
-    private static List<GameTeamSchemeFormationPlayer> BuildGameTeamSchemePlayers(Formation formationEntity)
+    private static List<GameTeamSchemeFormationPlayer> BuildGameTeamSchemePlayers(IReadOnlyList<GameTeamPlayer> gameTeamPlayers, Formation formationEntity)
     {
+#pragma warning disable CA1826 // Do not use Enumerable methods on indexable collections
+        GameTeamPlayer? gameTeamPlayer = gameTeamPlayers.FirstOrDefault();
+#pragma warning restore CA1826 // Do not use Enumerable methods on indexable collections
+
         IEnumerable<GameTeamSchemeFormationPlayer> result = formationEntity.Values.Select(value => new GameTeamSchemeFormationPlayer
         {
-            PlayerId = RandomArrayValue(PLAYER_IDS),
+            GameTeamPlayerId = gameTeamPlayer!.Id,
             Position = new GameTeamSchemeFormationPlayerPosition
             {
                 FormationPositionId = value.FormationPositionId,
@@ -201,7 +216,7 @@ public class GameTeamSchemeSeedService(
             }
         });
 
-        return result.ToList();
+        return [.. result];
     }
 
     private static T RandomEnumValue<T>()

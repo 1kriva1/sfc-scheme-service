@@ -5,6 +5,7 @@ using SFC.Scheme.Application.Features.Common.Constants;
 using SFC.Scheme.Application.Features.Common.Dto.Common;
 using SFC.Scheme.Application.Features.Common.Models.Find.Filters;
 using SFC.Scheme.Application.Features.Scheme.Game.Team.Queries.Find.Dto.Filters;
+using SFC.Scheme.Domain.Entities.Game.Team.Player;
 using SFC.Scheme.Domain.Entities.Scheme.Game.Team;
 
 namespace SFC.Scheme.Application.Features.Scheme.Game.Team.Queries.Find.Extensions;
@@ -66,18 +67,20 @@ public static class GetGameTeamSchemesFiltersExtensions
     {
         if (from.HasValue)
         {
-            return scheme => ((int)Math.Ceiling((double)scheme.Formation.Players.SelectMany(p => p.Player.Stats).Sum(m => m.Value)
-                / (scheme.Formation.Players.SelectMany(p => p.Player.Stats).Count() * PlayerConstants.StatMaxValue)
+            return scheme => ((int)Math.Ceiling((double)scheme.Formation.Players.SelectMany(p => GetPlayer(p.GameTeamPlayer).Stats).Sum(m => m.Value)
+                / (scheme.Formation.Players.SelectMany(p => GetPlayer(p.GameTeamPlayer).Stats).Count() * PlayerConstants.StatMaxValue)
                 * ValidationConstants.PercentageMaxValue)) >= from;
         }
 
         if (to.HasValue)
         {
-            return scheme => ((int)Math.Ceiling((double)scheme.Formation.Players.SelectMany(p => p.Player.Stats).Sum(m => m.Value)
-                / (scheme.Formation.Players.SelectMany(p => p.Player.Stats).Count() * PlayerConstants.StatMaxValue)
+            return scheme => ((int)Math.Ceiling((double)scheme.Formation.Players.SelectMany(p => GetPlayer(p.GameTeamPlayer).Stats).Sum(m => m.Value)
+                / (scheme.Formation.Players.SelectMany(p => GetPlayer(p.GameTeamPlayer).Stats).Count() * PlayerConstants.StatMaxValue)
                 * ValidationConstants.PercentageMaxValue)) <= to;
         }
 
         return player => true;
     }
+
+    private static PlayerEntity GetPlayer(GameTeamPlayer gameTeamPlayer) => (gameTeamPlayer.GamePlayer?.Player ?? gameTeamPlayer.TeamPlayer?.Player)!;
 }

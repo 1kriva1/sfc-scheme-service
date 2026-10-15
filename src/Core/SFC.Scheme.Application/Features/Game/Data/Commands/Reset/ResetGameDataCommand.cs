@@ -12,4 +12,6 @@ public class ResetGameDataCommand : Request
     public IEnumerable<GameTeamStatusDto> GameTeamStatuses { get; init; } = [];
 
     public IEnumerable<GameTeamIndexDto> GameTeamIndexes { get; init; } = [];
+
+    public IEnumerable<GamePlayerStatusDto> GamePlayerStatuses { get; init; } = [];
 }

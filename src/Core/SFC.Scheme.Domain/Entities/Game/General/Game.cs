@@ -1,5 +1,7 @@
 ﻿using SFC.Scheme.Domain.Common;
 using SFC.Scheme.Domain.Common.Interfaces;
+using SFC.Scheme.Domain.Entities.Game.Player;
+using SFC.Scheme.Domain.Entities.Game.Team.General;
 using SFC.Scheme.Domain.Entities.Scheme.Game.Team;
 
 namespace SFC.Scheme.Domain.Entities.Game.General;
@@ -24,4 +26,8 @@ public class Game : BaseAuditableReferenceEntity<long>, IUserEntity
     public ICollection<GameTag> Tags { get; } = [];
 
     public ICollection<GameTeamScheme> TeamSchemes { get; } = [];
+
+    public ICollection<GameTeam> Teams { get; } = [];
+
+    public ICollection<GamePlayer> Players { get; } = [];
 }

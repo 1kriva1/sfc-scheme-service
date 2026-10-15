@@ -47,6 +47,16 @@ public class GameConfiguration : AuditableReferenceEntityConfiguration<GameEntit
                .WithOne(e => e.Game)
                .HasForeignKey(DatabaseConstants.GameForeignKey);
 
+        builder.HasMany(e => e.Players)
+               .WithOne()
+               .HasForeignKey(e => e.GameId)
+               .OnDelete(DeleteBehavior.ClientCascade);
+
+        builder.HasMany(e => e.Teams)
+               .WithOne(e => e.Game)
+               .HasForeignKey(e => e.GameId)
+               .OnDelete(DeleteBehavior.ClientCascade);
+
         builder.ToTable("Games", DatabaseConstants.GameSchemaName);
 
         base.Configure(builder);

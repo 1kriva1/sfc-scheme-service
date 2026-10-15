@@ -18,12 +18,16 @@ public class GameDomainExchange
 {
     public DomainExchange<GameDomainEventsExchange> Game { get; set; } = default!;
 
+    public DomainExchange<GamePlayerDomainEventsExchange> Player { get; set; } = default!;
+
     public GameTeamDomainExchange Team { get; set; } = default!;
 }
 
 public class GameTeamDomainExchange
 {
-    public DomainExchange<GameTeamDomainEventsExchange> Team { get; set; } = default!;
+    public DomainExchange<GameTeamPlayerDomainEventsExchange> Player { get; set; } = default!;
+
+    public DomainExchange<GameTeamTeamDomainEventsExchange> Team { get; set; } = default!;
 }
 
 public class GameDomainEventsExchange
@@ -33,9 +37,25 @@ public class GameDomainEventsExchange
     public Exchange Updated { get; set; } = default!;
 }
 
-public class GameTeamDomainEventsExchange
+public class GamePlayerDomainEventsExchange
 {
     public Exchange Created { get; set; } = default!;
 
     public Exchange Updated { get; set; } = default!;
+}
+
+public class GameTeamTeamDomainEventsExchange
+{
+    public Exchange Created { get; set; } = default!;
+
+    public Exchange Updated { get; set; } = default!;
+}
+
+public class GameTeamPlayerDomainEventsExchange
+{
+    public Exchange Created { get; set; } = default!;
+
+    public Exchange Updated { get; set; } = default!;
+
+    public Exchange Deleted { get; set; } = default!;
 }

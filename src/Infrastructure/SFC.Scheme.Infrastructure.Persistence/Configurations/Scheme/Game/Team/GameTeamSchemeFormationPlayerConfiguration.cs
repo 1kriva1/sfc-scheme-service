@@ -11,10 +11,10 @@ public class GameTeamSchemeFormationPlayerConfiguration : IEntityTypeConfigurati
     {
         ArgumentNullException.ThrowIfNull(builder);
 
-        builder.HasOne(e => e.Player)
+        builder.HasOne(e => e.GameTeamPlayer)
                .WithMany()
-               .HasForeignKey(t => t.PlayerId)
-               .OnDelete(DeleteBehavior.ClientCascade)
+               .HasForeignKey(t => t.GameTeamPlayerId)
+               .OnDelete(DeleteBehavior.Cascade)
                .IsRequired(true);
 
         builder.HasOne(e => e.Position)

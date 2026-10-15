@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-using SFC.Scheme.Domain.Entities.Game.Team;
+using SFC.Scheme.Domain.Entities.Game.Player;
+using SFC.Scheme.Domain.Entities.Game.Team.General;
+using SFC.Scheme.Domain.Entities.Game.Team.Player;
 using SFC.Scheme.Domain.Entities.Scheme.Game.Team;
 using SFC.Scheme.Domain.Entities.Scheme.Team;
 using SFC.Scheme.Domain.Entities.Team.Player;
@@ -104,6 +106,66 @@ public static class IncludeExtensions
         return result;
     }
 
+    public static IQueryable<GamePlayer> ThanIncludePlayer(this IQueryable<GamePlayer> gamePlayers)
+    {
+        IQueryable<GamePlayer> result = gamePlayers
+                      .Include(x => x.Player).ThenInclude(p => p.GeneralProfile)
+                      .Include(x => x.Player).ThenInclude(p => p.FootballProfile)
+                      .Include(x => x.Player).ThenInclude(p => p.Availability)
+                      .Include(x => x.Player).ThenInclude(p => p.Availability.Days)
+                      .Include(x => x.Player).ThenInclude(p => p.Points)
+                      .Include(x => x.Player).ThenInclude(p => p.Tags)
+                      .Include(x => x.Player).ThenInclude(p => p.Stats).ThenInclude(x => x.Type)
+                      .Include(x => x.Player).ThenInclude(p => p.Photo);
+
+        return result;
+    }
+
+    public static IQueryable<GameTeamPlayer> ThanIncludePlayer(this IQueryable<GameTeamPlayer> gameTeamPlayers)
+    {
+        IQueryable<GameTeamPlayer> result = gameTeamPlayers
+                      .Include(x => x.GamePlayer).ThenInclude(p => p!.Player).ThenInclude(p => p.GeneralProfile)
+                      .Include(x => x.GamePlayer).ThenInclude(p => p!.Player).ThenInclude(p => p.FootballProfile)
+                      .Include(x => x.GamePlayer).ThenInclude(p => p!.Player).ThenInclude(p => p.Availability)
+                      .Include(x => x.GamePlayer).ThenInclude(p => p!.Player).ThenInclude(p => p.Availability.Days)
+                      .Include(x => x.GamePlayer).ThenInclude(p => p!.Player).ThenInclude(p => p.Points)
+                      .Include(x => x.GamePlayer).ThenInclude(p => p!.Player).ThenInclude(p => p.Tags)
+                      .Include(x => x.GamePlayer).ThenInclude(p => p!.Player).ThenInclude(p => p.Stats).ThenInclude(x => x.Type)
+                      .Include(x => x.GamePlayer).ThenInclude(p => p!.Player).ThenInclude(p => p.Photo)
+                      .Include(x => x.TeamPlayer).ThenInclude(p => p!.Player).ThenInclude(p => p.GeneralProfile)
+                      .Include(x => x.TeamPlayer).ThenInclude(p => p!.Player).ThenInclude(p => p.FootballProfile)
+                      .Include(x => x.TeamPlayer).ThenInclude(p => p!.Player).ThenInclude(p => p.Availability)
+                      .Include(x => x.TeamPlayer).ThenInclude(p => p!.Player).ThenInclude(p => p.Availability.Days)
+                      .Include(x => x.TeamPlayer).ThenInclude(p => p!.Player).ThenInclude(p => p.Points)
+                      .Include(x => x.TeamPlayer).ThenInclude(p => p!.Player).ThenInclude(p => p.Tags)
+                      .Include(x => x.TeamPlayer).ThenInclude(p => p!.Player).ThenInclude(p => p.Stats).ThenInclude(x => x.Type)
+                      .Include(x => x.TeamPlayer).ThenInclude(p => p!.Player).ThenInclude(p => p.Photo);
+
+        return result;
+    }
+
+    public static IQueryable<GameTeamPlayer> ThanIncludeTeam(this IQueryable<GameTeamPlayer> gameTeamPlayers)
+    {
+        IQueryable<GameTeamPlayer> result = gameTeamPlayers
+                      .Include(x => x.GameTeam).ThenInclude(x => x.Team).ThenInclude(p => p.GeneralProfile)
+                      .Include(x => x.GameTeam).ThenInclude(x => x.Team).ThenInclude(p => p.FinancialProfile)
+                      .Include(x => x.GameTeam).ThenInclude(x => x.Team).ThenInclude(p => p.InventaryProfile)
+                      .Include(x => x.GameTeam).ThenInclude(x => x.Team).ThenInclude(p => p.Shirts)
+                      .Include(x => x.GameTeam).ThenInclude(x => x.Team).ThenInclude(p => p.Availability)
+                      .Include(x => x.GameTeam).ThenInclude(x => x.Team).ThenInclude(p => p.Tags)
+                      .Include(x => x.GameTeam).ThenInclude(x => x.Team).ThenInclude(p => p.Logo)
+                      .Include(x => x.GameTeam).ThenInclude(x => x.Team).ThenInclude(p => p.Players).ThenInclude(x => x.Player).ThenInclude(p => p.GeneralProfile)
+                      .Include(x => x.GameTeam).ThenInclude(x => x.Team).ThenInclude(p => p.Players).ThenInclude(x => x.Player).ThenInclude(p => p.FootballProfile)
+                      .Include(x => x.GameTeam).ThenInclude(x => x.Team).ThenInclude(p => p.Players).ThenInclude(x => x.Player).ThenInclude(p => p.Availability)
+                      .Include(x => x.GameTeam).ThenInclude(x => x.Team).ThenInclude(p => p.Players).ThenInclude(x => x.Player).ThenInclude(p => p.Availability.Days)
+                      .Include(x => x.GameTeam).ThenInclude(x => x.Team).ThenInclude(p => p.Players).ThenInclude(x => x.Player).ThenInclude(p => p.Points)
+                      .Include(x => x.GameTeam).ThenInclude(x => x.Team).ThenInclude(p => p.Players).ThenInclude(x => x.Player).ThenInclude(p => p.Tags)
+                      .Include(x => x.GameTeam).ThenInclude(x => x.Team).ThenInclude(p => p.Players).ThenInclude(x => x.Player).ThenInclude(p => p.Stats)
+                      .Include(x => x.GameTeam).ThenInclude(x => x.Team).ThenInclude(p => p.Players).ThenInclude(x => x.Player).ThenInclude(p => p.Photo);
+
+        return result;
+    }
+
     #endregion Game
 
     #region Scheme
@@ -182,14 +244,22 @@ public static class IncludeExtensions
     public static IQueryable<GameTeamScheme> ThanIncludePlayer(this IQueryable<GameTeamScheme> gameTeamSchemes)
     {
         IQueryable<GameTeamScheme> result = gameTeamSchemes
-                      .Include(x => x.Formation).ThenInclude(x => x.Players).ThenInclude(x => x.Player).ThenInclude(p => p.GeneralProfile)
-                      .Include(x => x.Formation).ThenInclude(x => x.Players).ThenInclude(x => x.Player).ThenInclude(p => p.FootballProfile)
-                      .Include(x => x.Formation).ThenInclude(x => x.Players).ThenInclude(x => x.Player).ThenInclude(p => p.Availability)
-                      .Include(x => x.Formation).ThenInclude(x => x.Players).ThenInclude(x => x.Player).ThenInclude(p => p.Availability.Days)
-                      .Include(x => x.Formation).ThenInclude(x => x.Players).ThenInclude(x => x.Player).ThenInclude(p => p.Points)
-                      .Include(x => x.Formation).ThenInclude(x => x.Players).ThenInclude(x => x.Player).ThenInclude(p => p.Tags)
-                      .Include(x => x.Formation).ThenInclude(x => x.Players).ThenInclude(x => x.Player).ThenInclude(p => p.Stats).ThenInclude(x => x.Type)
-                      .Include(x => x.Formation).ThenInclude(x => x.Players).ThenInclude(x => x.Player).ThenInclude(p => p.Photo);
+                      .Include(x => x.Formation).ThenInclude(x => x.Players).ThenInclude(x => x.GameTeamPlayer).ThenInclude(x => x.GamePlayer).ThenInclude(x => x!.Player).ThenInclude(p => p.GeneralProfile)
+                      .Include(x => x.Formation).ThenInclude(x => x.Players).ThenInclude(x => x.GameTeamPlayer).ThenInclude(x => x.GamePlayer).ThenInclude(x => x!.Player).ThenInclude(p => p.FootballProfile)
+                      .Include(x => x.Formation).ThenInclude(x => x.Players).ThenInclude(x => x.GameTeamPlayer).ThenInclude(x => x.GamePlayer).ThenInclude(x => x!.Player).ThenInclude(p => p.Availability)
+                      .Include(x => x.Formation).ThenInclude(x => x.Players).ThenInclude(x => x.GameTeamPlayer).ThenInclude(x => x.GamePlayer).ThenInclude(x => x!.Player).ThenInclude(p => p.Availability.Days)
+                      .Include(x => x.Formation).ThenInclude(x => x.Players).ThenInclude(x => x.GameTeamPlayer).ThenInclude(x => x.GamePlayer).ThenInclude(x => x!.Player).ThenInclude(p => p.Points)
+                      .Include(x => x.Formation).ThenInclude(x => x.Players).ThenInclude(x => x.GameTeamPlayer).ThenInclude(x => x.GamePlayer).ThenInclude(x => x!.Player).ThenInclude(p => p.Tags)
+                      .Include(x => x.Formation).ThenInclude(x => x.Players).ThenInclude(x => x.GameTeamPlayer).ThenInclude(x => x.GamePlayer).ThenInclude(x => x!.Player).ThenInclude(p => p.Stats).ThenInclude(x => x.Type)
+                      .Include(x => x.Formation).ThenInclude(x => x.Players).ThenInclude(x => x.GameTeamPlayer).ThenInclude(x => x.GamePlayer).ThenInclude(x => x!.Player).ThenInclude(p => p.Photo)
+                      .Include(x => x.Formation).ThenInclude(x => x.Players).ThenInclude(x => x.GameTeamPlayer).ThenInclude(x => x.TeamPlayer).ThenInclude(x => x!.Player).ThenInclude(p => p.GeneralProfile)
+                      .Include(x => x.Formation).ThenInclude(x => x.Players).ThenInclude(x => x.GameTeamPlayer).ThenInclude(x => x.TeamPlayer).ThenInclude(x => x!.Player).ThenInclude(p => p.FootballProfile)
+                      .Include(x => x.Formation).ThenInclude(x => x.Players).ThenInclude(x => x.GameTeamPlayer).ThenInclude(x => x.TeamPlayer).ThenInclude(x => x!.Player).ThenInclude(p => p.Availability)
+                      .Include(x => x.Formation).ThenInclude(x => x.Players).ThenInclude(x => x.GameTeamPlayer).ThenInclude(x => x.TeamPlayer).ThenInclude(x => x!.Player).ThenInclude(p => p.Availability.Days)
+                      .Include(x => x.Formation).ThenInclude(x => x.Players).ThenInclude(x => x.GameTeamPlayer).ThenInclude(x => x.TeamPlayer).ThenInclude(x => x!.Player).ThenInclude(p => p.Points)
+                      .Include(x => x.Formation).ThenInclude(x => x.Players).ThenInclude(x => x.GameTeamPlayer).ThenInclude(x => x.TeamPlayer).ThenInclude(x => x!.Player).ThenInclude(p => p.Tags)
+                      .Include(x => x.Formation).ThenInclude(x => x.Players).ThenInclude(x => x.GameTeamPlayer).ThenInclude(x => x.TeamPlayer).ThenInclude(x => x!.Player).ThenInclude(p => p.Stats).ThenInclude(x => x.Type)
+                      .Include(x => x.Formation).ThenInclude(x => x.Players).ThenInclude(x => x.GameTeamPlayer).ThenInclude(x => x.TeamPlayer).ThenInclude(x => x!.Player).ThenInclude(p => p.Photo);
 
         return result;
     }
