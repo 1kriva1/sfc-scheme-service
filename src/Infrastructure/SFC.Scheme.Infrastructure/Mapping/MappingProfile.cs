@@ -5,7 +5,9 @@ using Google.Protobuf.WellKnownTypes;
 using MassTransit.Components;
 
 using SFC.Scheme.Application.Common.Dto.Game.General;
-using SFC.Scheme.Application.Common.Dto.Game.Team;
+using SFC.Scheme.Application.Common.Dto.Game.Player;
+using SFC.Scheme.Application.Common.Dto.Game.Team.General;
+using SFC.Scheme.Application.Common.Dto.Game.Team.Player;
 using SFC.Scheme.Application.Common.Dto.Identity;
 using SFC.Scheme.Application.Common.Dto.Player.General;
 using SFC.Scheme.Application.Common.Dto.Team.General;
@@ -19,9 +21,16 @@ using SFC.Scheme.Application.Features.Game.Data.Common.Dto;
 using SFC.Scheme.Application.Features.Game.General.Commands.Create;
 using SFC.Scheme.Application.Features.Game.General.Commands.Creates;
 using SFC.Scheme.Application.Features.Game.General.Commands.Update;
-using SFC.Scheme.Application.Features.Game.Team.Commands.Create;
-using SFC.Scheme.Application.Features.Game.Team.Commands.Creates;
-using SFC.Scheme.Application.Features.Game.Team.Commands.Update;
+using SFC.Scheme.Application.Features.Game.Player.Commands.Create;
+using SFC.Scheme.Application.Features.Game.Player.Commands.Creates;
+using SFC.Scheme.Application.Features.Game.Player.Commands.Update;
+using SFC.Scheme.Application.Features.Game.Team.General.Commands.Create;
+using SFC.Scheme.Application.Features.Game.Team.General.Commands.Creates;
+using SFC.Scheme.Application.Features.Game.Team.General.Commands.Update;
+using SFC.Scheme.Application.Features.Game.Team.Player.Commands.Create;
+using SFC.Scheme.Application.Features.Game.Team.Player.Commands.Creates;
+using SFC.Scheme.Application.Features.Game.Team.Player.Commands.Delete;
+using SFC.Scheme.Application.Features.Game.Team.Player.Commands.Update;
 using SFC.Scheme.Application.Features.Identity.Commands.Create;
 using SFC.Scheme.Application.Features.Identity.Commands.CreateRange;
 using SFC.Scheme.Application.Features.Player.Commands.Create;
@@ -286,6 +295,7 @@ public class MappingProfile : BaseMappingProfile
         CreateMap<SFC.Game.Messages.Models.Data.DataValue, GameStatusDto>();
         CreateMap<SFC.Game.Messages.Models.Data.DataValue, GameTeamStatusDto>();
         CreateMap<SFC.Game.Messages.Models.Data.DataValue, GameTeamIndexDto>();
+        CreateMap<SFC.Game.Messages.Models.Data.DataValue, GamePlayerStatusDto>();
 
         // domain
         // game
@@ -318,6 +328,27 @@ public class MappingProfile : BaseMappingProfile
         CreateMap<IEnumerable<SFC.Game.Messages.Models.Game.Team.General.GameTeam>, CreatesGameTeamCommand>()
            .ForMember(p => p.GameTeams, d => d.MapFrom(z => z));
         CreateMap<SFC.Game.Messages.Models.Game.Team.General.GameTeam, GameTeamDto>();
+
+        // game player
+        // events
+        CreateMap<SFC.Game.Messages.Events.Game.Player.GamePlayerCreated, CreateGamePlayerCommand>().IgnoreAllNonExisting();
+        CreateMap<SFC.Game.Messages.Events.Game.Player.GamePlayerUpdated, UpdateGamePlayerCommand>().IgnoreAllNonExisting();
+        // models
+        CreateMap<IEnumerable<SFC.Game.Messages.Models.Game.Player.GamePlayer>, CreatesGamePlayerCommand>()
+           .ForMember(p => p.GamePlayers, d => d.MapFrom(z => z));
+        CreateMap<SFC.Game.Messages.Models.Game.Player.GamePlayer, GamePlayerDto>();
+
+        // game team player
+        // events
+        CreateMap<SFC.Game.Messages.Events.Game.Team.Player.GameTeamPlayerCreated, CreateGameTeamPlayerCommand>().IgnoreAllNonExisting();
+        CreateMap<SFC.Game.Messages.Events.Game.Team.Player.GameTeamPlayerUpdated, UpdateGameTeamPlayerCommand>().IgnoreAllNonExisting();
+        CreateMap<SFC.Game.Messages.Events.Game.Team.Player.GameTeamPlayerDeleted, DeleteGameTeamPlayerCommand>().IgnoreAllNonExisting();
+        // models
+        CreateMap<IEnumerable<SFC.Game.Messages.Models.Game.Team.Player.GameTeamPlayer>, CreatesGameTeamPlayerCommand>()
+           .ForMember(p => p.GameTeamPlayers, d => d.MapFrom(z => z));
+        CreateMap<SFC.Game.Messages.Models.Game.Team.Player.GameTeamPlayer, CreateGameTeamPlayerDto>();
+        CreateMap<SFC.Game.Messages.Models.Game.Team.Player.GameTeamPlayer, CreatesGameTeamPlayerDto>();
+        CreateMap<SFC.Game.Messages.Models.Game.Team.Player.GameTeamPlayer, DeleteGameTeamPlayerDto>();
     }
 
     private void CreateMapGameContracts()
@@ -363,6 +394,7 @@ public class MappingProfile : BaseMappingProfile
         CreateMap<SFC.Scheme.Messages.Models.Data.DataValue, GameStatusDto>();
         CreateMap<SFC.Scheme.Messages.Models.Data.DataValue, GameTeamStatusDto>();
         CreateMap<SFC.Scheme.Messages.Models.Data.DataValue, GameTeamIndexDto>();
+        CreateMap<SFC.Scheme.Messages.Models.Data.DataValue, GamePlayerStatusDto>();
 
         // scheme
         // data

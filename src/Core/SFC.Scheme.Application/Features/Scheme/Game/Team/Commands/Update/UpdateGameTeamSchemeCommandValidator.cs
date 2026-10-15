@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
 
 using SFC.Scheme.Application.Features.Scheme.Team.Commands.Common.Validators;
+using SFC.Scheme.Application.Interfaces.Persistence.Repository.Game.Team.Player;
 using SFC.Scheme.Application.Interfaces.Persistence.Repository.Scheme.Data;
-using SFC.Scheme.Application.Interfaces.Persistence.Repository.Team.Player;
 
 namespace SFC.Scheme.Application.Features.Scheme.Game.Team.Commands.Update;
 public class UpdateGameTeamSchemeCommandValidator : AbstractValidator<UpdateGameTeamSchemeCommand>
@@ -11,9 +11,9 @@ public class UpdateGameTeamSchemeCommandValidator : AbstractValidator<UpdateGame
         ISchemeTypeRepository schemeTypeRepository,
         IFormationRepository formationRepository,
         IFormationPositionRepository formationPositionRepository,
-        ITeamPlayerRepository teamPlayerRepository)
+        IGameTeamPlayerRepository gameTeamPlayerRepository)
     {
         RuleFor(command => command.Scheme)
-            .SetValidator(new GameTeamSchemeValidator<UpdateGameTeamSchemeDto>(schemeTypeRepository, formationRepository, formationPositionRepository, teamPlayerRepository));
+            .SetValidator(new GameTeamSchemeValidator<UpdateGameTeamSchemeDto>(schemeTypeRepository, formationRepository, formationPositionRepository, gameTeamPlayerRepository));
     }
 }

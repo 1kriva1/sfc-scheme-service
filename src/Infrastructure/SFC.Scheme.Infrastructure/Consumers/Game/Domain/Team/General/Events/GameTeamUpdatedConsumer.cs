@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 using SFC.Game.Messages.Events.Game.Team.General;
-using SFC.Scheme.Application.Features.Game.Team.Commands.Update;
+using SFC.Scheme.Application.Features.Game.Team.General.Commands.Update;
 using SFC.Scheme.Infrastructure.Extensions;
 using SFC.Scheme.Infrastructure.Settings.RabbitMq;
 

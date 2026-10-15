@@ -12,6 +12,7 @@ using SFC.Data.Messages.Events;
 using SFC.Game.Messages.Commands.Game.General;
 using SFC.Game.Messages.Commands.Game.Player;
 using SFC.Game.Messages.Commands.Game.Team.General;
+using SFC.Game.Messages.Commands.Game.Team.Player;
 using SFC.Scheme.Infrastructure.Extensions;
 using SFC.Scheme.Infrastructure.Settings.RabbitMq;
 using SFC.Scheme.Messages.Commands.Common;
@@ -114,8 +115,14 @@ public static class MassTransitExtensions
             // "sfc.game.games.seed.require"
             EndpointConvention.Map<RequireGamesSeed>(exchangesSettings.Game.Value.Domain.Game.Seed.RequireSeed.GetExchangeEndpointUri());
 
+            // "sfc.game.player.seed.require"
+            EndpointConvention.Map<RequireGamePlayersSeed>(exchangesSettings.Game.Value.Domain.Player.Seed.RequireSeed.GetExchangeEndpointUri());
+
             // "sfc.game.team.seed.require"
             EndpointConvention.Map<RequireGameTeamsSeed>(exchangesSettings.Game.Value.Domain.Team.Team.Seed.RequireSeed.GetExchangeEndpointUri());
+
+            // "sfc.game.team.player.seed.require"
+            EndpointConvention.Map<RequireGameTeamPlayersSeed>(exchangesSettings.Game.Value.Domain.Team.Player.Seed.RequireSeed.GetExchangeEndpointUri());
         }
     }
 

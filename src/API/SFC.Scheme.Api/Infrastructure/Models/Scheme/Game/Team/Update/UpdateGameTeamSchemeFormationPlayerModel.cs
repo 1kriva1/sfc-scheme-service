@@ -12,7 +12,7 @@ public class UpdateGameTeamSchemeFormationPlayerModel : IMapTo<GameTeamSchemeFor
     /// <summary>
     /// Player unique identifier.
     /// </summary>
-    public long PlayerId { get; set; }
+    public long GameTeamPlayerId { get; set; }
 
     /// <summary>
     /// Player's position in formation.

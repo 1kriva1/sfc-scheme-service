@@ -13,7 +13,8 @@ public class ResetGameDataCommandHandler(
     IMediator mediator,
     IGameStatusRepository gameStatusRepository,
     IGameTeamStatusRepository gameTeamStatusRepository,
-    IGameTeamIndexRepository gameTeamIndexRepository) : IRequestHandler<ResetGameDataCommand>
+    IGameTeamIndexRepository gameTeamIndexRepository,
+    IGamePlayerStatusRepository gamePlayerStatusRepository) : IRequestHandler<ResetGameDataCommand>
 {
 #pragma warning disable CA1823 // Avoid unused private fields
     private readonly IMapper _mapper = mapper;
@@ -22,6 +23,7 @@ public class ResetGameDataCommandHandler(
     private readonly IGameStatusRepository _gameStatusRepository = gameStatusRepository;
     private readonly IGameTeamStatusRepository _gameTeamStatusRepository = gameTeamStatusRepository;
     private readonly IGameTeamIndexRepository _gameTeamIndexRepository = gameTeamIndexRepository;
+    private readonly IGamePlayerStatusRepository _gamePlayerStatusRepository = gamePlayerStatusRepository;
 
     public async Task Handle(ResetGameDataCommand request, CancellationToken cancellationToken)
     {
@@ -35,6 +37,10 @@ public class ResetGameDataCommandHandler(
 
         await _gameTeamIndexRepository
             .ResetAsync(_mapper.Map<IEnumerable<GameTeamIndex>>(request.GameTeamIndexes))
+            .ConfigureAwait(false);
+
+        await _gamePlayerStatusRepository
+            .ResetAsync(_mapper.Map<IEnumerable<GamePlayerStatus>>(request.GamePlayerStatuses))
             .ConfigureAwait(false);
 
         await PublishDataResetedEventAsync(cancellationToken).ConfigureAwait(false);

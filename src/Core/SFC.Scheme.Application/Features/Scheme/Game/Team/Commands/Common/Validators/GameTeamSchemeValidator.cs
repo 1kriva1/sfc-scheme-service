@@ -5,6 +5,7 @@ using SFC.Scheme.Application.Common.Extensions;
 using SFC.Scheme.Application.Features.Scheme.Game.Team.Commands.Common.Dto;
 using SFC.Scheme.Application.Features.Scheme.Team.Commands.Common.Dto;
 using SFC.Scheme.Application.Features.Scheme.Team.Common.Dto;
+using SFC.Scheme.Application.Interfaces.Persistence.Repository.Game.Team.Player;
 using SFC.Scheme.Application.Interfaces.Persistence.Repository.Scheme.Data;
 using SFC.Scheme.Application.Interfaces.Persistence.Repository.Scheme.Game.Team;
 using SFC.Scheme.Application.Interfaces.Persistence.Repository.Team.Player;
@@ -18,18 +19,18 @@ public class GameTeamSchemeValidator<T> : AbstractValidator<T> where T : GameTea
     private readonly ISchemeTypeRepository _schemeTypeRepository;
     private readonly IFormationRepository _formationRepository;
     private readonly IFormationPositionRepository _formationPositionRepository;
-    private readonly ITeamPlayerRepository _teamPlayerRepository;
+    private readonly IGameTeamPlayerRepository _gameTeamPlayerRepository;
 
     public GameTeamSchemeValidator(
         ISchemeTypeRepository schemeTypeRepository,
         IFormationRepository formationRepository,
         IFormationPositionRepository formationPositionRepository,
-        ITeamPlayerRepository teamPlayerRepository)
+        IGameTeamPlayerRepository gameTeamPlayerRepository)
     {
         _schemeTypeRepository = schemeTypeRepository;
         _formationRepository = formationRepository;
         _formationPositionRepository = formationPositionRepository;
-        _teamPlayerRepository = teamPlayerRepository;
+        _gameTeamPlayerRepository = gameTeamPlayerRepository;
 
         SetRulesForGeneralProfile();
 
@@ -61,8 +62,8 @@ public class GameTeamSchemeValidator<T> : AbstractValidator<T> where T : GameTea
         RuleFor(p => p.Formation.Players)
             .MustAsync(async (value, players, cancellation) =>
             {
-                IEnumerable<long> playerIds = players.Select(p => p.PlayerId);
-                return await _teamPlayerRepository.CountAsync(value.TeamId, playerIds).ConfigureAwait(true) == playerIds.Count();
+                IEnumerable<long> gameTeamPlayerIds = players.Select(p => p.GameTeamPlayerId);
+                return await _gameTeamPlayerRepository.CountAsync(gameTeamPlayerIds).ConfigureAwait(true) == gameTeamPlayerIds.Count();
             })
             .WithName(nameof(TeamSchemeFormationDto.Players))
             .WithMessage(Localization.EachPlayerMustBeInTeam);
@@ -74,10 +75,10 @@ public class GameTeamSchemeValidator<T> : AbstractValidator<T> where T : GameTea
 
         RuleForEach(p => p.Formation.Players)
             .Must((value, player) => !value.Formation.Players
-                    .GroupBy(p => p.PlayerId)
+                    .GroupBy(p => p.GameTeamPlayerId)
                     .Where(g => g.Count() > 1)
                     .Select(id => id.Key)
-                    .Contains(player.PlayerId))
+                    .Contains(player.GameTeamPlayerId))
             .WithName(nameof(TeamSchemeFormationPlayerDto.PlayerId))
             .WithMessage(Localization.EachValueMustBeUnique);
 

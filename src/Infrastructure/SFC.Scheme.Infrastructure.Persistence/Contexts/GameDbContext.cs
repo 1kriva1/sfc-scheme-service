@@ -3,10 +3,14 @@
 using SFC.Scheme.Application.Interfaces.Persistence.Context;
 using SFC.Scheme.Domain.Entities.Game.Data;
 using SFC.Scheme.Domain.Entities.Game.General;
-using SFC.Scheme.Domain.Entities.Game.Team;
+using SFC.Scheme.Domain.Entities.Game.Player;
+using SFC.Scheme.Domain.Entities.Game.Team.General;
+using SFC.Scheme.Domain.Entities.Game.Team.Player;
 using SFC.Scheme.Infrastructure.Persistence.Configurations.Game.Data;
 using SFC.Scheme.Infrastructure.Persistence.Configurations.Game.General;
-using SFC.Scheme.Infrastructure.Persistence.Configurations.Game.Team;
+using SFC.Scheme.Infrastructure.Persistence.Configurations.Game.Player;
+using SFC.Scheme.Infrastructure.Persistence.Configurations.Game.Team.General;
+using SFC.Scheme.Infrastructure.Persistence.Configurations.Game.Team.Player;
 using SFC.Scheme.Infrastructure.Persistence.Constants;
 using SFC.Scheme.Infrastructure.Persistence.Interceptors;
 
@@ -16,12 +20,16 @@ public class GameDbContext(
     AuditableEntitySaveChangesInterceptor auditableInterceptor,
     DataEntitySaveChangesInterceptor dataEntityInterceptor,
     UserEntitySaveChangesInterceptor userEntityInterceptor,
+    PlayerEntitySaveChangesInterceptor playerEntityInterceptor,
+    TeamEntitySaveChangesInterceptor teamEntityInterceptor,
     DispatchDomainEventsSaveChangesInterceptor eventsInterceptor)
     : BaseDbContext<GameDbContext>(options, eventsInterceptor), IGameDbContext
 {
     private readonly AuditableEntitySaveChangesInterceptor _auditableInterceptor = auditableInterceptor;
     private readonly DataEntitySaveChangesInterceptor _dataEntityInterceptor = dataEntityInterceptor;
     private readonly UserEntitySaveChangesInterceptor _userEntityInterceptor = userEntityInterceptor;
+    private readonly PlayerEntitySaveChangesInterceptor _playerEntityInterceptor = playerEntityInterceptor;
+    private readonly TeamEntitySaveChangesInterceptor _teamEntityInterceptor = teamEntityInterceptor;
 
     #region General
 
@@ -39,6 +47,10 @@ public class GameDbContext(
 
     public IQueryable<GameTeam> GameTeams => Set<GameTeam>();
 
+    public IQueryable<GamePlayer> GamePlayers => Set<GamePlayer>();
+
+    public IQueryable<GameTeamPlayer> GameTeamPlayers => Set<GameTeamPlayer>();
+
     #endregion General
 
     #region Data
@@ -48,6 +60,8 @@ public class GameDbContext(
     public IQueryable<GameTeamStatus> GameTeamStatuses => Set<GameTeamStatus>();
 
     public IQueryable<GameTeamIndex> GameTeamIndexes => Set<GameTeamIndex>();
+
+    public IQueryable<GamePlayerStatus> GamePlayerStatuses => Set<GamePlayerStatus>();
 
     #endregion Data
 
@@ -83,6 +97,8 @@ public class GameDbContext(
         optionsBuilder.AddInterceptors(_auditableInterceptor);
         optionsBuilder.AddInterceptors(_dataEntityInterceptor);
         optionsBuilder.AddInterceptors(_userEntityInterceptor);
+        optionsBuilder.AddInterceptors(_playerEntityInterceptor);
+        optionsBuilder.AddInterceptors(_teamEntityInterceptor);
         base.OnConfiguring(optionsBuilder);
     }
 
@@ -93,6 +109,8 @@ public class GameDbContext(
         modelBuilder.ApplyConfiguration(new GameTeamStatusConfiguration());
 
         modelBuilder.ApplyConfiguration(new GameTeamIndexConfiguration());
+
+        modelBuilder.ApplyConfiguration(new GamePlayerStatusConfiguration());
 
         modelBuilder.ApplyConfiguration(new GameAvailabilityConfiguration());
 
@@ -107,5 +125,9 @@ public class GameDbContext(
         modelBuilder.ApplyConfiguration(new GameTagConfiguration());
 
         modelBuilder.ApplyConfiguration(new GameTeamConfiguration());
+
+        modelBuilder.ApplyConfiguration(new GamePlayerConfiguration());
+
+        modelBuilder.ApplyConfiguration(new GameTeamPlayerConfiguration());
     }
 }

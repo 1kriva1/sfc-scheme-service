@@ -28,7 +28,7 @@ public class GameTeamSchemeRepository(SchemeDbContext context)
     {
         return await Context.GameTeamSchemes
                             .Include(p => p.GeneralProfile)
-                            .Include(p => p.Formation).ThenInclude(p => p.Players).ThenInclude(p => p.Player)
+                            .Include(p => p.Formation).ThenInclude(p => p.Players).ThenInclude(p => p.GameTeamPlayer)
                             .Include(p => p.Formation).ThenInclude(p => p.Players).ThenInclude(p => p.Position)
                             .Where(team => userIds.Contains(team.UserId))
                             .ToListAsync()

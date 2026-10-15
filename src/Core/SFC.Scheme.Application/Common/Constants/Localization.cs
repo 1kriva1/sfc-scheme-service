@@ -141,6 +141,10 @@ public class Localization
                        GetValue(s_localizer?.GetString("GameTeamNotFound"),
                            "Game team not found.")!;
 
+    public static string GameTeamPlayerNotFound =>
+                       GetValue(s_localizer?.GetString("GameTeamPlayerNotFound"),
+                           "Game team player not found.")!;
+
     public static string GetDataValue(string name)
     {
         return GetValue(s_localizer?.GetString(name), name)!;

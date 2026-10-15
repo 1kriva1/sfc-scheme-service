@@ -13,7 +13,7 @@ public class GameTeamSchemePlayerRepository(SchemeDbContext context)
     {
         return await Context.Set<GameTeamSchemeFormationPlayer>()
                             .Include(e => e.Formation).ThenInclude(e => e.Scheme)
-                            .Where(e => e.Formation.Scheme.GameId == gameId && e.Formation.Scheme.TeamId == teamId && e.PlayerId == playerId)
+                            .Where(e => e.Formation.Scheme.GameId == gameId && e.Formation.Scheme.TeamId == teamId && e.GameTeamPlayerId == playerId)
                             .ToListAsync()
                             .ConfigureAwait(false);
     }

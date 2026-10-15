@@ -333,6 +333,101 @@
             Inventary profile.
             </summary>
         </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Game.Player.GamePlayerModel">
+            <summary>
+            Game Player model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Game.Player.GamePlayerModel.Id">
+            <summary>
+            Unique identifier.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Game.Player.GamePlayerModel.Status">
+            <summary>
+            Game Player status.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Game.Player.GamePlayerModel.Player">
+            <summary>
+            Game Player related to this player.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Game.Player.GamePlayerModel.GameTeamPlayer">
+            <summary>
+            Game Team Player related to this game player.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Game.Team.General.GameTeamGameTeamPlayerModel">
+            <summary>
+            Game Team Player model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Game.Team.General.GameTeamGameTeamPlayerModel.Id">
+            <summary>
+            Unique identifier.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Game.Team.General.GameTeamGameTeamPlayerModel.Status">
+            <summary>
+            Game Team Player status.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Game.Team.General.GameTeamGameTeamPlayerModel.Player">
+            <summary>
+            Game Team Player related to this player.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Game.Team.General.GameTeamModel">
+            <summary>
+            Game Team model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Game.Team.General.GameTeamModel.Id">
+            <summary>
+            Unique identifier.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Game.Team.General.GameTeamModel.Status">
+            <summary>
+            Game Team status.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Game.Team.General.GameTeamModel.Index">
+            <summary>
+            Game Team index.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Game.Team.General.GameTeamModel.Team">
+            <summary>
+            Game Team related to this team.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Game.Team.General.GameTeamModel.Players">
+            <summary>
+            Game Team related to this team.
+            </summary>
+        </member>
+        <member name="T:SFC.Scheme.Api.Infrastructure.Models.Game.Team.Player.GameTeamPlayerModel">
+            <summary>
+            Game Team Player model.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Game.Team.Player.GameTeamPlayerModel.Id">
+            <summary>
+            Unique identifier.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Game.Team.Player.GameTeamPlayerModel.Player">
+            <summary>
+            Game Team Player related to this player.
+            </summary>
+        </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Game.Team.Player.GameTeamPlayerModel.GameTeam">
+            <summary>
+            Game Team related to this game team player.
+            </summary>
+        </member>
         <member name="T:SFC.Scheme.Api.Infrastructure.Models.Pagination.PageLinksModel">
             <summary>
             **Pagination** links model.
@@ -810,7 +905,7 @@
             Team's scheme formation **player** model.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Game.Team.Common.GameTeamSchemeFormationPlayerModel.Player">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Game.Team.Common.GameTeamSchemeFormationPlayerModel.GameTeamPlayer">
             <summary>
             Player model.
             </summary>
@@ -927,9 +1022,9 @@
             Team's scheme **player** model.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Game.Team.Create.CreateGameTeamSchemeFormationPlayerModel.PlayerId">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Game.Team.Create.CreateGameTeamSchemeFormationPlayerModel.GameTeamPlayerId">
             <summary>
-            Player unique identifier.
+            Game team player unique identifier.
             </summary>
         </member>
         <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Game.Team.Create.CreateGameTeamSchemeFormationPlayerModel.Position">
@@ -1092,7 +1187,7 @@
             Team's scheme **player** model.
             </summary>
         </member>
-        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Game.Team.Update.UpdateGameTeamSchemeFormationPlayerModel.PlayerId">
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Game.Team.Update.UpdateGameTeamSchemeFormationPlayerModel.GameTeamPlayerId">
             <summary>
             Player unique identifier.
             </summary>

@@ -10,7 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 using SFC.Game.Messages.Events.Game.Team.General;
-using SFC.Scheme.Application.Features.Game.Team.Commands.Creates;
+using SFC.Scheme.Application.Features.Game.Team.General.Commands.Creates;
 using SFC.Scheme.Application.Interfaces.Metadata;
 using SFC.Scheme.Infrastructure.Extensions;
 using SFC.Scheme.Infrastructure.Settings.RabbitMq;
@@ -35,9 +35,7 @@ public class GameTeamsSeededConsumer(
     {
         if (_environment.IsDevelopment())
         {
-            if (await _metadataService.IsCompletedAsync(MetadataServiceEnum.Game, MetadataDomainEnum.Game, MetadataTypeEnum.Seed).ConfigureAwait(true) &&
-                await _metadataService.IsCompletedAsync(MetadataServiceEnum.Team, MetadataDomainEnum.Team, MetadataTypeEnum.Seed).ConfigureAwait(true) &&
-               !await _metadataService.IsCompletedAsync(MetadataServiceEnum.Game, MetadataDomainEnum.GameTeam, MetadataTypeEnum.Seed).ConfigureAwait(true))
+            if (!await _metadataService.IsCompletedAsync(MetadataServiceEnum.Game, MetadataDomainEnum.GameTeam, MetadataTypeEnum.Seed).ConfigureAwait(true))
             {
                 GameTeamsSeeded @event = context.Message;
 

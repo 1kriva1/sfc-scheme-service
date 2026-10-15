@@ -10,9 +10,9 @@ namespace SFC.Scheme.Api.Infrastructure.Models.Scheme.Game.Team.Create;
 public class CreateGameTeamSchemeFormationPlayerModel : IMapTo<GameTeamSchemeFormationPlayerDto>
 {
     /// <summary>
-    /// Player unique identifier.
+    /// Game team player unique identifier.
     /// </summary>
-    public long PlayerId { get; set; }
+    public long GameTeamPlayerId { get; set; }
 
     /// <summary>
     /// Player's position in formation.

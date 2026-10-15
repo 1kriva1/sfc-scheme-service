@@ -2,7 +2,6 @@
 
 using Microsoft.Extensions.Hosting;
 
-using SFC.Scheme.Application.Interfaces.Game.Team;
 using SFC.Scheme.Application.Interfaces.Metadata;
 using SFC.Scheme.Application.Interfaces.Team.Player;
 using SFC.Scheme.Domain.Events.Team.General;
@@ -11,13 +10,11 @@ namespace SFC.Scheme.Application.Features.Team.General.Notifications.TeamsCreate
 public class TeamsCreatedNotificationHandler(
     IMetadataService metadataService,
     IHostEnvironment hostEnvironment,
-    ITeamPlayerSeedService teamPlayerSeedService,
-    IGameTeamSeedService gameTeamSeedService) : INotificationHandler<TeamsCreatedEvent>
+    ITeamPlayerSeedService teamPlayerSeedService) : INotificationHandler<TeamsCreatedEvent>
 {
     private readonly IMetadataService _metadataService = metadataService;
     private readonly IHostEnvironment _hostEnvironment = hostEnvironment;
     private readonly ITeamPlayerSeedService _teamPlayerSeedService = teamPlayerSeedService;
-    private readonly IGameTeamSeedService _gameTeamSeedService = gameTeamSeedService;
 
     public async Task Handle(TeamsCreatedEvent notification, CancellationToken cancellationToken)
     {
@@ -31,15 +28,6 @@ public class TeamsCreatedNotificationHandler(
                 {
                     await _teamPlayerSeedService.SendRequireTeamPlayersSeedAsync(cancellationToken)
                                                 .ConfigureAwait(false);
-                }
-            }
-
-            if (!await _metadataService.IsCompletedAsync(MetadataServiceEnum.Game, MetadataDomainEnum.GameTeam, MetadataTypeEnum.Seed).ConfigureAwait(true))
-            {
-                if (await _metadataService.IsCompletedAsync(MetadataServiceEnum.Game, MetadataDomainEnum.Game, MetadataTypeEnum.Seed).ConfigureAwait(true))
-                {
-                    await _gameTeamSeedService.SendRequireGameTeamsSeedAsync(cancellationToken)
-                                              .ConfigureAwait(false);
                 }
             }
         }

@@ -10,7 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 using SFC.Game.Messages.Commands.Game.Team.General;
-using SFC.Scheme.Application.Features.Game.Team.Commands.Creates;
+using SFC.Scheme.Application.Features.Game.Team.General.Commands.Creates;
 using SFC.Scheme.Application.Interfaces.Metadata;
 using SFC.Scheme.Infrastructure.Extensions;
 using SFC.Scheme.Infrastructure.Settings.RabbitMq;
