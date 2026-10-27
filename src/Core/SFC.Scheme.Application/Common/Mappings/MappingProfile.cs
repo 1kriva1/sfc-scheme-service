@@ -5,6 +5,7 @@ using SFC.Scheme.Application.Features.Common.Dto.Pagination;
 using SFC.Scheme.Application.Features.Common.Models.Find.Paging;
 using SFC.Scheme.Application.Features.Scheme.Data.Queries.Common.Dto;
 using SFC.Scheme.Domain.Common;
+using SFC.Scheme.Domain.Common.Interfaces;
 using SFC.Scheme.Domain.Entities.Data;
 using SFC.Scheme.Domain.Entities.Game.General;
 using SFC.Scheme.Domain.Entities.Identity;
@@ -76,7 +77,8 @@ public class MappingProfile : BaseMappingProfile
 
         CreateMap(typeof(PagedList<>), typeof(PageMetadataDto));
 
-        CreateMap(typeof(EnumDataEntity<>), typeof(DataValueDto));
+        CreateMap(typeof(EnumDataEntity<>), typeof(DataValueDto))
+            .ForMember(nameof(DataValueDto.Name), opt => opt.MapFrom(nameof(IEnumEntity.Title)));
 
         #endregion Generic types        
     }

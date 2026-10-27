@@ -243,25 +243,25 @@
   <data name="Custom" xml:space="preserve">
     <value>Вручну</value>
   </data>
-  <data name="Powerfull attacking formation" xml:space="preserve">
-    <value>Потужне атакуюче формування</value>
+  <data name="Powerfull Attacking" xml:space="preserve">
+    <value>Потужна Атакуюча</value>
   </data>
-  <data name="Control formation" xml:space="preserve">
-    <value>Схема контролю</value>
+  <data name="Control" xml:space="preserve">
+    <value>Контроль</value>
   </data>
-  <data name="Defend formation" xml:space="preserve">
-    <value>Захисна схема</value>
+  <data name="Defend" xml:space="preserve">
+    <value>Захисна</value>
   </data>
-  <data name="Atacking formation" xml:space="preserve">
-    <value>Атакуюча схема</value>
+  <data name="Atacking" xml:space="preserve">
+    <value>Атакуюча</value>
   </data>
-  <data name="Balanced formation" xml:space="preserve">
-    <value>Збалансована схема</value>
+  <data name="Balanced" xml:space="preserve">
+    <value>Збалансована</value>
   </data>
-  <data name="Box to box" xml:space="preserve">
+  <data name="Box To Box" xml:space="preserve">
     <value>Коробка до коробки</value>
   </data>
-  <data name="With fake number nine" xml:space="preserve">
+  <data name="Fake Nine" xml:space="preserve">
     <value>З фальшивим дев'ятим номером</value>
   </data>
 </root>

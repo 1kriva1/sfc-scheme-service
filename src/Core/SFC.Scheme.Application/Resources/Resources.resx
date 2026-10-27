@@ -258,25 +258,25 @@
   <data name="Custom" xml:space="preserve">
     <value>Custom</value>
   </data>
-  <data name="Powerfull attacking formation" xml:space="preserve">
-    <value>Powerfull attacking formation</value>
+  <data name="Powerfull Attacking" xml:space="preserve">
+    <value>Powerfull Attacking</value>
   </data>
-  <data name="Control formation" xml:space="preserve">
-    <value>Control formation</value>
+  <data name="Control" xml:space="preserve">
+    <value>Control</value>
   </data>
-  <data name="Defend formation" xml:space="preserve">
-    <value>Defend formation</value>
+  <data name="Defend" xml:space="preserve">
+    <value>Defend</value>
   </data>
-  <data name="Atacking formation" xml:space="preserve">
-    <value>Atacking formation</value>
+  <data name="Atacking" xml:space="preserve">
+    <value>Atacking</value>
   </data>
-  <data name="Balanced formation" xml:space="preserve">
-    <value>Balanced formation</value>
+  <data name="Balanced" xml:space="preserve">
+    <value>Balanced</value>
   </data>
-  <data name="Box to box" xml:space="preserve">
-    <value>Box to box</value>
+  <data name="Box To Box" xml:space="preserve">
+    <value>Box To Box</value>
   </data>
-  <data name="With fake number nine" xml:space="preserve">
-    <value>With fake number nine</value>
+  <data name="Fake Nine" xml:space="preserve">
+    <value>Fake Nine</value>
   </data>
 </root>
