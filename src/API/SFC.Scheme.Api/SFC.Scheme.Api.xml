@@ -833,6 +833,11 @@
             Unique identificator of data type.
             </summary>
         </member>
+        <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Data.Common.DataValueModel.Name">
+            <summary>
+            Name of data type.
+            </summary>
+        </member>
         <member name="P:SFC.Scheme.Api.Infrastructure.Models.Scheme.Data.Common.DataValueModel.Title">
             <summary>
             Describe data type.

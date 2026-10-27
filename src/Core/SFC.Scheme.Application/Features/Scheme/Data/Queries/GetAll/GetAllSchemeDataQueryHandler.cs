@@ -21,9 +21,9 @@ public class GetAllSchemeDataQueryHandler(IMapper mapper, ISchemeDataService sch
 
         return new GetAllSchemeDataViewModel
         {
-            SchemeTypes = _mapper.Map<IEnumerable<DataValueDto>>(model.SchemeTypes.Localize()),
-            FormationPositions = _mapper.Map<IEnumerable<FormationPositionDataValueDto>>(model.FormationPositions.Localize()),
-            Formations = _mapper.Map<IEnumerable<FormationDataValueDto>>(model.Formations.Localize())
+            SchemeTypes = _mapper.Map<IEnumerable<DataValueDto>>(model.SchemeTypes).Localize(),
+            FormationPositions = _mapper.Map<IEnumerable<FormationPositionDataValueDto>>(model.FormationPositions).Localize(),
+            Formations = _mapper.Map<IEnumerable<FormationDataValueDto>>(model.Formations).Localize()
         };
     }
 }
